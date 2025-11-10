@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Servicios inmobiliarios completos: tasación, marketing, visitas, home staging, gestión legal y alquiler">
+    <title>Nuestros Servicios - Distrito 44</title>
+
+    <link rel="stylesheet" href="comun.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        .page-hero {
+            background: linear-gradient(135deg, var(--color-azul-principal), var(--color-azul-oscuro));
+            padding: var(--spacing-xxl) 0;
+            text-align: center;
+            color: var(--color-blanco);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        .page-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-hero h1 {
+            color: var(--color-blanco);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .page-hero-subtitle {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            text-align: center;
+            transition: all var(--transition-normal);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .service-icon {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto var(--spacing-md);
+            background: linear-gradient(135deg, var(--color-naranja-pastel), var(--color-naranja-suave));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-blanco);
+            font-size: 2.5rem;
+            transition: all var(--transition-normal);
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(255, 184, 140, 0.4);
+        }
+
+        .service-card h3 {
+            color: var(--color-azul-oscuro);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .service-card p {
+            margin-bottom: var(--spacing-md);
+            line-height: 1.8;
+        }
+
+        .service-features {
+            text-align: left;
+            margin: var(--spacing-md) 0;
+            padding-left: var(--spacing-md);
+        }
+
+        .service-features li {
+            margin-bottom: var(--spacing-xs);
+            color: var(--color-gris-texto);
+            position: relative;
+            padding-left: var(--spacing-md);
+        }
+
+        .service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--color-naranja-pastel);
+            font-weight: 700;
+        }
+
+        .cta-banner {
+            background: linear-gradient(135deg, var(--color-naranja-pastel), var(--color-naranja-suave));
+            padding: var(--spacing-xxl) 0;
+            text-align: center;
+            border-radius: var(--radius-lg);
+            margin: 0 var(--spacing-md);
+        }
+
+        .cta-banner h2 {
+            color: var(--color-blanco);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .cta-banner p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.125rem;
+            margin-bottom: var(--spacing-lg);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAVEGACIÓN -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">
+                <span class="navbar-logo-text">Distrito 44</span>
+            </a>
+
+            <button class="navbar-toggle" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="navbar-menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="quienes-somos.html">Quiénes Somos</a></li>
+                <li><a href="nuestros-servicios.html" class="active">Nuestros Servicios</a></li>
+                <li><a href="nuestro-metodo.html">Nuestro Método</a></li>
+                <li><a href="galeria.html">Galería</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="departamento-juridico.html" class="legal-link">Dpto. Jurídico</a></li>
+                <li><a href="aviso-legal.html" class="legal-link">Aviso Legal</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Nuestros Servicios</h1>
+            <p class="page-hero-subtitle">Soluciones integrales para todas tus necesidades inmobiliarias</p>
+        </div>
+    </section>
+
+    <!-- SERVICIOS PRINCIPALES -->
+    <section class="section">
+        <div class="container">
+            <div class="grid grid-3">
+                <!-- TASACIÓN -->
+                <div class="card service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>Tasación Profesional</h3>
+                    <p>Valoración gratuita y profesional de tu inmueble con análisis detallado del mercado actual.</p>
+                    <ul class="service-features">
+                        <li>Estudio de mercado completo</li>
+                        <li>Comparativa con propiedades similares</li>
+                        <li>Informe detallado</li>
+                        <li>Asesoramiento personalizado</li>
+                    </ul>
+                </div>
+
+                <!-- MARKETING -->
+                <div class="card service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h3>Marketing y Promoción</h3>
+                    <p>Máxima visibilidad para tu propiedad con las mejores herramientas de marketing digital.</p>
+                    <ul class="service-features">
+                        <li>Fotografía profesional</li>
+                        <li>Tours virtuales 360°</li>
+                        <li>Publicación en portales líderes</li>
+                        <li>Promoción en redes sociales</li>
+                    </ul>
+                </div>
+
+                <!-- VISITAS -->
+                <div class="card service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Visitas Guiadas</h3>
+                    <p>Organizamos y acompañamos cada visita para presentar tu propiedad de la mejor manera.</p>
+                    <ul class="service-features">
+                        <li>Organización completa</li>
+                        <li>Filtrado de clientes potenciales</li>
+                        <li>Acompañamiento profesional</li>
+                        <li>Seguimiento post-visita</li>
+                    </ul>
+                </div>
+
+                <!-- HOME STAGING -->
+                <div class="card service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-couch"></i>
+                    </div>
+                    <h3>Home Staging</h3>
+                    <p>Preparamos tu propiedad para vender más rápido y al mejor precio posible.</p>
+                    <ul class="service-features">
+                        <li>Optimización de espacios</li>
+                        <li>Decoración estratégica</li>
+                        <li>Neutralización de ambientes</li>
+                        <li>Fotografía post-staging</li>
+                    </ul>
+                </div>
+
+                <!-- GESTIÓN LEGAL -->
+                <div class="card service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h3>Gestión Legal</h3>
+                    <p>Asesoramiento jurídico completo para garantizar la seguridad de tu operación.</p>
+                    <ul class="service-features">
+                        <li>Revisión de documentación</li>
+                        <li>Asesoramiento jurídico</li>
+                        <li>Tramitación de papeleos</li>
+                        <li>Garantía legal</li>
+                    </ul>
+                </div>
+
+                <!-- ALQUILER -->
+                <div class="card service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <h3>Gestión de Alquiler</h3>
+                    <p>Servicio integral de gestión para propietarios e inquilinos de alquiler.</p>
+                    <ul class="service-features">
+                        <li>Búsqueda de inquilinos</li>
+                        <li>Gestión de contratos</li>
+                        <li>Seguimiento de pagos</li>
+                        <li>Mantenimiento de la propiedad</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICIOS ADICIONALES -->
+    <section class="section bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Servicios Adicionales</h2>
+                <p class="section-subtitle">Más soluciones para completar tu experiencia inmobiliaria</p>
+            </div>
+            <div class="grid grid-2">
+                <div class="card">
+                    <h4 style="color: var(--color-azul-principal); margin-bottom: var(--spacing-sm);">
+                        <i class="fas fa-chart-line" style="margin-right: var(--spacing-xs);"></i>
+                        Análisis de Mercado
+                    </h4>
+                    <p>Estudios detallados de tendencias y precios del mercado inmobiliario para tomar las mejores
+                        decisiones.</p>
+                </div>
+                <div class="card">
+                    <h4 style="color: var(--color-azul-principal); margin-bottom: var(--spacing-sm);">
+                        <i class="fas fa-hands-helping" style="margin-right: var(--spacing-xs);"></i>
+                        Negociación Experta
+                    </h4>
+                    <p>Negociamos en tu nombre para conseguir el mejor precio y condiciones en la operación.</p>
+                </div>
+                <div class="card">
+                    <h4 style="color: var(--color-azul-principal); margin-bottom: var(--spacing-sm);">
+                        <i class="fas fa-clipboard-check" style="margin-right: var(--spacing-xs);"></i>
+                        Certificados Energéticos
+                    </h4>
+                    <p>Tramitamos el certificado energético obligatorio para la venta o alquiler de tu propiedad.</p>
+                </div>
+                <div class="card">
+                    <h4 style="color: var(--color-azul-principal); margin-bottom: var(--spacing-sm);">
+                        <i class="fas fa-user-shield" style="margin-right: var(--spacing-xs);"></i>
+                        Seguro de Hogar
+                    </h4>
+                    <p>Te ayudamos a contratar el mejor seguro de hogar adaptado a las necesidades de tu propiedad.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESO -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>¿Cómo Trabajamos?</h2>
+                <p class="section-subtitle">Nuestro proceso garantiza los mejores resultados</p>
+            </div>
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <p style="font-size: 1.125rem; line-height: 1.8; margin-bottom: var(--spacing-xl);">
+                    Combinamos todos nuestros servicios de forma coordinada para ofrecerte una experiencia integral.
+                    Desde la primera valoración hasta la entrega de llaves, nuestro equipo trabaja contigo en cada paso
+                    del camino.
+                </p>
+                <a href="nuestro-metodo.html" class="btn btn-primary btn-large">Conoce Nuestro Método</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="section cta-banner">
+        <div class="container">
+            <h2>¿Necesitas Más Información?</h2>
+            <p>Contáctanos y te asesoraremos sin compromiso sobre el mejor servicio para ti</p>
+            <a href="contacto.html" class="btn btn-primary btn-large">Contactar Ahora</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <span class="footer-logo-text">Distrito 44</span>
+                <p>Tu inmobiliaria de confianza en Madrid.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Enlaces</h4>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="quienes-somos.html">Quiénes Somos</a></li>
+                    <li><a href="nuestro-metodo.html">Nuestro Método</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <div class="footer-contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Calle Ejemplo 123, Madrid</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+34 646 055 532</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>info@distrito44.es</span>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="aviso-legal.html">Aviso Legal</a></li>
+                    <li><a href="departamento-juridico.html">Dpto. Jurídico</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copyright">&copy; 2025 <a href="index.html">Distrito 44</a>. Todos los derechos reservados.
+            </p>
+        </div>
+    </footer>
+
+    <script src="comun.js"></script>
+</body>
+
+</html>

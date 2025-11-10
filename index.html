@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Distrito 44 - Inmobiliaria en Madrid especializada en venta y alquiler de propiedades con asesoramiento personalizado">
+    <title>Distrito 44 - Hacemos Sueños Realidad</title>
+
+    <link rel="stylesheet" href="comun.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ======================================
+           FONDOS GEOMÉTRICOS SUTILES
+           ====================================== */
+
+
+        /* HERO CON IMAGEN DE FONDO */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            background-image: url('img/ft1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Overlay más sutil para que la imagen se vea grande */
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 0;
+        }
+
+        .hero-overlay {
+            display: none;
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        /* FORMAS DECORATIVAS */
+        .hero-shapes {
+            display: none;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(45deg, #FFB88C, #FFD4B3);
+            border-radius: 50% 40% 60% 50%;
+            top: 10%;
+            left: 5%;
+        }
+
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, #FFB88C, #FFD4B3);
+            border-radius: 30% 70% 70% 30%;
+            top: 60%;
+            right: 10%;
+            animation-delay: 5s;
+        }
+
+        .shape-3 {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(45deg, #FFF, rgba(255, 255, 255, 0.5));
+            transform: rotate(45deg);
+            bottom: 15%;
+            left: 15%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-30px) rotate(10deg);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-logo {
+            display: none;
+            margin-bottom: 2rem;
+            animation: fadeInDown 1s ease;
+        }
+
+        .logo-image {
+            max-width: 250px;
+            height: auto;
+            filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.2));
+        }
+
+        .hero-title {
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5), 0 4px 20px rgba(0, 0, 0, 0.3);
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+            letter-spacing: 8px;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .hero-tagline {
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), 0 3px 15px rgba(0, 0, 0, 0.3);
+            font-size: clamp(1.25rem, 2.5vw, 2rem);
+            color: #FFB88C;
+            margin-bottom: 2.5rem;
+            font-weight: 500;
+            letter-spacing: 4px;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.9s both;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ======================================
+           SECCIÓN CARACTERÍSTICAS - PATRÓN DE LÍNEAS IRREGULARES
+           ====================================== */
+        .section-decorated {
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Patrón de líneas diagonales irregulares */
+        .section-decorated::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(30deg, transparent 45%, rgba(74, 144, 226, 0.03) 45%, rgba(74, 144, 226, 0.03) 47%, transparent 47%),
+                linear-gradient(120deg, transparent 45%, rgba(255, 184, 140, 0.03) 45%, rgba(255, 184, 140, 0.03) 47%, transparent 47%),
+                linear-gradient(60deg, transparent 65%, rgba(74, 144, 226, 0.02) 65%, rgba(74, 144, 226, 0.02) 67%, transparent 67%);
+            background-size: 100px 100px, 120px 120px, 80px 80px;
+            background-position: 0 0, 20px 20px, 40px 40px;
+            opacity: 0.5;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Gradientes radiales suaves adicionales */
+        .section-decorated::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 15% 30%, rgba(74, 144, 226, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 85% 70%, rgba(255, 184, 140, 0.05) 0%, transparent 50%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* TARJETAS CON BACKDROP BLUR */
+        .feature-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #4A90E2, #FFB88C);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .feature-icon {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, #4A90E2, #FFB88C);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: rotateY(360deg);
+        }
+
+        /* ======================================
+           SECCIÓN SERVICIOS - PATRÓN ORIGAMI/POLIGONAL MÍS NOTORIO
+           ====================================== */
+        .section-services-bg {
+            position: relative;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+        }
+
+        /* Patrón poligonal/origami MÍS VISIBLE y con animación */
+        .section-services-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                /* Líneas principales más gruesas y visibles */
+                linear-gradient(60deg, transparent 66%, rgba(74, 144, 226, 0.12) 66%, rgba(74, 144, 226, 0.12) 72%, transparent 72%),
+                linear-gradient(120deg, transparent 66%, rgba(255, 184, 140, 0.12) 66%, rgba(255, 184, 140, 0.12) 72%, transparent 72%),
+                linear-gradient(-30deg, transparent 66%, rgba(74, 144, 226, 0.09) 66%, rgba(74, 144, 226, 0.09) 71%, transparent 71%),
+                linear-gradient(150deg, transparent 56%, rgba(74, 144, 226, 0.15) 56%, rgba(74, 144, 226, 0.15) 64%, transparent 64%),
+                /* Líneas secundarias para crear más profundidad */
+                linear-gradient(45deg, transparent 73%, rgba(255, 184, 140, 0.08) 73%, rgba(255, 184, 140, 0.08) 77%, transparent 77%),
+                linear-gradient(135deg, transparent 73%, rgba(74, 144, 226, 0.08) 73%, rgba(74, 144, 226, 0.08) 77%, transparent 77%),
+                /* Líneas terciarias para efecto origami más complejo */
+                linear-gradient(90deg, transparent 80%, rgba(74, 144, 226, 0.05) 80%, rgba(74, 144, 226, 0.05) 82%, transparent 82%),
+                linear-gradient(0deg, transparent 80%, rgba(255, 184, 140, 0.05) 80%, rgba(255, 184, 140, 0.05) 82%, transparent 82%);
+            background-size: 120px 120px, 100px 100px, 150px 150px, 130px 130px, 180px 180px, 170px 170px, 200px 200px, 190px 190px;
+            background-position: 0 0, 40px 40px, 20px 20px, 60px 10px, 30px 50px, 70px 30px, 80px 60px, 50px 80px;
+            opacity: 1;
+            z-index: 0;
+            animation: geometricShift 40s ease-in-out infinite;
+        }
+
+        @keyframes geometricShift {
+
+            0%,
+            100% {
+                background-position: 0 0, 40px 40px, 20px 20px, 60px 10px, 30px 50px, 70px 30px, 80px 60px, 50px 80px;
+            }
+
+            50% {
+                background-position: 60px 60px, 100px 100px, 80px 80px, 120px 70px, 90px 110px, 130px 90px, 140px 120px, 110px 140px;
+            }
+        }
+
+        /* Gradientes radiales MÍS NOTORIOS con efecto de profundidad */
+        .section-services-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                /* Gradientes principales más intensos con colores vibrantes */
+                radial-gradient(ellipse at 15% 15%, rgba(74, 144, 226, 0.18) 0%, rgba(74, 144, 226, 0.08) 30%, rgba(74, 144, 226, 0.02) 50%, transparent 70%),
+                radial-gradient(ellipse at 85% 85%, rgba(255, 184, 140, 0.18) 0%, rgba(255, 184, 140, 0.08) 30%, rgba(255, 184, 140, 0.02) 50%, transparent 70%),
+                /* Gradientes secundarios para más profundidad */
+                radial-gradient(circle at 50% 50%, rgba(74, 144, 226, 0.06) 0%, rgba(74, 144, 226, 0.02) 40%, transparent 60%),
+                radial-gradient(circle at 25% 75%, rgba(255, 184, 140, 0.12) 0%, rgba(255, 184, 140, 0.04) 30%, transparent 50%),
+                radial-gradient(circle at 75% 25%, rgba(74, 144, 226, 0.10) 0%, rgba(74, 144, 226, 0.03) 35%, transparent 55%),
+                /* Gradientes terciarios para aÍºn más dimensión */
+                radial-gradient(ellipse at 40% 40%, rgba(255, 184, 140, 0.06) 0%, transparent 45%),
+                radial-gradient(ellipse at 60% 60%, rgba(74, 144, 226, 0.06) 0%, transparent 45%);
+            z-index: 0;
+            animation: gradientPulse 20s ease-in-out infinite;
+        }
+
+        @keyframes gradientPulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.85;
+            }
+        }
+
+        /* TARJETAS DE SERVICIOS CON BLUR MEJORADO */
+        .service-detail-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-left: 5px solid #4A90E2;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-detail-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 12px 45px rgba(0, 0, 0, 0.15);
+            border-left-width: 8px;
+            background: rgba(255, 255, 255, 0.97);
+        }
+
+        .service-detail-card h3 {
+            color: #2E5C8A;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .service-detail-card h3 i {
+            color: #FFB88C;
+            font-size: 1.75rem;
+        }
+
+        .service-detail-card p {
+            color: #4A5568;
+            line-height: 1.9;
+            text-align: justify;
+        }
+
+        .service-detail-card ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 1rem;
+        }
+
+        .service-detail-card li {
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            color: #4A5568;
+        }
+
+        .service-detail-card li::before {
+            content: 'Ã¢Å“â€œ';
+            position: absolute;
+            left: 0;
+            color: #4A90E2;
+            font-weight: bold;
+        }
+
+        /* ======================================
+           SECCIÓN ESTADÍSTICAS - FONDO CON HEXÍGONOS
+           ====================================== */
+        .stats-section {
+            background: linear-gradient(135deg, #2E5C8A 0%, #4A90E2 100%);
+            color: white;
+            padding: 5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Patrón de hexágonos sutiles */
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                repeating-linear-gradient(30deg, transparent, transparent 20px, rgba(255, 255, 255, 0.02) 20px, rgba(255, 255, 255, 0.02) 40px),
+                repeating-linear-gradient(90deg, transparent, transparent 20px, rgba(255, 255, 255, 0.02) 20px, rgba(255, 255, 255, 0.02) 40px),
+                repeating-linear-gradient(150deg, transparent, transparent 20px, rgba(255, 255, 255, 0.02) 20px, rgba(255, 255, 255, 0.02) 40px);
+            opacity: 0.5;
+            z-index: 0;
+        }
+
+        .stats-section::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 15% 25%, rgba(255, 184, 140, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 85% 75%, rgba(255, 184, 140, 0.08) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-item {
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 700;
+            color: #FFB88C;
+            margin-bottom: 0.5rem;
+            font-family: var(--font-heading);
+        }
+
+        .stat-label {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+
+        /* ======================================
+           CTA - PATRÓN DE CÍRCULOS CONCÉNTRICOS
+           ====================================== */
+        .cta-section {
+            background: linear-gradient(135deg, #FFB88C 0%, #FFD4B3 100%);
+            padding: 5rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 30px;
+            margin: 0 1.5rem;
+        }
+
+        /* Círculos concéntricos sutiles */
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                radial-gradient(circle, rgba(255, 255, 255, 0.05) 2px, transparent 2px);
+            background-size: 40px 40px, 80px 80px;
+            background-position: 0 0, 20px 20px;
+            opacity: 0.6;
+            z-index: 0;
+        }
+
+        .cta-section::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -100px;
+            left: -100px;
+            z-index: 0;
+        }
+
+        @media (max-width: 768px) {
+            .logo-image {
+                max-width: 180px;
+            }
+
+            .hero-title {
+                text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5), 0 4px 20px rgba(0, 0, 0, 0.3);
+                letter-spacing: 4px;
+            }
+
+            .hero-tagline {
+                text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), 0 3px 15px rgba(0, 0, 0, 0.3);
+                letter-spacing: 2px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- FORMAS GEOMÉTRICAS DECORATIVAS TIPO MOSAICO -->
+    <div class="geometric-bg">
+        <!-- ROMBOS -->
+        <div class="geo-shape geo-diamond geo-diamond-1"></div>
+        <div class="geo-shape geo-diamond geo-diamond-2"></div>
+        <div class="geo-shape geo-diamond geo-diamond-3"></div>
+
+        <!-- TRIÍNGULOS -->
+        <div class="geo-shape geo-triangle geo-triangle-1"></div>
+        <div class="geo-shape geo-triangle geo-triangle-2"></div>
+        <div class="geo-shape geo-triangle geo-triangle-3"></div>
+
+        <!-- CUADRADOS -->
+        <div class="geo-shape geo-square geo-square-1"></div>
+        <div class="geo-shape geo-square geo-square-2"></div>
+        <div class="geo-shape geo-square geo-square-3"></div>
+
+        <!-- CÍRCULOS -->
+        <div class="geo-shape geo-circle geo-circle-1"></div>
+        <div class="geo-shape geo-circle geo-circle-2"></div>
+        <div class="geo-shape geo-circle geo-circle-3"></div>
+
+        <!-- HEXÍGONOS -->
+        <div class="geo-shape geo-hexagon geo-hexagon-1"></div>
+        <div class="geo-shape geo-hexagon geo-hexagon-2"></div>
+
+        <!-- LÍNEAS DECORATIVAS -->
+        <div class="geo-shape geo-line geo-line-1"></div>
+        <div class="geo-shape geo-line geo-line-2"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">
+                <img src="img/logo2.png" alt="Distrito 44" class="navbar-logo-img">
+                <span class="navbar-logo-text">Distrito 44</span>
+            </a>
+
+            <button class="navbar-toggle" aria-label="Abrir menÍº">
+                <span></span><span></span><span></span>
+            </button>
+
+            <ul class="navbar-menu">
+                <li><a href="index.html" class="active">Inicio</a></li>
+                <li><a href="quienes-somos.html">Quiénes Somos</a></li>
+                <li><a href="nuestros-servicios.html">Nuestros Servicios</a></li>
+                <li><a href="nuestro-metodo.html">Nuestro Método</a></li>
+                <li><a href="galeria.html">Galería</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="departamento-juridico.html" class="legal-link">Dpto. Jurídico</a></li>
+                <li><a href="aviso-legal.html" class="legal-link">Aviso Legal</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO CON LOGO Y FONDO GEOMÉTRICO DE DIAMANTES -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+        <div class="hero-content">
+            <div class="container">
+                <div class="hero-logo">
+                    <img src="img/ft1.jpg" alt="Distrito 44" class="logo-image">
+                </div>
+                <h1 class="hero-title">DISTRITO 44</h1>
+                <p class="hero-tagline">HACEMOS SUEÑOS REALIDAD</p>
+                <div class="hero-buttons">
+                    <a href="nuestros-servicios.html" class="btn btn-primary btn-large">Nuestros Servicios</a>
+                    <a href="contacto.html" class="btn btn-secondary btn-large">Contáctanos</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CARACTERÍSTICAS CON PATRÓN DE LÍNEAS DIAGONALES -->
+    <section class="section features section-decorated">
+        <div class="container">
+            <div class="grid grid-3">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-home"></i></div>
+                    <h3>Amplia Cartera</h3>
+                    <p>Accede a las mejores propiedades en Madrid y alrededores, seleccionadas cuidadosamente para ti.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-handshake"></i></div>
+                    <h3>Asesoramiento Personalizado</h3>
+                    <p>Te acompañamos en cada paso del proceso, adaptándonos a tus necesidades específicas.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Confianza y Transparencia</h3>
+                    <p>Trabajamos con total transparencia, protegiendo tus intereses en cada transacción.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICIOS PROFESIONALES CON FONDO POLIGONAL MÍS NOTORIO -->
+    <section class="section section-services-bg">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestros Servicios Profesionales</h2>
+                <p class="section-subtitle">Experiencia y dedicación en cada operación</p>
+            </div>
+
+            <div style="display: grid; gap: 2.5rem; max-width: 1000px; margin: 0 auto;">
+                <div class="service-detail-card">
+                    <h3><i class="fas fa-chart-line"></i> Asesoría Profesional</h3>
+                    <p>Confíe en nuestros métodos profesionales a la hora de vender su casa. Garantizamos tasar su
+                        propiedad adecuadamente, basándonos en nuestros recientes estudios del mercado, en las
+                        valoraciones obtenidas a través del Colegio de Registradores de España y las casas vendidas en
+                        los últimos meses con las mismas características, situación, estado y métrica. Le ayudaremos
+                        a
+                        conseguir el máximo beneficio posible de su propiedad.</p>
+                </div>
+
+                <div class="service-detail-card">
+                    <h3><i class="fas fa-bullhorn"></i> Exposición y Publicación Premium</h3>
+                    <p>Trabajamos arduamente para asegurar la completa exposición de nuestras propiedades listadas,
+                        publicitándolas en todos los portales de internet y otros medios adicionales, llegando a miles
+                        de compradores potenciales.</p>
+                </div>
+
+                <div class="service-detail-card">
+                    <h3><i class="fas fa-couch"></i> Preparación, Fotografía y Home Staging</h3>
+                    <p>Le mostraremos cómo preparar adecuadamente su casa para mostrarla a los compradores potenciales,
+                        asesorándole en todo momento durante el proceso de venta.</p>
+                    <p>Ofrecemos el servicio de Home Staging o estrategia de marketing inmobiliario para preparar la
+                        propiedad y favorecer, agilizar de este modo, la operación inmobiliaria.</p>
+                    <p><a href="http://www.smarthomestaging.es" target="_blank"
+                            style="color: #4A90E2; font-weight: 600;">www.smarthomestaging.es</a></p>
+                </div>
+
+                <div class="service-detail-card">
+                    <h3><i class="fas fa-users"></i> Venta Personalizada</h3>
+                    <ul>
+                        <li>Organizamos visitas guiadas a la zona donde se encuentra la vivienda, ofreciendo
+                            información
+                            adicional y mostrando al comprador por qué debe elegir esa casa y no otra.</li>
+                        <li>Realizamos un filtrado previo de clientes potenciales para que las visitas sean realmente
+                            interesantes, conociendo la solvencia de los compradores y evitando perder el tiempo.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ESTADÍSTICAS ANIMADAS CON PATRÓN DE HEXÍGONOS -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="section-title" style="margin-bottom: 3rem;">
+                <h2 style="color: white;">Nuestra Trayectoria en Números</h2>
+                <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">Años de experiencia que nos respaldan
+                </p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="5346">0</div>
+                    <div class="stat-label">Clientes Satisfechos</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="1">0</div>
+                    <div class="stat-label">Ubicación</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="4">0</div>
+                    <div class="stat-label">Personal Profesional</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="11">0</div>
+                    <div class="stat-label">Años de Experiencia</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA CON CÍRCULOS CONCÉNTRICOS -->
+    <section class="section cta-section">
+        <div class="container" style="position: relative; z-index: 1;">
+            <h2 style="color: white;">¿Quieres Valorar Tu Propiedad?</h2>
+            <p style="color: rgba(255,255,255,0.95); font-size: 1.25rem; margin-bottom: 2rem;">Obtén una valoración
+                profesional y gratuita de tu inmueble. Nuestros expertos te asesorarán sin compromiso.</p>
+            <a href="contacto.html" class="btn btn-primary btn-large">Solicitar Valoración Gratuita</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <span class="footer-logo-text">Distrito 44</span>
+                <p>Tu inmobiliaria de confianza en Madrid.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Enlaces</h4>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="quienes-somos.html">Quiénes Somos</a></li>
+                    <li><a href="nuestros-servicios.html">Servicios</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <div class="footer-contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Avda. del Cantábrico, 131<br>28939 Arroyomolinos, Madrid</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>dadiga4444@gmail.com</span>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="aviso-legal.html">Aviso Legal</a></li>
+                    <li><a href="departamento-juridico.html">Dpto. Jurídico</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copyright">&copy; 2025 <a href="index.html">Distrito 44</a>. Todos los derechos reservados.
+            </p>
+        </div>
+    </footer>
+
+    <script src="comun.js"></script>
+    <script>
+        // CONTADOR ANIMADO
+        document.addEventListener('DOMContentLoaded', function () {
+            const stats = document.querySelectorAll('.stat-number');
+
+            const animateCounter = (element) => {
+                const target = parseInt(element.getAttribute('data-target'));
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                let current = 0;
+
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    element.textContent = Math.floor(current).toLocaleString();
+                }, 16);
+            };
+
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounter(entry.target);
+                        statsObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            stats.forEach(stat => statsObserver.observe(stat));
+        });
+    </script>
+</body>
+
+</html>

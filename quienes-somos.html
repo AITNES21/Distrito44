@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Conoce al equipo de Distrito 44 - Inmobiliaria en Madrid con años de experiencia">
+    <title>Quiénes Somos - Distrito 44</title>
+
+    <link rel="stylesheet" href="comun.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ======================================
+           FONDOS GEOMÉTRICOS NOTORIOS
+           ====================================== */
+
+        /* ===== HERO CON PATRÓN DE DIAMANTES ANIMADO ===== */
+        .page-hero {
+            background: linear-gradient(135deg, var(--color-azul-principal), var(--color-azul-oscuro));
+            padding: var(--spacing-xxl) 0;
+            text-align: center;
+            color: var(--color-blanco);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Patrón de diamantes geométricos animado */
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                linear-gradient(45deg, transparent 48%, rgba(255, 255, 255, 0.08) 49%, rgba(255, 255, 255, 0.08) 51%, transparent 52%),
+                linear-gradient(-45deg, transparent 48%, rgba(255, 255, 255, 0.08) 49%, rgba(255, 255, 255, 0.08) 51%, transparent 52%),
+                linear-gradient(30deg, transparent 70%, rgba(255, 255, 255, 0.04) 70%, rgba(255, 255, 255, 0.04) 72%, transparent 72%);
+            background-size: 80px 80px, 80px 80px, 120px 120px;
+            animation: heroGeometricFloat 30s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        @keyframes heroGeometricFloat {
+
+            0%,
+            100% {
+                background-position: 0 0, 0 0, 20px 20px;
+                opacity: 0.6;
+            }
+
+            50% {
+                background-position: 40px 40px, -40px -40px, 70px 70px;
+                opacity: 0.8;
+            }
+        }
+
+        .page-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-hero h1 {
+            color: var(--color-blanco);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .page-hero-subtitle {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* ===== SECCIÓN HISTORIA CON PATRÓN ORIGAMI ===== */
+        .history-section {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .history-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(60deg, transparent 66%, rgba(74, 144, 226, 0.10) 66%, rgba(74, 144, 226, 0.10) 70%, transparent 70%),
+                linear-gradient(120deg, transparent 66%, rgba(255, 184, 140, 0.10) 66%, rgba(255, 184, 140, 0.10) 70%, transparent 70%),
+                linear-gradient(-30deg, transparent 68%, rgba(74, 144, 226, 0.07) 68%, rgba(74, 144, 226, 0.07) 71%, transparent 71%),
+                linear-gradient(150deg, transparent 58%, rgba(255, 184, 140, 0.12) 58%, rgba(255, 184, 140, 0.12) 64%, transparent 64%),
+                linear-gradient(45deg, transparent 73%, rgba(74, 144, 226, 0.06) 73%, rgba(74, 144, 226, 0.06) 77%, transparent 77%);
+            background-size: 130px 130px, 110px 110px, 160px 160px, 140px 140px, 190px 190px;
+            background-position: 0 0, 40px 40px, 20px 20px, 60px 10px, 30px 50px;
+            opacity: 1;
+            z-index: 0;
+            animation: historyShift 35s ease-in-out infinite;
+        }
+
+        @keyframes historyShift {
+
+            0%,
+            100% {
+                background-position: 0 0, 40px 40px, 20px 20px, 60px 10px, 30px 50px;
+            }
+
+            50% {
+                background-position: 65px 65px, 105px 105px, 85px 85px, 125px 75px, 95px 115px;
+            }
+        }
+
+        .history-section::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 10% 20%, rgba(74, 144, 226, 0.15) 0%, rgba(74, 144, 226, 0.06) 35%, transparent 65%),
+                radial-gradient(ellipse at 90% 80%, rgba(255, 184, 140, 0.15) 0%, rgba(255, 184, 140, 0.06) 35%, transparent 65%),
+                radial-gradient(circle at 50% 50%, rgba(74, 144, 226, 0.04) 0%, transparent 55%);
+            z-index: 0;
+            animation: historyGradientPulse 18s ease-in-out infinite;
+        }
+
+        @keyframes historyGradientPulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.85;
+            }
+        }
+
+        .history-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xxl);
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .history-text h2 {
+            color: var(--color-azul-oscuro);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .history-image img {
+            width: 100%;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* ===== MISIÓN Y VISIÓN CON LÍNEAS DIAGONALES ===== */
+        .mission-vision-section {
+            position: relative;
+            overflow: hidden;
+            background: #ffffff;
+        }
+
+        .mission-vision-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(30deg, transparent 45%, rgba(74, 144, 226, 0.04) 45%, rgba(74, 144, 226, 0.04) 48%, transparent 48%),
+                linear-gradient(120deg, transparent 45%, rgba(255, 184, 140, 0.04) 45%, rgba(255, 184, 140, 0.04) 48%, transparent 48%),
+                linear-gradient(60deg, transparent 65%, rgba(74, 144, 226, 0.03) 65%, rgba(74, 144, 226, 0.03) 68%, transparent 68%);
+            background-size: 100px 100px, 120px 120px, 80px 80px;
+            background-position: 0 0, 20px 20px, 40px 40px;
+            opacity: 0.7;
+            z-index: 0;
+        }
+
+        .mission-vision-section::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(74, 144, 226, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 184, 140, 0.06) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        /* ===== VALORES CON PATRÓN DE CÍRCULOS CONCÉNTRICOS ===== */
+        .valores-section {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+        }
+
+        .valores-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle, rgba(74, 144, 226, 0.08) 1.5px, transparent 1.5px),
+                radial-gradient(circle, rgba(255, 184, 140, 0.08) 1.5px, transparent 1.5px),
+                radial-gradient(circle, rgba(74, 144, 226, 0.04) 2.5px, transparent 2.5px);
+            background-size: 50px 50px, 70px 70px, 90px 90px;
+            background-position: 0 0, 25px 25px, 45px 45px;
+            opacity: 1;
+            z-index: 0;
+            animation: valoresPattern 25s linear infinite;
+        }
+
+        @keyframes valoresPattern {
+            0% {
+                background-position: 0 0, 25px 25px, 45px 45px;
+            }
+
+            100% {
+                background-position: 50px 50px, 95px 95px, 135px 135px;
+            }
+        }
+
+        .valores-section::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 15% 15%, rgba(74, 144, 226, 0.12) 0%, rgba(74, 144, 226, 0.04) 40%, transparent 70%),
+                radial-gradient(ellipse at 85% 85%, rgba(255, 184, 140, 0.12) 0%, rgba(255, 184, 140, 0.04) 40%, transparent 70%);
+            z-index: 0;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: var(--spacing-xl);
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-normal);
+        }
+
+        .value-card:hover {
+            background: rgba(255, 255, 255, 0.95);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto var(--spacing-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--color-naranja-pastel), var(--color-naranja-suave));
+            border-radius: 50%;
+            color: var(--color-blanco);
+            font-size: 2rem;
+        }
+
+        .value-card h3 {
+            color: var(--color-azul-oscuro);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        /* ===== TIMELINE CON HEXÁGONOS ===== */
+        .timeline-section {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #fafbfc 0%, #f0f2f5 100%);
+        }
+
+        .timeline-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                repeating-linear-gradient(30deg, transparent, transparent 25px, rgba(74, 144, 226, 0.03) 25px, rgba(74, 144, 226, 0.03) 50px),
+                repeating-linear-gradient(90deg, transparent, transparent 25px, rgba(255, 184, 140, 0.03) 25px, rgba(255, 184, 140, 0.03) 50px),
+                repeating-linear-gradient(150deg, transparent, transparent 25px, rgba(74, 144, 226, 0.03) 25px, rgba(74, 144, 226, 0.03) 50px);
+            opacity: 0.8;
+            z-index: 0;
+        }
+
+        .timeline-section::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 25% 25%, rgba(74, 144, 226, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(255, 184, 140, 0.08) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        /* TIMELINE */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            z-index: 1;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--color-azul-principal), var(--color-naranja-pastel));
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: 45%;
+            padding: var(--spacing-lg);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-normal);
+        }
+
+        .timeline-content:hover {
+            background: rgba(255, 255, 255, 0.98);
+            transform: scale(1.03);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .timeline-year {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-azul-principal);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--color-naranja-pastel);
+            border-radius: 50%;
+            border: 4px solid var(--color-blanco);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ===== EQUIPO CON PATRÓN POLIGONAL ===== */
+        .team-section {
+            position: relative;
+            overflow: hidden;
+            background: #ffffff;
+        }
+
+        .team-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(60deg, transparent 68%, rgba(74, 144, 226, 0.06) 68%, rgba(74, 144, 226, 0.06) 71%, transparent 71%),
+                linear-gradient(120deg, transparent 68%, rgba(255, 184, 140, 0.06) 68%, rgba(255, 184, 140, 0.06) 71%, transparent 71%),
+                linear-gradient(-30deg, transparent 70%, rgba(74, 144, 226, 0.04) 70%, rgba(74, 144, 226, 0.04) 73%, transparent 73%),
+                linear-gradient(150deg, transparent 60%, rgba(255, 184, 140, 0.08) 60%, rgba(255, 184, 140, 0.08) 66%, transparent 66%);
+            background-size: 140px 140px, 120px 120px, 170px 170px, 150px 150px;
+            background-position: 0 0, 40px 40px, 20px 20px, 60px 10px;
+            opacity: 1;
+            z-index: 0;
+        }
+
+        .team-section::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 20% 20%, rgba(74, 144, 226, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 80%, rgba(255, 184, 140, 0.08) 0%, transparent 60%);
+            z-index: 0;
+        }
+
+        /* TEAM MEMBERS */
+        .team-member {
+            text-align: center;
+            padding: var(--spacing-md);
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-normal);
+        }
+
+        .team-member:hover {
+            background: rgba(255, 255, 255, 0.95);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .team-photo {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto var(--spacing-md);
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border: 4px solid var(--color-naranja-suave);
+        }
+
+        .team-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-azul-oscuro);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .team-role {
+            color: var(--color-naranja-pastel);
+            font-weight: 500;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        /* ===== CTA CON GRADIENTES RADIALES ===== */
+        .cta-final {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--color-naranja-pastel), var(--color-naranja-suave));
+            text-align: center;
+        }
+
+        .cta-final::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle, rgba(255, 255, 255, 0.12) 1.5px, transparent 1.5px),
+                radial-gradient(circle, rgba(255, 255, 255, 0.06) 2.5px, transparent 2.5px);
+            background-size: 45px 45px, 85px 85px;
+            background-position: 0 0, 22px 22px;
+            opacity: 0.8;
+            z-index: 0;
+        }
+
+        .cta-final::after {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -150px;
+            right: -150px;
+            z-index: 0;
+            animation: ctaFloat 20s ease-in-out infinite;
+        }
+
+        @keyframes ctaFloat {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(-30px, 30px);
+            }
+        }
+
+        /* UTILIDADES */
+        .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .history-content {
+                grid-template-columns: 1fr;
+            }
+
+            .history-image {
+                order: -1;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                flex-direction: column !important;
+                margin-left: 40px;
+            }
+
+            .timeline-content {
+                width: 100%;
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAVEGACIÓN -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">
+                <span class="navbar-logo-text">Distrito 44</span>
+            </a>
+
+            <button class="navbar-toggle" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="navbar-menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="quienes-somos.html" class="active">Quiénes Somos</a></li>
+                <li><a href="nuestros-servicios.html">Nuestros Servicios</a></li>
+                <li><a href="nuestro-metodo.html">Nuestro Método</a></li>
+                <li><a href="galeria.html">Galería</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="departamento-juridico.html" class="legal-link">Dpto. Jurídico</a></li>
+                <li><a href="aviso-legal.html" class="legal-link">Aviso Legal</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO CON PATRÓN DE DIAMANTES -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Conoce a Distrito 44</h1>
+            <p class="page-hero-subtitle">Tu socio inmobiliario de confianza en Madrid</p>
+        </div>
+    </section>
+
+    <!-- NUESTRA HISTORIA CON FONDO ORIGAMI -->
+    <section class="section history-section">
+        <div class="container">
+            <div class="history-content">
+                <div class="history-text">
+                    <h2>Nuestra Historia</h2>
+                    <p>Distrito 44 nació hace más de 15 años con una visión clara: transformar la experiencia
+                        inmobiliaria en algo más humano, cercano y profesional. Comenzamos como una pequeña agencia en
+                        el corazón de Madrid, y hoy somos referentes en el sector.</p>
+                    <p>A lo largo de estos años, hemos ayudado a cientos de familias a encontrar su hogar perfecto y a
+                        propietarios a vender sus inmuebles al mejor precio. Cada operación es única para nosotros, y
+                        tratamos cada propiedad como si fuera la nuestra.</p>
+                    <p>Nuestro crecimiento se basa en la confianza que nuestros clientes depositan en nosotros, y en
+                        nuestro compromiso inquebrantable con la excelencia y la transparencia.</p>
+                </div>
+                <div class="history-image">
+                    <img src="images/about/office.jpg" alt="Oficina Distrito 44">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MISIÓN Y VISIÓN CON LÍNEAS DIAGONALES -->
+    <section class="section mission-vision-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestra Esencia</h2>
+            </div>
+            <div class="grid grid-2">
+                <div class="card">
+                    <h3 style="color: var(--color-azul-principal);">Misión</h3>
+                    <p>Facilitar el acceso al hogar ideal de nuestros clientes, ofreciendo un servicio inmobiliario
+                        profesional, transparente y personalizado que supere sus expectativas en cada etapa del proceso.
+                    </p>
+                </div>
+                <div class="card">
+                    <h3 style="color: var(--color-naranja-pastel);">Visión</h3>
+                    <p>Ser la inmobiliaria de referencia en Madrid, reconocida por nuestra cercanía, profesionalidad e
+                        innovación en el servicio, contribuyendo a crear hogares felices y negocios exitosos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VALORES CON CÍRCULOS CONCÉNTRICOS -->
+    <section class="section valores-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestros Valores</h2>
+                <p class="section-subtitle">Los principios que guían cada una de nuestras acciones</p>
+            </div>
+            <div class="grid grid-3">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Cercanía</h3>
+                    <p>Tratamos a cada cliente como parte de nuestra familia, con calidez y empatía.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3>Excelencia</h3>
+                    <p>Buscamos la perfección en cada detalle, desde la primera visita hasta el cierre.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Transparencia</h3>
+                    <p>Información clara y honesta en todo momento, sin sorpresas ni letra pequeña.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Compromiso</h3>
+                    <p>Tu éxito es nuestro éxito. Nos comprometemos al 100% con tus objetivos.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Innovación</h3>
+                    <p>Utilizamos las últimas tecnologías para ofrecerte el mejor servicio.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Confianza</h3>
+                    <p>Construimos relaciones duraderas basadas en la confianza mutua.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LÍNEA DE TIEMPO CON HEXÁGONOS -->
+    <section class="section timeline-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestro Recorrido</h2>
+                <p class="section-subtitle">Los hitos que nos han traído hasta aquí</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2010</div>
+                        <h4>Nuestros Inicios</h4>
+                        <p>Fundación de Distrito 44 con un equipo de 3 personas y una oficina en el centro de Madrid.
+                        </p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2013</div>
+                        <h4>Expansión del Equipo</h4>
+                        <p>Incorporación de especialistas en marketing y home staging, mejorando nuestro servicio.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2016</div>
+                        <h4>Departamento Jurídico</h4>
+                        <p>Creación de nuestro departamento legal para ofrecer asesoramiento completo.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2020</div>
+                        <h4>Transformación Digital</h4>
+                        <p>Implementación de tours virtuales y tecnología 3D para propiedades.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2025</div>
+                        <h4>Líderes del Sector</h4>
+                        <p>Más de 500 propiedades vendidas y reconocimiento como inmobiliaria de referencia.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NUESTRO EQUIPO CON PATRÓN POLIGONAL -->
+    <section class="section team-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestro Equipo</h2>
+                <p class="section-subtitle">Profesionales dedicados a hacer realidad tus proyectos</p>
+            </div>
+            <div class="grid grid-3">
+                <div class="team-member">
+                    <div class="team-photo">
+                        <img src="images/team/member1.jpg" alt="María García">
+                    </div>
+                    <div class="team-name">María García</div>
+                    <div class="team-role">Directora General</div>
+                    <p>15 años de experiencia en el sector inmobiliario. Especialista en negociación y estrategia
+                        comercial.</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-photo">
+                        <img src="images/team/member2.jpg" alt="Carlos Ruiz">
+                    </div>
+                    <div class="team-name">Carlos Ruiz</div>
+                    <div class="team-role">Responsable de Ventas</div>
+                    <p>Experto en valoración de propiedades y análisis de mercado inmobiliario en Madrid.</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-photo">
+                        <img src="images/team/member3.jpg" alt="Ana Martínez">
+                    </div>
+                    <div class="team-name">Ana Martínez</div>
+                    <div class="team-role">Asesora Legal</div>
+                    <p>Abogada especializada en derecho inmobiliario. Tu garantía en cada operación.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL CON GRADIENTES -->
+    <section class="section cta-final">
+        <div class="container">
+            <h2 style="color: var(--color-blanco);">¿Listo para Trabajar con Nosotros?</h2>
+            <p style="color: rgba(255,255,255,0.9); font-size: 1.125rem; margin-bottom: var(--spacing-lg);">Contáctanos
+                hoy y descubre por qué somos la inmobiliaria de confianza de cientos de familias.</p>
+            <a href="contacto.html" class="btn btn-primary btn-large">Contáctanos Ahora</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <span class="footer-logo-text">Distrito 44</span>
+                <p>Tu inmobiliaria de confianza en Madrid.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Enlaces</h4>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="nuestros-servicios.html">Servicios</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <div class="footer-contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+34 646 055 532</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>info@distrito44.es</span>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="aviso-legal.html">Aviso Legal</a></li>
+                    <li><a href="departamento-juridico.html">Dpto. Jurídico</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copyright">&copy; 2025 <a href="index.html">Distrito 44</a>. Todos los derechos reservados.
+            </p>
+        </div>
+    </footer>
+
+    <script src="comun.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aviso Legal, Política de Privacidad y Condiciones de Uso de Distrito 44">
+    <title>Aviso Legal - Distrito 44</title>
+
+    <link rel="stylesheet" href="comun.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* TEMA VERDE PARA PÁGINAS LEGALES */
+        :root {
+            --legal-primary: #7FB685;
+            --legal-light: #A8D5BA;
+            --legal-dark: #5A8C61;
+            --legal-bg: #E8F5E9;
+        }
+
+        .legal-hero {
+            background: linear-gradient(135deg, var(--legal-primary), var(--legal-light));
+            padding: var(--spacing-xxl) 0;
+            text-align: center;
+            color: var(--color-blanco);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .legal-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        .legal-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .legal-hero h1 {
+            color: var(--color-blanco);
+        }
+
+        /* CONTENIDO LEGAL */
+        .legal-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: var(--spacing-xxl) var(--spacing-md);
+        }
+
+        .legal-content h2 {
+            color: var(--legal-dark);
+            margin-top: var(--spacing-xxl);
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 3px solid var(--legal-bg);
+            font-size: 2rem;
+        }
+
+        .legal-content h2:first-of-type {
+            margin-top: 0;
+        }
+
+        .legal-content h3 {
+            color: var(--legal-primary);
+            margin-top: var(--spacing-lg);
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.5rem;
+        }
+
+        .legal-content p {
+            margin-bottom: var(--spacing-md);
+            color: var(--color-gris-texto);
+            text-align: justify;
+            line-height: 1.8;
+        }
+
+        .legal-content ul,
+        .legal-content ol {
+            margin-bottom: var(--spacing-md);
+            padding-left: var(--spacing-xl);
+            color: var(--color-gris-texto);
+        }
+
+        .legal-content li {
+            margin-bottom: var(--spacing-sm);
+            line-height: 1.7;
+        }
+
+        .legal-content strong {
+            color: var(--legal-dark);
+            font-weight: 600;
+        }
+
+        .legal-content a {
+            color: var(--legal-primary);
+            text-decoration: underline;
+        }
+
+        .legal-content a:hover {
+            color: var(--legal-dark);
+        }
+
+        /* TABLA DE CONTENIDOS */
+        .toc {
+            background: var(--legal-bg);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-xxl);
+        }
+
+        .toc h3 {
+            color: var(--legal-dark);
+            margin-bottom: var(--spacing-md);
+            font-size: 1.25rem;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .toc li {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .toc a {
+            color: var(--legal-primary);
+            font-weight: 500;
+            text-decoration: none;
+            transition: all var(--transition-fast);
+        }
+
+        .toc a:hover {
+            color: var(--legal-dark);
+            transform: translateX(5px);
+            display: inline-block;
+        }
+
+        /* DESTACADOS */
+        .legal-highlight {
+            background: var(--legal-bg);
+            border-left: 4px solid var(--legal-primary);
+            padding: var(--spacing-md);
+            margin: var(--spacing-lg) 0;
+            border-radius: var(--radius-sm);
+        }
+
+        .legal-highlight p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* EMPRESA DATA */
+        .company-data {
+            background: var(--color-blanco);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            margin: var(--spacing-xl) 0;
+        }
+
+        .company-data h4 {
+            color: var(--legal-dark);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .company-data p {
+            margin-bottom: var(--spacing-sm);
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAVEGACIÓN -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">
+                <span class="navbar-logo-text">Distrito 44</span>
+            </a>
+
+            <button class="navbar-toggle" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="navbar-menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="quienes-somos.html">Quiénes Somos</a></li>
+                <li><a href="nuestros-servicios.html">Nuestros Servicios</a></li>
+                <li><a href="nuestro-metodo.html">Nuestro Método</a></li>
+                <li><a href="galeria.html">Galería</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="departamento-juridico.html" class="legal-link">Dpto. Jurídico</a></li>
+                <li><a href="aviso-legal.html" class="legal-link active">Aviso Legal</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO VERDE -->
+    <section class="legal-hero">
+        <div class="container">
+            <h1>Aviso Legal y Políticas</h1>
+            <p style="font-size: 1.25rem; color: rgba(255,255,255,0.95);">Información legal y protección de datos</p>
+        </div>
+    </section>
+
+    <!-- CONTENIDO LEGAL -->
+    <div class="legal-content">
+        <!-- TABLA DE CONTENIDOS -->
+        <div class="toc">
+            <h3><i class="fas fa-list"></i> Índice de Contenidos</h3>
+            <ul>
+                <li><a href="#datos-identificativos">1. Datos Identificativos</a></li>
+                <li><a href="#objeto">2. Objeto y Aceptación</a></li>
+                <li><a href="#servicios">3. Servicios</a></li>
+                <li><a href="#privacidad">4. Política de Privacidad</a></li>
+                <li><a href="#cookies">5. Política de Cookies</a></li>
+                <li><a href="#propiedad-intelectual">6. Propiedad Intelectual</a></li>
+                <li><a href="#responsabilidad">7. Limitación de Responsabilidad</a></li>
+                <li><a href="#enlaces">8. Enlaces a Terceros</a></li>
+                <li><a href="#legislacion">9. Legislación Aplicable</a></li>
+            </ul>
+        </div>
+
+        <!-- DATOS IDENTIFICATIVOS -->
+        <h2 id="datos-identificativos">1. Datos Identificativos</h2>
+        <p>En cumplimiento del artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la
+            Información y Comercio Electrónico, a continuación se exponen los datos identificativos de la empresa:</p>
+
+        <div class="company-data">
+            <h4>DISTRITO 44 INMOBILIARIA S.L.</h4>
+            <p><strong>Nombre comercial:</strong> Distrito 44</p>
+            <p><strong>NIF:</strong> B-12345678</p>
+            <p><strong>Domicilio social:</strong> Calle Ejemplo 123, Local 2, 28001 Madrid</p>
+            <p><strong>Teléfono:</strong> +34 912 345 678</p>
+            <p><strong>Email:</strong> info@distrito44.es</p>
+            <p><strong>Inscripción Registral:</strong> Registro Mercantil de Madrid, Tomo 12345, Folio 678, Hoja
+                M-123456</p>
+            <p><strong>Actividad:</strong> Servicios de intermediación inmobiliaria y asesoramiento jurídico</p>
+        </div>
+
+        <div class="legal-highlight">
+            <p><strong>Colegiación Profesional:</strong> Los agentes inmobiliarios de Distrito 44 están colegiados en el
+                Colegio Oficial de Agentes de la Propiedad Inmobiliaria de Madrid. Nuestros abogados están colegiados en
+                el Ilustre Colegio de Abogados de Madrid.</p>
+        </div>
+
+        <!-- OBJETO -->
+        <h2 id="objeto">2. Objeto y Aceptación</h2>
+        <p>El presente Aviso Legal regula el acceso y uso del sitio web www.distrito44.es, así como las
+            responsabilidades derivadas de la utilización de sus contenidos.</p>
+        <p>El acceso a este sitio web implica la aceptación expresa y sin reservas de los presentes términos. Si no
+            estás de acuerdo con estos términos, te rogamos que no utilices este sitio web.</p>
+        <p>Distrito 44 se reserva el derecho de modificar el contenido del sitio web así como estas condiciones en
+            cualquier momento. Los usuarios son responsables de consultar periódicamente estos términos.</p>
+
+        <!-- SERVICIOS -->
+        <h2 id="servicios">3. Servicios</h2>
+        <h3>3.1. Servicios Inmobiliarios</h3>
+        <p>Distrito 44 ofrece servicios profesionales de intermediación inmobiliaria que incluyen:</p>
+        <ul>
+            <li>Compraventa de inmuebles</li>
+            <li>Arrendamiento de propiedades</li>
+            <li>Valoración de inmuebles</li>
+            <li>Asesoramiento inmobiliario</li>
+            <li>Gestión integral de propiedades</li>
+        </ul>
+
+        <h3>3.2. Servicios Jurídicos</h3>
+        <p>A través de nuestro departamento jurídico, ofrecemos asesoramiento legal especializado en derecho
+            inmobiliario y derecho de familia, incluyendo herencias, divorcios y litigios relacionados con propiedades.
+        </p>
+
+        <!-- PRIVACIDAD -->
+        <h2 id="privacidad">4. Política de Privacidad</h2>
+        <h3>4.1. Responsable del Tratamiento</h3>
+        <p>El responsable del tratamiento de los datos personales es DISTRITO 44 INMOBILIARIA S.L., con los datos
+            identificativos indicados en el apartado 1 de este documento.</p>
+
+        <h3>4.2. Datos que Recopilamos</h3>
+        <p>Recopilamos y tratamos los datos personales que nos facilites a través de:</p>
+        <ul>
+            <li>Formularios de contacto</li>
+            <li>Solicitudes de valoración</li>
+            <li>Consultas por email o teléfono</li>
+            <li>Procesos de compraventa o alquiler</li>
+            <li>Asesoramiento jurídico</li>
+        </ul>
+
+        <h3>4.3. Finalidad del Tratamiento</h3>
+        <p>Los datos personales que recabamos serán tratados con las siguientes finalidades:</p>
+        <ul>
+            <li>Gestionar las consultas y solicitudes de información</li>
+            <li>Prestar los servicios solicitados</li>
+            <li>Enviar comunicaciones comerciales (solo con consentimiento previo)</li>
+            <li>Cumplir con obligaciones legales</li>
+            <li>Elaborar estadísticas anónimas</li>
+        </ul>
+
+        <h3>4.4. Legitimación</h3>
+        <p>La base legal para el tratamiento de tus datos es:</p>
+        <ul>
+            <li>El consentimiento del interesado</li>
+            <li>La ejecución de un contrato o medidas precontractuales</li>
+            <li>El cumplimiento de obligaciones legales</li>
+            <li>El interés legítimo del responsable</li>
+        </ul>
+
+        <h3>4.5. Conservación de Datos</h3>
+        <p>Los datos personales se conservarán durante el tiempo necesario para cumplir con la finalidad para la que
+            fueron recabados. Una vez cumplida la finalidad, los datos serán bloqueados y conservados durante los plazos
+            legalmente establecidos.</p>
+
+        <h3>4.6. Tus Derechos</h3>
+        <p>Como titular de los datos, tienes derecho a:</p>
+        <ul>
+            <li><strong>Acceso:</strong> Conocer qué datos tenemos sobre ti</li>
+            <li><strong>Rectificación:</strong> Corregir datos inexactos o incompletos</li>
+            <li><strong>Supresión:</strong> Solicitar la eliminación de tus datos</li>
+            <li><strong>Oposición:</strong> Oponerte al tratamiento de tus datos</li>
+            <li><strong>Limitación:</strong> Solicitar la limitación del tratamiento</li>
+            <li><strong>Portabilidad:</strong> Recibir tus datos en formato estructurado</li>
+        </ul>
+        <p>Para ejercer estos derechos, puedes contactarnos en: <a
+                href="mailto:protecciondatos@distrito44.es">protecciondatos@distrito44.es</a></p>
+
+        <h3>4.7. Reclamaciones</h3>
+        <p>Si consideras que el tratamiento de tus datos personales vulnera la normativa, puedes presentar una
+            reclamación ante la Agencia Española de Protección de Datos (www.aepd.es).</p>
+
+        <!-- COOKIES -->
+        <h2 id="cookies">5. Política de Cookies</h2>
+        <h3>5.1. Qué son las Cookies</h3>
+        <p>Las cookies son pequeños archivos de texto que se almacenan en tu dispositivo cuando visitas un sitio web.
+            Permiten que el sitio recuerde tus acciones y preferencias durante un período de tiempo.</p>
+
+        <h3>5.2. Cookies que Utilizamos</h3>
+        <p>Este sitio web utiliza los siguientes tipos de cookies:</p>
+        <ul>
+            <li><strong>Cookies técnicas:</strong> Necesarias para la navegación y el correcto funcionamiento del sitio
+            </li>
+            <li><strong>Cookies de personalización:</strong> Permiten recordar tus preferencias</li>
+            <li><strong>Cookies analíticas:</strong> Nos ayudan a entender cómo los usuarios interactúan con el sitio
+            </li>
+            <li><strong>Cookies publicitarias:</strong> Se utilizan para mostrar anuncios relevantes (solo con tu
+                consentimiento)</li>
+        </ul>
+
+        <h3>5.3. Gestión de Cookies</h3>
+        <p>Puedes configurar tu navegador para aceptar o rechazar las cookies, así como eliminar las cookies almacenadas
+            en tu dispositivo. Ten en cuenta que el rechazo de cookies puede afectar a la funcionalidad del sitio web.
+        </p>
+
+        <!-- PROPIEDAD INTELECTUAL -->
+        <h2 id="propiedad-intelectual">6. Propiedad Intelectual</h2>
+        <p>Todos los contenidos de este sitio web (textos, imágenes, logotipos, diseño, código fuente, etc.) son
+            propiedad de Distrito 44 o de terceros que han autorizado su uso.</p>
+        <p>Queda prohibida la reproducción, distribución, comunicación pública y transformación de cualquier contenido
+            de este sitio sin la autorización expresa de Distrito 44.</p>
+
+        <!-- RESPONSABILIDAD -->
+        <h2 id="responsabilidad">7. Limitación de Responsabilidad</h2>
+        <p>Distrito 44 no se hace responsable de:</p>
+        <ul>
+            <li>Interrupciones o fallos en el acceso al sitio web</li>
+            <li>Contenidos de sitios web de terceros enlazados desde este sitio</li>
+            <li>Virus u otros elementos dañinos introducidos por terceros</li>
+            <li>Uso indebido o ilícito del sitio web por parte de los usuarios</li>
+        </ul>
+        <p>Distrito 44 se reserva el derecho de suspender temporalmente, y sin previo aviso, el acceso al sitio web con
+            motivo de operaciones de mantenimiento, reparación, actualización o mejora.</p>
+
+        <!-- ENLACES -->
+        <h2 id="enlaces">8. Enlaces a Terceros</h2>
+        <p>Este sitio web puede contener enlaces a sitios web de terceros. Distrito 44 no tiene control sobre estos
+            sitios y no se hace responsable de sus contenidos, políticas de privacidad o prácticas.</p>
+        <p>La inclusión de enlaces no implica ningún tipo de asociación, respaldo o patrocinio de dichos sitios.</p>
+
+        <!-- LEGISLACIÓN -->
+        <h2 id="legislacion">9. Legislación Aplicable y Jurisdicción</h2>
+        <p>Las presentes condiciones se rigen por la legislación española. Para la resolución de cualquier controversia
+            derivada de la interpretación o ejecución de estas condiciones, las partes se someten expresamente a los
+            Juzgados y Tribunales de Madrid, con renuncia expresa a cualquier otro fuero que pudiera corresponderles.
+        </p>
+
+        <!-- CONTACTO -->
+        <div class="legal-highlight" style="margin-top: var(--spacing-xxl);">
+            <h4 style="color: var(--legal-dark); margin-bottom: var(--spacing-sm);">Contacto para Cuestiones Legales
+            </h4>
+            <p>Si tienes cualquier duda sobre este Aviso Legal, nuestra Política de Privacidad o quieres ejercer tus
+                derechos, puedes contactarnos en:</p>
+            <p><strong>Email:</strong> <a href="mailto:legal@distrito44.es">legal@distrito44.es</a><br>
+                <strong>Teléfono:</strong> +34 912 345 678<br>
+                <strong>Dirección:</strong> Calle Ejemplo 123, Local 2, 28001 Madrid
+            </p>
+        </div>
+
+        <p
+            style="text-align: center; margin-top: var(--spacing-xxl); color: var(--color-gris-texto); font-size: 0.875rem;">
+            <em>Última actualización: Noviembre 2025</em>
+        </p>
+    </div>
+
+    <!-- FOOTER VERDE -->
+    <footer class="footer" style="background: linear-gradient(135deg, var(--legal-dark), var(--legal-primary));">
+        <div class="footer-content">
+            <div class="footer-section">
+                <span class="footer-logo-text">Distrito 44</span>
+                <p>Tu inmobiliaria de confianza en Madrid.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Enlaces</h4>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="nuestros-servicios.html">Servicios</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <div class="footer-contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+34 646 055 532</span>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="aviso-legal.html">Aviso Legal</a></li>
+                    <li><a href="departamento-juridico.html">Dpto. Jurídico</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copyright">&copy; 2025 <a href="index.html">Distrito 44</a>. Todos los derechos reservados.
+            </p>
+        </div>
+    </footer>
+
+    <script src="comun.js"></script>
+</body>
+
+</html>

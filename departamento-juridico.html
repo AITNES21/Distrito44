@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Departamento Jurídico de Distrito 44 - Asesoramiento legal inmobiliario completo">
+    <title>Departamento Jurídico - Distrito 44</title>
+
+    <link rel="stylesheet" href="comun.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* TEMA VERDE PARA PÁGINAS LEGALES */
+        :root {
+            --legal-primary: #7FB685;
+            --legal-light: #A8D5BA;
+            --legal-dark: #5A8C61;
+            --legal-bg: #E8F5E9;
+        }
+
+        .legal-hero {
+            background-image: url('img/ft2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: var(--spacing-xxl) 0;
+            text-align: center;
+            color: var(--color-blanco);
+            position: relative;
+            overflow: hidden;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+        }
+
+        .legal-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(90, 140, 97, 0.6);
+            z-index: 0;
+        }
+
+        .legal-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .legal-hero h1 {
+            color: var(--color-blanco);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .legal-hero-subtitle {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.95);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .legal-icon-large {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto var(--spacing-md);
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-blanco);
+            font-size: 3rem;
+        }
+
+        /* SERVICIOS LEGALES */
+        .legal-service {
+            background: var(--color-blanco);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--legal-primary);
+            transition: all var(--transition-normal);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .legal-service:hover {
+            transform: translateX(8px);
+            box-shadow: var(--shadow-lg);
+            border-left-width: 6px;
+        }
+
+        .legal-service-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .legal-service-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--legal-bg);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--legal-primary);
+            font-size: 1.75rem;
+            flex-shrink: 0;
+        }
+
+        .legal-service h3 {
+            color: var(--legal-dark);
+            margin: 0;
+        }
+
+        .legal-service p {
+            color: var(--color-gris-texto);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .legal-service ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .legal-service li {
+            padding-left: var(--spacing-md);
+            margin-bottom: var(--spacing-xs);
+            position: relative;
+            color: var(--color-gris-texto);
+        }
+
+        .legal-service li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--legal-primary);
+            font-weight: 700;
+        }
+
+        /* PROCESO LEGAL */
+        .legal-process-step {
+            display: flex;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+        }
+
+        .legal-process-step::before {
+            content: '';
+            position: absolute;
+            left: 25px;
+            top: 60px;
+            bottom: -40px;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--legal-primary), var(--legal-light));
+        }
+
+        .legal-process-step:last-child::before {
+            display: none;
+        }
+
+        .legal-process-number {
+            flex-shrink: 0;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--legal-primary), var(--legal-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-blanco);
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: var(--font-heading);
+            box-shadow: var(--shadow-md);
+        }
+
+        .legal-process-content h4 {
+            color: var(--legal-dark);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        /* BENEFICIOS */
+        .benefit-card {
+            text-align: center;
+            padding: var(--spacing-lg);
+        }
+
+        .benefit-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto var(--spacing-md);
+            background: linear-gradient(135deg, var(--legal-primary), var(--legal-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-blanco);
+            font-size: 1.75rem;
+        }
+
+        .benefit-card h4 {
+            color: var(--legal-dark);
+        }
+
+        /* BOTÓN LEGAL */
+        .btn-legal {
+            background: var(--legal-primary);
+            color: var(--color-blanco);
+            border: 2px solid transparent;
+        }
+
+        .btn-legal:hover {
+            background: var(--legal-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            color: var(--color-blanco);
+        }
+
+        /* CTA LEGAL */
+        .legal-cta {
+            background: linear-gradient(135deg, var(--legal-dark), var(--legal-primary));
+            padding: var(--spacing-xxl) 0;
+            text-align: center;
+            border-radius: var(--radius-lg);
+            margin: 0 var(--spacing-md);
+        }
+
+        .legal-cta h2 {
+            color: var(--color-blanco);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .legal-cta p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.125rem;
+            margin-bottom: var(--spacing-lg);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (max-width: 768px) {
+            .legal-process-step {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAVEGACIÓN -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">
+                <span class="navbar-logo-text">Distrito 44</span>
+            </a>
+
+            <button class="navbar-toggle" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="navbar-menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="quienes-somos.html">Quiénes Somos</a></li>
+                <li><a href="nuestros-servicios.html">Nuestros Servicios</a></li>
+                <li><a href="nuestro-metodo.html">Nuestro Método</a></li>
+                <li><a href="galeria.html">Galería</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="departamento-juridico.html" class="legal-link active">Dpto. Jurídico</a></li>
+                <li><a href="aviso-legal.html" class="legal-link">Aviso Legal</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO VERDE -->
+    <section class="legal-hero">
+        <div class="container">
+            <div class="legal-icon-large">
+                <i class="fas fa-balance-scale"></i>
+            </div>
+            <h1>Departamento Jurídico</h1>
+            <p class="legal-hero-subtitle">Asesoramiento legal especializado en derecho inmobiliario y familiar</p>
+        </div>
+    </section>
+
+    <!-- INTRODUCCIÓN -->
+    <section class="section">
+        <div class="container" style="max-width: 800px; text-align: center;">
+            <h2 style="color: var(--legal-dark); margin-bottom: var(--spacing-md);">Tu Seguridad Legal es Nuestra
+                Prioridad</h2>
+            <p style="font-size: 1.125rem; line-height: 1.8; margin-bottom: var(--spacing-xl);">
+                Nuestro departamento jurídico está formado por abogados especializados en derecho inmobiliario
+                y derecho de familia. Te ofrecemos un servicio integral que protege tus intereses en cada operación.
+            </p>
+        </div>
+    </section>
+
+    <!-- SERVICIOS LEGALES -->
+    <section class="section" style="background: var(--legal-bg);">
+        <div class="container">
+            <div class="section-title">
+                <h2 style="color: var(--legal-dark);">Nuestros Servicios Legales</h2>
+                <p class="section-subtitle">Asesoramiento jurídico completo para todas tus necesidades</p>
+            </div>
+
+            <div style="max-width: 900px; margin: 0 auto;">
+                <!-- COMPRAVENTA -->
+                <div class="legal-service">
+                    <div class="legal-service-header">
+                        <div class="legal-service-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h3>Asesoramiento en Compraventa Inmobiliaria</h3>
+                    </div>
+                    <p>Te guiamos en todo el proceso de compra o venta de tu inmueble, garantizando la seguridad
+                        jurídica de la operación.</p>
+                    <ul>
+                        <li>Revisión y negociación de contratos de compraventa</li>
+                        <li>Verificación de cargas y gravámenes</li>
+                        <li>Gestión de escrituras públicas</li>
+                        <li>Asesoramiento fiscal en la operación</li>
+                    </ul>
+                </div>
+
+                <!-- HERENCIAS -->
+                <div class="legal-service">
+                    <div class="legal-service-header">
+                        <div class="legal-service-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Herencias y Sucesiones</h3>
+                    </div>
+                    <p>Asesoramiento completo en procesos hereditarios y planificación sucesoria.</p>
+                    <ul>
+                        <li>Tramitación de herencias</li>
+                        <li>Partición de bienes</li>
+                        <li>Testamentos y legados</li>
+                        <li>Aceptación y repudiación de herencias</li>
+                    </ul>
+                </div>
+
+                <!-- DIVORCIOS -->
+                <div class="legal-service">
+                    <div class="legal-service-header">
+                        <div class="legal-service-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3>Divorcios y Separaciones</h3>
+                    </div>
+                    <p>Asesoramiento jurídico en procesos de separación y divorcio, incluyendo la división de bienes
+                        inmuebles.</p>
+                    <ul>
+                        <li>Divorcios de mutuo acuerdo</li>
+                        <li>Divorcios contenciosos</li>
+                        <li>Liquidación del régimen económico matrimonial</li>
+                        <li>División y adjudicación de inmuebles</li>
+                    </ul>
+                </div>
+
+                <!-- ALQUILER -->
+                <div class="legal-service">
+                    <div class="legal-service-header">
+                        <div class="legal-service-icon">
+                            <i class="fas fa-file-contract"></i>
+                        </div>
+                        <h3>Contratos de Alquiler</h3>
+                    </div>
+                    <p>Redacción, revisión y gestión de contratos de arrendamiento para propietarios e inquilinos.</p>
+                    <ul>
+                        <li>Redacción de contratos de arrendamiento</li>
+                        <li>Asesoramiento sobre LAU</li>
+                        <li>Resolución de conflictos arrendaticios</li>
+                        <li>Procedimientos de desahucio</li>
+                    </ul>
+                </div>
+
+                <!-- RECLAMACIONES -->
+                <div class="legal-service">
+                    <div class="legal-service-header">
+                        <div class="legal-service-icon">
+                            <i class="fas fa-gavel"></i>
+                        </div>
+                        <h3>Reclamaciones y Litigios</h3>
+                    </div>
+                    <p>Defensa de tus derechos en conflictos inmobiliarios y procedimientos judiciales.</p>
+                    <ul>
+                        <li>Reclamaciones por vicios ocultos</li>
+                        <li>Problemas de comunidad de propietarios</li>
+                        <li>Conflictos con constructoras o promotoras</li>
+                        <li>Representación en procedimientos judiciales</li>
+                    </ul>
+                </div>
+
+                <!-- HIPOTECAS -->
+                <div class="legal-service">
+                    <div class="legal-service-header">
+                        <div class="legal-service-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <h3>Ejecuciones Hipotecarias</h3>
+                    </div>
+                    <p>Asesoramiento y defensa en procedimientos de ejecución hipotecaria.</p>
+                    <ul>
+                        <li>Defensa en procedimientos de ejecución hipotecaria</li>
+                        <li>Negociación de quitas y aplazamientos</li>
+                        <li>Dación en pago</li>
+                        <li>Reclamación de cláusulas abusivas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NUESTRO PROCESO -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2 style="color: var(--legal-dark);">Cómo Trabajamos</h2>
+                <p class="section-subtitle">Nuestro proceso de asesoramiento legal</p>
+            </div>
+
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div class="legal-process-step">
+                    <div class="legal-process-number">1</div>
+                    <div class="legal-process-content">
+                        <h4>Consulta Inicial</h4>
+                        <p>Primera reunión gratuita para analizar tu caso y determinar la mejor estrategia legal a
+                            seguir.</p>
+                    </div>
+                </div>
+
+                <div class="legal-process-step">
+                    <div class="legal-process-number">2</div>
+                    <div class="legal-process-content">
+                        <h4>Análisis Detallado</h4>
+                        <p>Estudio completo de la documentación y situación legal, identificando riesgos y
+                            oportunidades.</p>
+                    </div>
+                </div>
+
+                <div class="legal-process-step">
+                    <div class="legal-process-number">3</div>
+                    <div class="legal-process-content">
+                        <h4>Propuesta de Actuación</h4>
+                        <p>Te presentamos un plan de acción claro con plazos, costes y posibles resultados.</p>
+                    </div>
+                </div>
+
+                <div class="legal-process-step">
+                    <div class="legal-process-number">4</div>
+                    <div class="legal-process-content">
+                        <h4>Gestión y Seguimiento</h4>
+                        <p>Nos ocupamos de todos los trámites legales y te mantenemos informado en cada paso.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFICIOS -->
+    <section class="section" style="background: var(--legal-bg);">
+        <div class="container">
+            <div class="section-title">
+                <h2 style="color: var(--legal-dark);">¿Por Qué Elegirnos?</h2>
+            </div>
+            <div class="grid grid-3">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h4>Experiencia Acreditada</h4>
+                    <p>Más de 15 años de experiencia en derecho inmobiliario y familiar.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h4>Atención Personalizada</h4>
+                    <p>Trato cercano y dedicación exclusiva a tu caso.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h4>Transparencia Total</h4>
+                    <p>Honorarios claros desde el primer momento, sin sorpresas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA LEGAL -->
+    <section class="section legal-cta">
+        <div class="container">
+            <h2>¿Necesitas Asesoramiento Legal?</h2>
+            <p>Contacta con nuestro departamento jurídico y resolveremos todas tus dudas sin compromiso</p>
+            <a href="contacto.html" class="btn btn-primary btn-large">Consulta Gratuita</a>
+        </div>
+    </section>
+
+    <!-- FOOTER VERDE -->
+    <footer class="footer" style="background: linear-gradient(135deg, var(--legal-dark), var(--legal-primary));">
+        <div class="footer-content">
+            <div class="footer-section">
+                <span class="footer-logo-text">Distrito 44</span>
+                <p>Tu inmobiliaria y asesoría legal de confianza.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Enlaces</h4>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="nuestros-servicios.html">Servicios Inmobiliarios</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <div class="footer-contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+34 646 055 532</span>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="aviso-legal.html">Aviso Legal</a></li>
+                    <li><a href="departamento-juridico.html">Dpto. Jurídico</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copyright">&copy; 2025 <a href="index.html">Distrito 44</a>. Todos los derechos reservados.
+            </p>
+        </div>
+    </footer>
+
+    <script src="comun.js"></script>
+</body>
+
+</html>
