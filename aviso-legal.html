@@ -20,12 +20,18 @@
         }
 
         .legal-hero {
-            background: linear-gradient(135deg, var(--legal-primary), var(--legal-light));
+            background-image: url('img/ft3.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             padding: var(--spacing-xxl) 0;
             text-align: center;
             color: var(--color-blanco);
             position: relative;
             overflow: hidden;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
         }
 
         .legal-hero::before {
@@ -35,8 +41,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
+            background: rgba(90, 140, 97, 0.4);
+            z-index: 0;
         }
 
         .legal-hero .container {
@@ -183,7 +189,7 @@
     <nav class="navbar">
         <div class="navbar-container">
             <a href="index.html" class="navbar-logo">
-                <span class="navbar-logo-text">Distrito 44</span>
+                <span class="navbar-logo-text">Distrito <span style="color: #FFB88C;">44</span></span>
             </a>
 
             <button class="navbar-toggle" aria-label="Abrir menú">
@@ -414,7 +420,7 @@
     <footer class="footer" style="background: linear-gradient(135deg, var(--legal-dark), var(--legal-primary));">
         <div class="footer-content">
             <div class="footer-section">
-                <span class="footer-logo-text">Distrito 44</span>
+                <span class="footer-logo-text">Distrito <span style="color: #FFB88C;">44</span></span>
                 <p>Tu inmobiliaria de confianza en Madrid.</p>
                 <div class="footer-social">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
