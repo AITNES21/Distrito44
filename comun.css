@@ -192,11 +192,18 @@ a:hover {
     font-family: var(--font-heading);
     font-size: 1.75rem;
     font-weight: 700;
-    background: linear-gradient(135deg, var(--color-azul-principal), var(--color-azul-oscuro));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
     letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-logo-text .distrito {
+    color: var(--color-azul-principal);
+}
+
+.navbar-logo-text .numero {
+    color: var(--color-naranja-pastel);
+    margin-left: 4px;
 }
 
 .navbar-menu {
