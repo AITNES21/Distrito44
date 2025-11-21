@@ -22,32 +22,6 @@
             color: var(--color-blanco);
         }
 
-        .filter-buttons {
-            display: flex;
-            gap: var(--spacing-sm);
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: var(--spacing-xl);
-        }
-
-        .filter-btn {
-            padding: 12px 24px;
-            background: var(--color-blanco);
-            border: 2px solid var(--color-azul-principal);
-            color: var(--color-azul-principal);
-            border-radius: var(--radius-sm);
-            cursor: pointer;
-            font-family: var(--font-accent);
-            font-weight: 600;
-            transition: all var(--transition-fast);
-        }
-
-        .filter-btn:hover,
-        .filter-btn.active {
-            background: var(--color-azul-principal);
-            color: var(--color-blanco);
-        }
-
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -105,22 +79,6 @@
         .gallery-info {
             color: rgba(255, 255, 255, 0.9);
             font-size: 0.95rem;
-        }
-
-        .gallery-badge {
-            position: absolute;
-            top: var(--spacing-sm);
-            right: var(--spacing-sm);
-            background: var(--color-naranja-pastel);
-            color: var(--color-blanco);
-            padding: 6px 12px;
-            border-radius: var(--radius-sm);
-            font-size: 0.875rem;
-            font-weight: 600;
-        }
-
-        .gallery-badge.vendido {
-            background: var(--color-verde-naturaleza);
         }
 
         /* Lightbox */
@@ -234,109 +192,184 @@
     <section class="page-hero">
         <div class="container">
             <h1>Galería de Propiedades</h1>
-            <p style="font-size: 1.25rem; color: rgba(255,255,255,0.9);">Descubre nuestras propiedades disponibles</p>
+            <p style="font-size: 1.25rem; color: rgba(255,255,255,0.9);">Tipos de propiedades que gestionamos</p>
         </div>
     </section>
 
-    <!-- FILTROS -->
+    <!-- GALERÍA DE TIPOS DE PROPIEDADES -->
     <section class="section">
         <div class="container">
-            <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="todas">Todas</button>
-                <button class="filter-btn" data-filter="venta">En Venta</button>
-                <button class="filter-btn" data-filter="alquiler">En Alquiler</button>
-                <button class="filter-btn" data-filter="vendido">Vendidas</button>
-            </div>
 
             <!-- GALERÍA -->
             <div class="gallery-grid">
-                <!-- Propiedad 1 -->
-                <div class="gallery-item" data-category="venta" data-index="0">
-                    <span class="gallery-badge">En Venta</span>
-                    <img src="images/properties/prop1.jpg" alt="Piso en Chamberí" class="gallery-image">
+                <!-- Bajo -->
+                <div class="gallery-item" data-index="0">
+                    <img src="images/properties/bajo.jpg" alt="Bajo" class="gallery-image">
                     <div class="gallery-overlay">
-                        <div class="gallery-title">Piso en Chamberí</div>
-                        <div class="gallery-info">3 hab • 2 baños • 120m² • 450.000€</div>
+                        <div class="gallery-title">Bajo</div>
+                        <div class="gallery-info">Planta baja con acceso directo desde la calle</div>
                     </div>
                 </div>
 
-                <!-- Propiedad 2 -->
-                <div class="gallery-item" data-category="alquiler" data-index="1">
-                    <span class="gallery-badge">En Alquiler</span>
-                    <img src="images/properties/prop2.jpg" alt="Apartamento Salamanca" class="gallery-image">
+                <!-- Ático -->
+                <div class="gallery-item" data-index="1">
+                    <img src="images/properties/atico.jpg" alt="Ático" class="gallery-image">
                     <div class="gallery-overlay">
-                        <div class="gallery-title">Apartamento Salamanca</div>
-                        <div class="gallery-info">2 hab • 1 baño • 80m² • 1.500€/mes</div>
+                        <div class="gallery-title">Ático</div>
+                        <div class="gallery-info">Última planta con terraza y vistas panorámicas</div>
                     </div>
                 </div>
 
-                <!-- Propiedad 3 -->
-                <div class="gallery-item" data-category="venta" data-index="2">
-                    <span class="gallery-badge">En Venta</span>
-                    <img src="images/properties/prop3.jpg" alt="Chalet en Pozuelo" class="gallery-image">
+                <!-- Casa Rural -->
+                <div class="gallery-item" data-index="2">
+                    <img src="images/properties/casa-rural.jpg" alt="Casa Rural" class="gallery-image">
                     <div class="gallery-overlay">
-                        <div class="gallery-title">Chalet en Pozuelo</div>
-                        <div class="gallery-info">5 hab • 3 baños • 300m² • 850.000€</div>
+                        <div class="gallery-title">Casa Rural</div>
+                        <div class="gallery-info">Vivienda tradicional en entorno natural</div>
                     </div>
                 </div>
 
-                <!-- Propiedad 4 -->
-                <div class="gallery-item" data-category="vendido" data-index="3">
-                    <span class="gallery-badge vendido">Vendido</span>
-                    <img src="images/properties/prop4.jpg" alt="Ático en Retiro" class="gallery-image">
+                <!-- Dúplex -->
+                <div class="gallery-item" data-index="3">
+                    <img src="images/properties/duplex.jpg" alt="Dúplex" class="gallery-image">
                     <div class="gallery-overlay">
-                        <div class="gallery-title">Ático en Retiro</div>
-                        <div class="gallery-info">4 hab • 2 baños • 150m² • Vendido</div>
+                        <div class="gallery-title">Dúplex</div>
+                        <div class="gallery-info">Vivienda en dos plantas conectadas internamente</div>
                     </div>
                 </div>
 
-                <!-- Propiedad 5 -->
-                <div class="gallery-item" data-category="venta" data-index="4">
-                    <span class="gallery-badge">En Venta</span>
-                    <img src="images/properties/prop5.jpg" alt="Loft en Malasaña" class="gallery-image">
+                <!-- Chalet con Piscina -->
+                <div class="gallery-item" data-index="4">
+                    <img src="images/properties/chalet-piscina.jpg" alt="Chalet con Piscina" class="gallery-image">
                     <div class="gallery-overlay">
-                        <div class="gallery-title">Loft en Malasaña</div>
-                        <div class="gallery-info">1 hab • 1 baño • 60m² • 320.000€</div>
+                        <div class="gallery-title">Chalet con Piscina</div>
+                        <div class="gallery-info">Vivienda unifamiliar con jardín y piscina privada</div>
                     </div>
                 </div>
 
-                <!-- Propiedad 6 -->
-                <div class="gallery-item" data-category="alquiler" data-index="5">
-                    <span class="gallery-badge">En Alquiler</span>
-                    <img src="images/properties/prop6.jpg" alt="Piso en Argüelles" class="gallery-image">
+                <!-- Estudio -->
+                <div class="gallery-item" data-index="5">
+                    <img src="images/properties/estudio.jpg" alt="Estudio" class="gallery-image">
                     <div class="gallery-overlay">
-                        <div class="gallery-title">Piso en Argüelles</div>
-                        <div class="gallery-info">3 hab • 2 baños • 110m² • 1.800€/mes</div>
+                        <div class="gallery-title">Estudio</div>
+                        <div class="gallery-info">Espacio compacto y funcional ideal para una persona</div>
                     </div>
                 </div>
 
-                <!-- Propiedad 7 -->
-                <div class="gallery-item" data-category="vendido" data-index="6">
-                    <span class="gallery-badge vendido">Vendido</span>
-                    <img src="images/properties/prop7.jpg" alt="Dúplex en Chueca" class="gallery-image">
+                <!-- Loft -->
+                <div class="gallery-item" data-index="6">
+                    <img src="images/properties/loft.jpg" alt="Loft" class="gallery-image">
                     <div class="gallery-overlay">
-                        <div class="gallery-title">Dúplex en Chueca</div>
-                        <div class="gallery-info">2 hab • 2 baños • 95m² • Vendido</div>
+                        <div class="gallery-title">Loft</div>
+                        <div class="gallery-info">Espacio diáfano con techos altos y estilo moderno</div>
                     </div>
                 </div>
 
-                <!-- Propiedad 8 -->
-                <div class="gallery-item" data-category="venta" data-index="7">
-                    <span class="gallery-badge">En Venta</span>
-                    <img src="images/properties/prop8.jpg" alt="Piso en Centro" class="gallery-image">
+                <!-- Piso -->
+                <div class="gallery-item" data-index="7">
+                    <img src="images/properties/piso.jpg" alt="Piso" class="gallery-image">
                     <div class="gallery-overlay">
-                        <div class="gallery-title">Piso en Centro</div>
-                        <div class="gallery-info">4 hab • 2 baños • 140m² • 580.000€</div>
+                        <div class="gallery-title">Piso</div>
+                        <div class="gallery-info">Vivienda en edificio de varias plantas</div>
                     </div>
                 </div>
 
-                <!-- Propiedad 9 -->
-                <div class="gallery-item" data-category="alquiler" data-index="8">
-                    <span class="gallery-badge">En Alquiler</span>
-                    <img src="images/properties/prop9.jpg" alt="Estudio en Sol" class="gallery-image">
+                <!-- Apartamento -->
+                <div class="gallery-item" data-index="8">
+                    <img src="images/properties/apartamento.jpg" alt="Apartamento" class="gallery-image">
                     <div class="gallery-overlay">
-                        <div class="gallery-title">Estudio en Sol</div>
-                        <div class="gallery-info">1 hab • 1 baño • 45m² • 950€/mes</div>
+                        <div class="gallery-title">Apartamento</div>
+                        <div class="gallery-info">Vivienda de tamaño medio con distribución eficiente</div>
+                    </div>
+                </div>
+
+                <!-- Chalet Adosado -->
+                <div class="gallery-item" data-index="9">
+                    <img src="images/properties/chalet-adosado.jpg" alt="Chalet Adosado" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Chalet Adosado</div>
+                        <div class="gallery-info">Vivienda unifamiliar compartiendo paredes laterales</div>
+                    </div>
+                </div>
+
+                <!-- Chalet Pareado -->
+                <div class="gallery-item" data-index="10">
+                    <img src="images/properties/chalet-pareado.jpg" alt="Chalet Pareado" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Chalet Pareado</div>
+                        <div class="gallery-info">Vivienda unifamiliar compartiendo una pared medianera</div>
+                    </div>
+                </div>
+
+                <!-- Chalet Independiente -->
+                <div class="gallery-item" data-index="11">
+                    <img src="images/properties/chalet-independiente.jpg" alt="Chalet Independiente" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Chalet Independiente</div>
+                        <div class="gallery-info">Vivienda unifamiliar exenta rodeada de jardín</div>
+                    </div>
+                </div>
+
+                <!-- Villa -->
+                <div class="gallery-item" data-index="12">
+                    <img src="images/properties/villa.jpg" alt="Villa" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Villa</div>
+                        <div class="gallery-info">Residencia de lujo con amplios espacios y jardines</div>
+                    </div>
+                </div>
+
+                <!-- Finca -->
+                <div class="gallery-item" data-index="13">
+                    <img src="images/properties/finca.jpg" alt="Finca" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Finca</div>
+                        <div class="gallery-info">Propiedad rústica con terreno extenso</div>
+                    </div>
+                </div>
+
+                <!-- Masía -->
+                <div class="gallery-item" data-index="15">
+                    <img src="images/properties/masia.jpg" alt="Masía" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Masía</div>
+                        <div class="gallery-info">Construcción rural tradicional catalana</div>
+                    </div>
+                </div>
+
+                <!-- Bungalow -->
+                <div class="gallery-item" data-index="16">
+                    <img src="images/properties/bungalow.jpg" alt="Bungalow" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Bungalow</div>
+                        <div class="gallery-info">Vivienda de una planta con terraza o jardín</div>
+                    </div>
+                </div>
+
+                <!-- Local Comercial -->
+                <div class="gallery-item" data-index="18">
+                    <img src="images/properties/local-comercial.jpg" alt="Local Comercial" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Local Comercial</div>
+                        <div class="gallery-info">Espacio para actividades comerciales a pie de calle</div>
+                    </div>
+                </div>
+
+                <!-- Nave Industrial -->
+                <div class="gallery-item" data-index="20">
+                    <img src="images/properties/nave-industrial.jpg" alt="Nave Industrial" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Nave Industrial</div>
+                        <div class="gallery-info">Espacio amplio para actividades industriales y logística</div>
+                    </div>
+                </div>
+
+                <!-- Piso con Terraza -->
+                <div class="gallery-item" data-index="23">
+                    <img src="images/properties/piso-terraza.jpg" alt="Piso con Terraza" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Piso con Terraza</div>
+                        <div class="gallery-info">Vivienda con espacio exterior privado</div>
                     </div>
                 </div>
             </div>
@@ -414,37 +447,16 @@
 
     <script src="comun.js"></script>
     <script>
-        // FILTROS
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const galleryItems = document.querySelectorAll('.gallery-item');
-
-        filterButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const filter = btn.getAttribute('data-filter');
-
-                filterButtons.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-
-                galleryItems.forEach(item => {
-                    if (filter === 'todas' || item.getAttribute('data-category') === filter) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-            });
-        });
-
         // LIGHTBOX
         const lightbox = document.getElementById('lightbox');
         const lightboxImage = document.getElementById('lightbox-image');
         const lightboxClose = document.getElementById('lightbox-close');
         const lightboxPrev = document.getElementById('lightbox-prev');
         const lightboxNext = document.getElementById('lightbox-next');
+        const galleryItems = document.querySelectorAll('.gallery-item');
         let currentIndex = 0;
-        const visibleItems = () => Array.from(galleryItems).filter(item => item.style.display !== 'none');
 
-        galleryItems.forEach((item, index) => {
+        galleryItems.forEach((item) => {
             item.addEventListener('click', () => {
                 currentIndex = parseInt(item.getAttribute('data-index'));
                 const img = item.querySelector('.gallery-image');
@@ -468,18 +480,16 @@
         });
 
         lightboxPrev.addEventListener('click', () => {
-            const visible = visibleItems();
-            currentIndex = (currentIndex - 1 + visible.length) % visible.length;
-            const item = visible[currentIndex];
+            currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+            const item = galleryItems[currentIndex];
             const img = item.querySelector('.gallery-image');
             lightboxImage.src = img.src;
             lightboxImage.alt = img.alt;
         });
 
         lightboxNext.addEventListener('click', () => {
-            const visible = visibleItems();
-            currentIndex = (currentIndex + 1) % visible.length;
-            const item = visible[currentIndex];
+            currentIndex = (currentIndex + 1) % galleryItems.length;
+            const item = galleryItems[currentIndex];
             const img = item.querySelector('.gallery-image');
             lightboxImage.src = img.src;
             lightboxImage.alt = img.alt;
