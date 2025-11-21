@@ -76,6 +76,74 @@
         }
 
         /* SERVICIOS LEGALES */
+        .legal-services-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .legal-services-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--legal-bg);
+            z-index: 0;
+        }
+
+        .hexagon-background {
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            right: -50px;
+            bottom: -50px;
+            overflow: hidden;
+            z-index: 1;
+            opacity: 0.3;
+        }
+
+        .hexagon-pattern {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, 90px);
+            gap: 10px 5px;
+            justify-content: center;
+        }
+
+        .hexagon {
+            width: 80px;
+            height: 92.38px;
+            background: rgba(127, 182, 133, 0.2);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            position: relative;
+        }
+
+        /* Patrón alternado de colores */
+        .hexagon:nth-child(6n+1) { background: rgba(127, 182, 133, 0.18); }
+        .hexagon:nth-child(6n+2) { background: rgba(168, 213, 186, 0.22); }
+        .hexagon:nth-child(6n+3) { background: rgba(90, 140, 97, 0.15); }
+        .hexagon:nth-child(6n+4) { background: rgba(127, 182, 133, 0.2); }
+        .hexagon:nth-child(6n+5) { background: rgba(168, 213, 186, 0.17); }
+        .hexagon:nth-child(6n) { background: rgba(90, 140, 97, 0.19); }
+
+        /* Efecto de panal simétrico */
+        .hex-row {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: -46px;
+        }
+
+        .hex-row:nth-child(even) {
+            margin-left: 45px;
+        }
+
         .legal-service {
             background: var(--color-blanco);
             padding: var(--spacing-lg);
@@ -84,6 +152,8 @@
             border-left: 4px solid var(--legal-primary);
             transition: all var(--transition-normal);
             margin-bottom: var(--spacing-md);
+            position: relative;
+            z-index: 2;
         }
 
         .legal-service:hover {
@@ -245,15 +315,255 @@
             margin-right: auto;
         }
 
+        /* DECORACIÓN BAMBÚ GEOMÉTRICO */
+        .bamboo-decoration {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.6;
+        }
+
+        .bamboo-left {
+            left: 40px;
+        }
+
+        .bamboo-right {
+            right: 40px;
+        }
+
+        /* Tallos verticales minimalistas */
+        .bamboo-stem {
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(180deg,
+                transparent 0%,
+                rgba(90, 140, 97, 0.4) 10%,
+                rgba(127, 182, 133, 0.6) 50%,
+                rgba(90, 140, 97, 0.4) 90%,
+                transparent 100%);
+            border-radius: 2px;
+        }
+
+        .bamboo-stem.stem-1 {
+            height: 600px;
+            top: 120px;
+            left: 0;
+        }
+
+        .bamboo-stem.stem-2 {
+            height: 500px;
+            top: 200px;
+            left: 25px;
+        }
+
+        .bamboo-stem.stem-3 {
+            height: 450px;
+            top: 350px;
+            left: 12px;
+        }
+
+        .bamboo-right .bamboo-stem.stem-1 {
+            height: 550px;
+            top: 150px;
+            right: 0;
+            left: auto;
+        }
+
+        .bamboo-right .bamboo-stem.stem-2 {
+            height: 480px;
+            top: 280px;
+            right: 20px;
+            left: auto;
+        }
+
+        .bamboo-right .bamboo-stem.stem-3 {
+            height: 420px;
+            top: 400px;
+            right: 10px;
+            left: auto;
+        }
+
+        /* Nodos del bambú - rectángulos horizontales */
+        .bamboo-node {
+            position: absolute;
+            width: 20px;
+            height: 2px;
+            background: rgba(90, 140, 97, 0.7);
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 1px;
+        }
+
+        /* Hojas geométricas estilizadas */
+        .bamboo-leaf {
+            position: absolute;
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg,
+                rgba(127, 182, 133, 0.8),
+                rgba(127, 182, 133, 0.4),
+                transparent);
+            transform-origin: left center;
+        }
+
+        /* Formas geométricas abstractas */
+        .bamboo-shape {
+            position: absolute;
+            border: 2px solid rgba(127, 182, 133, 0.25);
+        }
+
+        .shape-rect {
+            width: 40px;
+            height: 80px;
+            border-radius: 4px;
+        }
+
+        .shape-line {
+            width: 2px;
+            height: 120px;
+            background: linear-gradient(180deg,
+                transparent,
+                rgba(127, 182, 133, 0.3),
+                transparent);
+        }
+
+        /* Posicionamiento de elementos lado izquierdo */
+        .bamboo-left .shape-rect:nth-of-type(1) {
+            top: 180px;
+            left: 35px;
+            transform: rotate(-5deg);
+        }
+
+        .bamboo-left .shape-rect:nth-of-type(2) {
+            top: 480px;
+            left: 5px;
+            transform: rotate(8deg);
+        }
+
+        .bamboo-left .shape-line:nth-of-type(1) {
+            top: 320px;
+            left: 50px;
+        }
+
+        .bamboo-left .shape-line:nth-of-type(2) {
+            top: 650px;
+            left: 18px;
+        }
+
+        /* Posicionamiento de elementos lado derecho */
+        .bamboo-right .shape-rect:nth-of-type(1) {
+            top: 220px;
+            right: 30px;
+            left: auto;
+            transform: rotate(6deg);
+        }
+
+        .bamboo-right .shape-rect:nth-of-type(2) {
+            top: 520px;
+            right: 8px;
+            left: auto;
+            transform: rotate(-7deg);
+        }
+
+        .bamboo-right .shape-line:nth-of-type(1) {
+            top: 360px;
+            right: 45px;
+            left: auto;
+        }
+
+        .bamboo-right .shape-line:nth-of-type(2) {
+            top: 680px;
+            right: 15px;
+            left: auto;
+        }
+
         @media (max-width: 768px) {
             .legal-process-step {
                 flex-direction: column;
+            }
+
+            .bamboo-decoration {
+                display: none;
             }
         }
     </style>
 </head>
 
 <body>
+    <!-- DECORACIÓN BAMBÚ IZQUIERDA -->
+    <div class="bamboo-decoration bamboo-left">
+        <!-- Tallo 1 -->
+        <div class="bamboo-stem stem-1">
+            <div class="bamboo-node" style="top: 20%;"></div>
+            <div class="bamboo-node" style="top: 45%;"></div>
+            <div class="bamboo-node" style="top: 70%;"></div>
+            <div class="bamboo-leaf" style="top: 25%; left: 4px; transform: rotate(-45deg);"></div>
+            <div class="bamboo-leaf" style="top: 50%; left: 4px; transform: rotate(-30deg);"></div>
+            <div class="bamboo-leaf" style="top: 65%; left: 4px; transform: rotate(-50deg);"></div>
+        </div>
+
+        <!-- Tallo 2 -->
+        <div class="bamboo-stem stem-2">
+            <div class="bamboo-node" style="top: 25%;"></div>
+            <div class="bamboo-node" style="top: 55%;"></div>
+            <div class="bamboo-node" style="top: 80%;"></div>
+            <div class="bamboo-leaf" style="top: 30%; left: 4px; transform: rotate(-40deg);"></div>
+            <div class="bamboo-leaf" style="top: 60%; left: 4px; transform: rotate(-35deg);"></div>
+        </div>
+
+        <!-- Tallo 3 -->
+        <div class="bamboo-stem stem-3">
+            <div class="bamboo-node" style="top: 30%;"></div>
+            <div class="bamboo-node" style="top: 60%;"></div>
+            <div class="bamboo-leaf" style="top: 35%; left: 4px; transform: rotate(-42deg);"></div>
+            <div class="bamboo-leaf" style="top: 65%; left: 4px; transform: rotate(-38deg);"></div>
+        </div>
+
+        <!-- Formas geométricas -->
+        <div class="bamboo-shape shape-rect"></div>
+        <div class="bamboo-shape shape-rect"></div>
+        <div class="bamboo-shape shape-line"></div>
+        <div class="bamboo-shape shape-line"></div>
+    </div>
+
+    <!-- DECORACIÓN BAMBÚ DERECHA -->
+    <div class="bamboo-decoration bamboo-right">
+        <!-- Tallo 1 -->
+        <div class="bamboo-stem stem-1">
+            <div class="bamboo-node" style="top: 22%;"></div>
+            <div class="bamboo-node" style="top: 48%;"></div>
+            <div class="bamboo-node" style="top: 72%;"></div>
+            <div class="bamboo-leaf" style="top: 28%; right: 4px; left: auto; transform: rotate(45deg);"></div>
+            <div class="bamboo-leaf" style="top: 52%; right: 4px; left: auto; transform: rotate(38deg);"></div>
+            <div class="bamboo-leaf" style="top: 68%; right: 4px; left: auto; transform: rotate(48deg);"></div>
+        </div>
+
+        <!-- Tallo 2 -->
+        <div class="bamboo-stem stem-2">
+            <div class="bamboo-node" style="top: 28%;"></div>
+            <div class="bamboo-node" style="top: 58%;"></div>
+            <div class="bamboo-node" style="top: 82%;"></div>
+            <div class="bamboo-leaf" style="top: 33%; right: 4px; left: auto; transform: rotate(40deg);"></div>
+            <div class="bamboo-leaf" style="top: 63%; right: 4px; left: auto; transform: rotate(43deg);"></div>
+        </div>
+
+        <!-- Tallo 3 -->
+        <div class="bamboo-stem stem-3">
+            <div class="bamboo-node" style="top: 32%;"></div>
+            <div class="bamboo-node" style="top: 62%;"></div>
+            <div class="bamboo-leaf" style="top: 38%; right: 4px; left: auto; transform: rotate(42deg);"></div>
+            <div class="bamboo-leaf" style="top: 68%; right: 4px; left: auto; transform: rotate(46deg);"></div>
+        </div>
+
+        <!-- Formas geométricas -->
+        <div class="bamboo-shape shape-rect"></div>
+        <div class="bamboo-shape shape-rect"></div>
+        <div class="bamboo-shape shape-line"></div>
+        <div class="bamboo-shape shape-line"></div>
+    </div>
+
     <!-- NAVEGACIÓN -->
     <nav class="navbar">
         <div class="navbar-container">
@@ -304,8 +614,24 @@
     </section>
 
     <!-- SERVICIOS LEGALES -->
-    <section class="section" style="background: var(--legal-bg);">
-        <div class="container">
+    <section class="section legal-services-section">
+        <!-- Hexágonos de fondo -->
+        <div class="hexagon-background">
+            <div class="hexagon hex-1"></div>
+            <div class="hexagon hex-2"></div>
+            <div class="hexagon hex-3"></div>
+            <div class="hexagon hex-4"></div>
+            <div class="hexagon hex-5"></div>
+            <div class="hexagon hex-1"></div>
+            <div class="hexagon hex-2"></div>
+            <div class="hexagon hex-3"></div>
+            <div class="hexagon hex-4"></div>
+            <div class="hexagon hex-5"></div>
+            <div class="hexagon hex-1"></div>
+            <div class="hexagon hex-2"></div>
+        </div>
+
+        <div class="container" style="position: relative; z-index: 2;">
             <div class="section-title">
                 <h2 style="color: var(--legal-dark);">Nuestros Servicios Legales</h2>
                 <p class="section-subtitle">Asesoramiento jurídico completo para todas tus necesidades</p>

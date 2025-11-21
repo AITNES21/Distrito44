@@ -13,6 +13,102 @@
 
     <style>
         /* ======================================
+           LOADING SCREEN
+           ====================================== */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #4A90E2 0%, #2E5C8A 50%, #FFB88C 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loading-logo {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 2rem;
+            animation: logoFloat 2s ease-in-out infinite;
+            filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
+        }
+
+        .loading-text {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 12px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            animation: textPulse 2s ease-in-out infinite;
+            font-family: var(--font-heading);
+        }
+
+        .loading-spinner {
+            margin-top: 2rem;
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #FFB88C;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes textPulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .loading-logo {
+                max-width: 150px;
+            }
+
+            .loading-text {
+                font-size: 2rem;
+                letter-spacing: 6px;
+            }
+
+            .loading-spinner {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        /* ======================================
            FONDOS GEOMÉTRICOS SUTILES
            ====================================== */
 
@@ -526,6 +622,13 @@
 </head>
 
 <body>
+    <!-- LOADING SCREEN -->
+    <div class="loading-screen" id="loadingScreen">
+        <img src="img/logo2.png" alt="Distrito 44 Logo" class="loading-logo">
+        <div class="loading-text">DISTRITO44</div>
+        <div class="loading-spinner"></div>
+    </div>
+
     <!-- FORMAS GEOMÉTRICAS DECORATIVAS TIPO MOSAICO -->
     <div class="geometric-bg">
         <!-- ROMBOS -->
@@ -609,20 +712,19 @@
         <div class="container">
             <div class="grid grid-3">
                 <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-home"></i></div>
-                    <h3>Amplia Cartera</h3>
-                    <p>Accede a las mejores propiedades en Madrid y alrededores, seleccionadas cuidadosamente para ti.
-                    </p>
+                    <div class="feature-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>Equipo con experiencia</h3>
+                    <p>Nuestro equipo está formado por expertos especializados en el sector inmobiliario con años de experiencia. Aportamos seguridad, tranquilidad y resultados excepcionales, garantizando una gestión profesional de principio a fin.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-handshake"></i></div>
-                    <h3>Asesoramiento Personalizado</h3>
-                    <p>Te acompañamos en cada paso del proceso, adaptándonos a tus necesidades específicas.</p>
+                    <div class="feature-icon"><i class="fas fa-map-marked-alt"></i></div>
+                    <h3>Buscamos al comprador por usted</h3>
+                    <p>Nos ocupamos de todas las gestiones necesarias para encontrar al comprador ideal. Ofrecemos un servicio financiero aplicable que incluye todas las herramientas y asesoramiento hasta lograr la venta de su propiedad con éxito.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
-                    <h3>Confianza y Transparencia</h3>
-                    <p>Trabajamos con total transparencia, protegiendo tus intereses en cada transacción.</p>
+                    <div class="feature-icon"><i class="fas fa-thumbs-up"></i></div>
+                    <h3>Calidad garantizada</h3>
+                    <p>Nuestra experiencia nos avala. Proporcionamos plena dedicación para asegurar la satisfacción del vendedor y comprador, trabajando correctamente desde el primer contacto hasta el cierre de la operación con total profesionalidad.</p>
                 </div>
             </div>
         </div>
@@ -766,6 +868,14 @@
 
     <script src="comun.js"></script>
     <script>
+        // HIDE LOADING SCREEN WHEN PAGE LOADS
+        window.addEventListener('load', function() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            setTimeout(() => {
+                loadingScreen.classList.add('hidden');
+            }, 500); // Small delay for better UX
+        });
+
         // CONTADOR ANIMADO
         document.addEventListener('DOMContentLoaded', function () {
             const stats = document.querySelectorAll('.stat-number');
