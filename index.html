@@ -4,9 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Distrito 44 - Inmobiliaria en Madrid especializada en venta y alquiler de propiedades con asesoramiento personalizado">
-    <title>Distrito 44 - Hacemos Sueños Realidad</title>
+    <meta name="description" content="Inmobiliaria en Madrid con 12 años de experiencia. Venta y alquiler de pisos en Arroyomolinos. Valoración gratuita, asesoría profesional. ¡Contáctanos!">
+    <title>Distrito 44 | Inmobiliaria en Madrid - Venta y Alquiler de Pisos</title>
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://distrito44.com/" />
+
+    <!-- Preconnect para optimizar carga de recursos externos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+    <!-- Open Graph para redes sociales -->
+    <meta property="og:title" content="Distrito 44 | Inmobiliaria en Madrid - Venta y Alquiler de Pisos" />
+    <meta property="og:description" content="Inmobiliaria en Madrid con 12 años de experiencia. Venta y alquiler de pisos en Arroyomolinos. Valoración gratuita." />
+    <meta property="og:image" content="https://distrito44.com/img/ft1.webp" />
+    <meta property="og:url" content="https://distrito44.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="Distrito 44" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Distrito 44 | Inmobiliaria en Madrid" />
+    <meta name="twitter:description" content="Inmobiliaria en Madrid con 12 años de experiencia. Venta y alquiler de pisos en Arroyomolinos." />
+    <meta name="twitter:image" content="https://distrito44.com/img/ft1.webp" />
+
+    <!-- Geo Tags para SEO Local -->
+    <meta name="geo.region" content="ES-M" />
+    <meta name="geo.placename" content="Arroyomolinos, Madrid" />
+    <meta name="geo.position" content="40.2833;-3.9167" />
+    <meta name="ICBM" content="40.2833, -3.9167" />
 
     <link rel="stylesheet" href="comun.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -117,7 +145,7 @@
         .hero {
             position: relative;
             min-height: 100vh;
-            background-image: url('img/ft1.png');
+            background-image: url('img/ft1.webp');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -624,7 +652,7 @@
 <body>
     <!-- LOADING SCREEN -->
     <div class="loading-screen" id="loadingScreen">
-        <img src="img/logo2.png" alt="Distrito 44 Logo" class="loading-logo">
+        <img src="img/logo2.png" alt="Distrito 44 - Inmobiliaria en Madrid especializada en venta y alquiler de pisos" class="loading-logo" width="200" height="200">
         <div class="loading-text">DISTRITO44</div>
         <div class="loading-spinner"></div>
     </div>
@@ -663,7 +691,7 @@
     <nav class="navbar">
         <div class="navbar-container">
             <a href="index.html" class="navbar-logo">
-                <img src="img/logo2.png" alt="Distrito 44" class="navbar-logo-img">
+                <img src="img/logo2.png" alt="Logotipo Distrito 44 Inmobiliaria Madrid" class="navbar-logo-img" width="60" height="60">
                 <span class="navbar-logo-text"><span class="distrito">Distrito</span> <span class="numero">44</span></span>
             </a>
 
@@ -695,9 +723,9 @@
         <div class="hero-content">
             <div class="container">
                 <div class="hero-logo">
-                    <img src="img/ft1.png" alt="Distrito 44" class="logo-image">
+                    <img src="img/ft1.webp" alt="Edificio residencial moderno en Madrid - Distrito 44 Inmobiliaria" class="logo-image" width="250" height="250" loading="lazy">
                 </div>
-                <h1 class="hero-title">DISTRITO 44</h1>
+                <h1 class="hero-title">DISTRITO 44<span class="sr-only"> - Inmobiliaria en Madrid</span></h1>
                 <p class="hero-tagline">HACEMOS SUEÑOS REALIDAD</p>
                 <div class="hero-buttons">
                     <a href="https://www.idealista.com/pro/distrito-44/venta-viviendas" class="btn btn-primary btn-large">Nuestras propiedades</a>
@@ -858,7 +886,121 @@
         </div>
     </footer>
 
-    <script src="comun.js"></script>
+    <!-- Schema.org JSON-LD para SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "RealEstateAgent",
+      "name": "Distrito 44",
+      "image": "https://distrito44.com/img/logo2.png",
+      "@id": "https://distrito44.com",
+      "url": "https://distrito44.com",
+      "telephone": "+34-916-471-XXX",
+      "email": "dadiga4444@gmail.com",
+      "priceRange": "€€",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Avda. del Cantábrico, 131",
+        "addressLocality": "Arroyomolinos",
+        "addressRegion": "Madrid",
+        "postalCode": "28939",
+        "addressCountry": "ES"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 40.2833,
+        "longitude": -3.9167
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "19:00"
+        }
+      ],
+      "sameAs": [
+        "https://www.idealista.com/pro/distrito-44"
+      ],
+      "areaServed": {
+        "@type": "City",
+        "name": "Madrid"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Servicios Inmobiliarios",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Venta de Viviendas",
+              "description": "Asesoría profesional en venta de pisos y casas en Madrid"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Alquiler de Inmuebles",
+              "description": "Gestión de alquileres de propiedades en Madrid"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Tasación de Viviendas",
+              "description": "Valoración profesional gratuita de inmuebles"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Home Staging",
+              "description": "Preparación de viviendas para venta"
+            }
+          }
+        ]
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "1632"
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Distrito 44",
+      "alternateName": "Distrito44",
+      "url": "https://distrito44.com",
+      "logo": "https://distrito44.com/img/logo2.png",
+      "foundingDate": "2013",
+      "slogan": "Hacemos Sueños Realidad",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+34-916-471-XXX",
+        "contactType": "customer service",
+        "areaServed": "ES",
+        "availableLanguage": ["Spanish"]
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Avda. del Cantábrico, 131",
+        "addressLocality": "Arroyomolinos",
+        "addressRegion": "Madrid",
+        "postalCode": "28939",
+        "addressCountry": "ES"
+      }
+    }
+    </script>
+
+    <script src="comun.js" defer></script>
     <script>
         // HIDE LOADING SCREEN WHEN PAGE LOADS
         window.addEventListener('load', function() {
