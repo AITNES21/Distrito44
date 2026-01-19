@@ -53,13 +53,13 @@ Añadir antes del cierre `</body>` en cada página:
       "@type": "ListItem",
       "position": 1,
       "name": "Inicio",
-      "item": "https://distrito44.com/"
+      "item": "https://distrito-44.com/"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Quiénes Somos",
-      "item": "https://distrito44.com/quienes-somos.html"
+      "item": "https://distrito-44.com/quienes-somos.html"
     }
   ]
 }
@@ -77,13 +77,13 @@ Añadir antes del cierre `</body>` en cada página:
       "@type": "ListItem",
       "position": 1,
       "name": "Inicio",
-      "item": "https://distrito44.com/"
+      "item": "https://distrito-44.com/"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Servicios",
-      "item": "https://distrito44.com/nuestros-servicios.html"
+      "item": "https://distrito-44.com/nuestros-servicios.html"
     }
   ]
 }
@@ -160,9 +160,9 @@ Buscar `<script src="comun.js"></script>` y cambiar a:
 
 ### 2. Google Search Console
 ```
-1. Añadir propiedad https://distrito44.com
+1. Añadir propiedad https://distrito-44.com
 2. Verificar propiedad (DNS o HTML tag)
-3. Enviar sitemap.xml: https://distrito44.com/sitemap.xml
+3. Enviar sitemap.xml: https://distrito-44.com/sitemap.xml
 4. Solicitar indexación de páginas principales
 5. Monitorear errores de rastreo
 ```
@@ -174,7 +174,7 @@ Crear/Optimizar perfil:
 - Categoría: Agencia inmobiliaria
 - Dirección: Avda. del Cantábrico, 131, 28939 Arroyomolinos, Madrid
 - Teléfono: [AÑADIR]
-- Web: https://distrito44.com
+- Web: https://distrito-44.com
 - Horario: L-V 09:00-19:00
 - Fotos: Mínimo 10 (oficina, equipo, propiedades)
 - Descripción optimizada con keywords
@@ -195,7 +195,7 @@ Avda. del Cantábrico, 131
 28939 Arroyomolinos, Madrid, España
 [Teléfono]
 dadiga4444@gmail.com
-https://distrito44.com
+https://distrito-44.com
 ```
 
 ### 5. Citaciones Locales
