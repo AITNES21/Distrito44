@@ -287,6 +287,7 @@
         .info-block-icon {
             width: 56px;
             height: 56px;
+            min-width: 56px;
             background: linear-gradient(135deg, var(--color-azul-principal), var(--color-azul-oscuro));
             border-radius: 16px;
             display: flex;
@@ -303,7 +304,7 @@
         }
 
         .info-block-content {
-            padding-left: 72px;
+            flex: 1;
         }
 
         .info-block-content p {
@@ -626,31 +627,6 @@
             </div>
         </section>
 
-        <!-- MAPA -->
-        <section class="map-section">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Encuéntranos</h2>
-                    <p class="section-subtitle">Visítanos en nuestra oficina en Madrid</p>
-                </div>
-                <div class="map-container-premium">
-                    <div class="map-placeholder-premium">
-                        <i class="fas fa-map-marked-alt"></i>
-                        <p>Aquí iría el mapa de Google Maps</p>
-                    </div>
-                    <!-- Para agregar Google Maps real, sustituir el div anterior por:
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=..." 
-                        width="100%" 
-                        height="400" 
-                        style="border:0;" 
-                        allowfullscreen="" 
-                        loading="lazy">
-                    </iframe>
-                    -->
-                </div>
-            </div>
-        </section>
     </main>
 
     <!-- FOOTER -->
