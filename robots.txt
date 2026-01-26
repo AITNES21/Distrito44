@@ -14,4 +14,4 @@ User-agent: MJ12bot
 Crawl-delay: 10
 
 # Sitemap
-Sitemap: https://distrito44.com/sitemap.xml
+Sitemap: https://distrito-44.com/sitemap.xml
