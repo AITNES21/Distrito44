@@ -1,0 +1,183 @@
+
+/* ============================================
+   PÁGINA DE CONTACTO
+   Estilos específicos para contacto.html
+   ============================================ */
+
+.page-hero {
+    background: linear-gradient(135deg, var(--color-azul-principal), var(--color-azul-oscuro));
+    padding: var(--spacing-xxl) 0;
+    text-align: center;
+    color: var(--color-blanco);
+}
+
+.page-hero h1 {
+    color: var(--color-blanco);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-xxl);
+    align-items: start;
+}
+
+/* FORMULARIO */
+.contact-form {
+    background: var(--color-blanco);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+}
+
+.form-group {
+    margin-bottom: var(--spacing-md);
+}
+
+.form-label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    font-weight: 500;
+    color: var(--color-azul-oscuro);
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid var(--color-gris-medio);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    transition: all var(--transition-fast);
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--color-azul-principal);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.form-error {
+    color: #e74c3c;
+    font-size: 0.875rem;
+    margin-top: var(--spacing-xs);
+    display: none;
+}
+
+.form-input.error,
+.form-textarea.error {
+    border-color: #e74c3c;
+}
+
+.form-success {
+    background: #d4edda;
+    color: #155724;
+    padding: var(--spacing-md);
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--spacing-md);
+    display: none;
+}
+
+/* INFO DE CONTACTO */
+.contact-info {
+    background: var(--color-blanco);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
+    border-bottom: 1px solid var(--color-gris-medio);
+}
+
+.info-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.info-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--color-naranja-pastel), var(--color-naranja-suave));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-blanco);
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.info-content h4 {
+    color: var(--color-azul-oscuro);
+    margin-bottom: var(--spacing-xs);
+}
+
+.info-content p {
+    margin: 0;
+    color: var(--color-gris-texto);
+    line-height: 1.6;
+}
+
+.info-content a {
+    color: var(--color-azul-principal);
+}
+
+/* HORARIOS */
+.schedule-table {
+    width: 100%;
+    margin-top: var(--spacing-md);
+}
+
+.schedule-row {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--spacing-xs) 0;
+}
+
+.schedule-day {
+    font-weight: 500;
+    color: var(--color-azul-oscuro);
+}
+
+.schedule-time {
+    color: var(--color-gris-texto);
+}
+
+/* MAPA */
+.map-container {
+    width: 100%;
+    height: 400px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    background: var(--color-gris-medio);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-gris-texto);
+}
+
+.map-placeholder {
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+}
