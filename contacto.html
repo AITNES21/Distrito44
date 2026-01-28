@@ -256,7 +256,7 @@
                     <p style="margin-bottom: var(--spacing-lg);">Completa el formulario y te responderemos lo antes
                         posible</p>
 
-                    <form class="contact-form" id="contact-form">
+                    <form class="contact-form" id="contact-form" action="https://formspree.io/f/xqebkblj" method="POST">
                         <div class="form-success" id="form-success">
                             ¡Mensaje enviado correctamente! Te contactaremos pronto.
                         </div>
@@ -508,18 +508,32 @@
             }
 
             if (isValid) {
-                // Aquí iría el código para enviar el formulario a tu servidor
-                // Por ahora, simplemente mostramos el mensaje de éxito
-                formSuccess.style.display = 'block';
-                form.reset();
+                const formData = new FormData(form);
 
-                // Scroll al mensaje de éxito
-                formSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-
-                // Ocultar mensaje después de 5 segundos
-                setTimeout(() => {
-                    formSuccess.style.display = 'none';
-                }, 5000);
+                // Mostrar indicador de carga si se desea, o simplemente enviar
+                fetch("https://formspree.io/f/xqebkblj", {
+                    method: "POST",
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                }).then(response => {
+                    if (response.ok) {
+                        // Éxito
+                        formSuccess.style.display = 'block';
+                        form.reset();
+                        formSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        setTimeout(() => {
+                            formSuccess.style.display = 'none';
+                        }, 5000);
+                    } else {
+                        // Error del servidor
+                        alert("Hubo un problema al enviar el formulario. Inténtalo de nuevo.");
+                    }
+                }).catch(error => {
+                    // Error de red
+                    alert("Hubo un problema de conexión. Inténtalo de nuevo.");
+                });
             }
         });
 
