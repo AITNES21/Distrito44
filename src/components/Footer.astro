@@ -1,7 +1,7 @@
 ---
 import Icon from './Icon.astro';
 import OrganicLines from './OrganicLines.astro';
-import { site, contact, footerLinks, legalLinks, social } from '../data/site';
+import { site, contact, footerLinks, legalLinks } from '../data/site';
 
 interface Props {
   variant?: 'default' | 'legal';
@@ -13,7 +13,6 @@ const claim = isLegal && Astro.url.pathname.includes('departamento-juridico') ? 
 const phone = isLegal && Astro.url.pathname.includes('departamento-juridico')
   ? { label: contact.legalPhone, href: contact.legalPhoneHref }
   : { label: contact.phone, href: contact.phoneHref };
-const activeSocial = social.filter((s) => s.url);
 const year = new Date().getFullYear();
 ---
 
@@ -24,19 +23,6 @@ const year = new Date().getFullYear();
     <div class="site-footer__brand">
       <a href="/" class="site-footer__word">Distrito <span>44</span></a>
       <p>{claim}</p>
-      {
-        activeSocial.length > 0 && (
-          <ul role="list" class="site-footer__social">
-            {activeSocial.map((s) => (
-              <li>
-                <a href={s.url} rel="noopener" target="_blank" aria-label={`${s.label} (se abre en una pestaña nueva)`}>
-                  <Icon name={s.icon} size={18} />
-                </a>
-              </li>
-            ))}
-          </ul>
-        )
-      }
     </div>
 
     <nav aria-labelledby="footer-links-title">
@@ -174,19 +160,6 @@ const year = new Date().getFullYear();
     flex-shrink: 0;
     margin-top: 0.2rem;
     color: var(--footer-accent);
-  }
-  .site-footer__social {
-    display: flex !important;
-    gap: 0.5rem;
-    margin-top: 1.25rem;
-  }
-  .site-footer__social a {
-    display: grid;
-    place-items: center;
-    width: 44px;
-    height: 44px;
-    border: 1px solid rgb(255 255 255 / 0.3);
-    border-radius: 50%;
   }
   .site-footer__bottom {
     position: relative;

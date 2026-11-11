@@ -36,7 +36,7 @@ npm run validate   # tras el build: URLs, metadatos SEO, enlaces, imágenes, sit
 
 | Quiero cambiar… | Fichero |
 |---|---|
-| Teléfono, email, dirección, redes sociales, menú | `src/data/site.ts` |
+| Teléfono, email, dirección, menú | `src/data/site.ts` |
 | Datos estructurados (Schema.org) | `src/data/schema.ts` |
 | Fotos y textos de la galería | `src/data/gallery.ts` + `src/assets/img/` |
 | Textos de una página | `src/pages/<pagina>.astro` |

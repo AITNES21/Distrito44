@@ -184,7 +184,7 @@ Aviso Legal, que está en `src/pages/aviso-legal.astro`.
 | I7 | Ubicación | **Pendiente**: Historia/línea de tiempo dicen «oficina en el centro / corazón de Madrid»; la dirección es de Arroyomolinos. |
 | I8 | Nuestro Método | Repite el H1 y el subtítulo de Nuestros Servicios («Nuestros Servicios» / «Soluciones integrales…») y el botón «Conoce Nuestro Método» enlaza a la propia página. Recomendado: H1 «Nuestro Método». |
 | I9 | Dpto. Jurídico | «Más de 15 años de experiencia» frente a los 12 años de la empresa (puede referirse a los abogados; conviene aclararlo). |
-| I10 | Redes sociales | Los 4 iconos apuntaban a `#`. Ahora no se muestran; basta con rellenar las URLs en `site.ts` y aparecen solos. |
+| I10 | ~~Redes sociales~~ | ✅ **Resuelto**: la empresa no tiene redes de momento; se han eliminado los iconos y enlaces (antes apuntaban a `#`). |
 
 ### Cambios de texto realizados (mínimos)
 

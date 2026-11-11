@@ -68,18 +68,6 @@ export const contactPageData = {
   ],
 } as const;
 
-/**
- * Redes sociales. En la web original los cuatro iconos apuntaban a "#"
- * (enlaces vacíos). Rellenar la URL real para que aparezcan; las que
- * queden vacías no se muestran, así no hay enlaces rotos.
- */
-export const social: { label: string; url: string; icon: 'facebook' | 'instagram' | 'linkedin' | 'twitter' }[] = [
-  { label: 'Facebook', url: '', icon: 'facebook' },
-  { label: 'Instagram', url: '', icon: 'instagram' },
-  { label: 'LinkedIn', url: '', icon: 'linkedin' },
-  { label: 'Twitter', url: '', icon: 'twitter' },
-];
-
 export interface NavItem {
   label: string;
   href: string;

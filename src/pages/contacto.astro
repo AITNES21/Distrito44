@@ -3,9 +3,7 @@ import MainLayout from '../layouts/MainLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import Icon from '../components/Icon.astro';
 import OrganicLines from '../components/OrganicLines.astro';
-import { contactPageData as c, formEndpoint, social } from '../data/site';
-
-const activeSocial = social.filter((s) => s.url);
+import { contactPageData as c, formEndpoint } from '../data/site';
 ---
 
 <MainLayout
@@ -140,23 +138,6 @@ const activeSocial = social.filter((s) => s.url);
             }
           </dl>
         </section>
-
-        {
-          activeSocial.length > 0 && (
-            <section class="info__block" data-reveal>
-              <h2>Síguenos en Redes Sociales</h2>
-              <ul role="list" class="info__social">
-                {activeSocial.map((s) => (
-                  <li>
-                    <a href={s.url} target="_blank" rel="noopener" aria-label={`${s.label} (se abre en una pestaña nueva)`}>
-                      <Icon name={s.icon} size={20} />
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )
-        }
       </aside>
     </div>
   </section>
@@ -488,17 +469,5 @@ const activeSocial = social.filter((s) => s.url);
     margin: 0;
     color: var(--d44-blue-deep);
     font-variant-numeric: tabular-nums;
-  }
-  .info__social {
-    display: flex;
-    gap: 0.5rem;
-  }
-  .info__social a {
-    display: grid;
-    place-items: center;
-    width: 44px;
-    height: 44px;
-    border: 1px solid var(--d44-line-strong);
-    border-radius: 50%;
   }
 </style>
