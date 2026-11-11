@@ -27,8 +27,9 @@ export const site = {
 } as const;
 
 /**
- * Catálogo de inmuebles en Idealista. La portada enlaza a /propiedades.html,
- * que redirige aquí (evita que la app de Idealista en iPhone lo abra en blanco).
+ * Catálogo de inmuebles en Idealista (botón "Nuestras propiedades" de la portada).
+ * Nota: con la app de Idealista instalada en iPhone, la app muestra esta página
+ * en blanco; es un fallo de la app (ver docs/AUDITORIA.md).
  */
 export const propertiesUrl = 'https://www.idealista.com/pro/distrito-44/';
 

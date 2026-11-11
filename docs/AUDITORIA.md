@@ -225,3 +225,12 @@ Aviso Legal, que está en `src/pages/aviso-legal.astro`.
    la raíz ya no contiene HTML y la web hay que compilarla).
 3. Fusionar la rama en `main`: el workflow `deploy.yml` compila, valida y publica.
 4. Search Console: reenviar `sitemap.xml` y supervisar cobertura.
+
+## 9. Incidencia conocida: app de Idealista en iPhone
+
+El botón «Nuestras propiedades» enlaza a `https://www.idealista.com/pro/distrito-44/`. En un iPhone con
+la app de Idealista instalada, iOS abre el enlace en la app y esta muestra la página de agencia en blanco
+o en negro. Se probaron sin éxito: `/venta-viviendas`, la versión sin `www`, la barra final y una página
+de paso con redirección (la app se abre igualmente). Es un fallo de la app de Idealista: debe
+comunicarse al soporte de agencias de Idealista. En el navegador la página se ve correctamente.
+
