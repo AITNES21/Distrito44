@@ -1,0 +1,504 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import OrganicLines from '../components/OrganicLines.astro';
+import { contactPageData as c, formEndpoint, social } from '../data/site';
+
+const activeSocial = social.filter((s) => s.url);
+---
+
+<MainLayout
+  title="Contacto | Valoración Gratuita de Vivienda en Madrid - Distrito 44"
+  description="Contacta con Distrito 44 en Arroyomolinos, Madrid. Solicita valoración gratuita de tu vivienda. Email: dadiga4444@gmail.com"
+  path="/contacto.html"
+  ogTitle="Contacto | Distrito 44 - Inmobiliaria Madrid"
+  ogDescription="Contacta para valoración gratuita de tu vivienda en Madrid."
+  twitterTitle="Contacto | Distrito 44"
+  ogImage="/img/ft3.webp"
+  crumbs={[{ name: 'Contacto', path: '/contacto.html' }]}
+>
+  <PageHero
+    crumb="Contacto"
+    title="Contacta con Nosotros"
+    subtitle="Estamos aquí para ayudarte a encontrar tu hogar ideal o vender tu propiedad al mejor precio"
+    lines="terraces"
+  />
+
+  <section class="section contact" aria-label="Formulario e información de contacto">
+    <div class="container contact__grid">
+      <!-- FORMULARIO -->
+      <div class="form-panel" data-reveal>
+        <OrganicLines variant="orbit" lines={6} class="form-panel__orbit" />
+        <header class="form-panel__header">
+          <h2><Icon name="send" size={26} /> Envíanos un Mensaje</h2>
+          <p>Completa el formulario y te responderemos en menos de 24 horas</p>
+        </header>
+
+        <form
+          class="form"
+          id="contact-form"
+          action={formEndpoint}
+          method="POST"
+          data-contact-form
+        >
+          <div class="form__status form__status--ok" role="status" aria-live="polite" data-form-success hidden>
+            <Icon name="check-circle" size={22} />
+            <span>¡Mensaje enviado correctamente! Te contactaremos pronto.</span>
+          </div>
+          <div class="form__status form__status--error" role="alert" data-form-error hidden>
+            <Icon name="alert-circle" size={22} />
+            <span data-form-error-text></span>
+          </div>
+
+          <input type="hidden" name="_subject" value="Nuevo mensaje desde distrito-44.com" />
+          <!-- Campo trampa anti-spam de Formspree: invisible para personas -->
+          <div class="form__trap" aria-hidden="true">
+            <label for="_gotcha">No rellenar</label>
+            <input type="text" id="_gotcha" name="_gotcha" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <div class="form__row">
+            <div class="field">
+              <label for="nombre">Nombre completo <span class="field__req" aria-hidden="true">*</span></label>
+              <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" autocomplete="name" required aria-describedby="nombre-error" />
+              <p class="field__error" id="nombre-error" data-error-for="nombre" hidden>Indica tu nombre.</p>
+            </div>
+            <div class="field">
+              <label for="telefono">Teléfono <span class="field__req" aria-hidden="true">*</span></label>
+              <input type="tel" id="telefono" name="telefono" placeholder="Tu teléfono" autocomplete="tel" inputmode="tel" required minlength="9" aria-describedby="telefono-error" />
+              <p class="field__error" id="telefono-error" data-error-for="telefono" hidden>Indica un teléfono válido (mínimo 9 dígitos).</p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="email">Email <span class="field__req" aria-hidden="true">*</span></label>
+            <input type="email" id="email" name="email" placeholder="tu@email.com" autocomplete="email" required aria-describedby="email-error" />
+            <p class="field__error" id="email-error" data-error-for="email" hidden>Indica un email válido.</p>
+          </div>
+
+          <div class="field">
+            <label for="asunto">Asunto</label>
+            <div class="field__select">
+              <select id="asunto" name="asunto">
+                <option value="">Selecciona un asunto</option>
+                <option value="venta">Quiero vender mi propiedad</option>
+                <option value="compra">Quiero comprar una propiedad</option>
+                <option value="alquiler">Alquiler</option>
+                <option value="valoracion">Solicitar valoración</option>
+                <option value="informacion">Información general</option>
+                <option value="otro">Otro</option>
+              </select>
+              <Icon name="chevron-right" size={18} class="field__chevron" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="mensaje">Mensaje <span class="field__req" aria-hidden="true">*</span></label>
+            <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos en qué podemos ayudarte..." rows="6" required minlength="10" aria-describedby="mensaje-error"></textarea>
+            <p class="field__error" id="mensaje-error" data-error-for="mensaje" hidden>Escribe un mensaje (mínimo 10 caracteres).</p>
+          </div>
+
+          <p class="form__note">
+            Los campos marcados con <span aria-hidden="true">*</span><span class="sr-only">asterisco</span> son obligatorios.
+            Tratamos tus datos según nuestra <a href="/aviso-legal.html#privacidad">política de privacidad</a>.
+          </p>
+
+          <button type="submit" class="form__submit" data-submit>
+            <span data-submit-label>Enviar Mensaje</span>
+            <Icon name="arrow-right" size={20} class="form__submit-icon" />
+            <Icon name="loader" size={20} class="form__submit-spinner" />
+          </button>
+        </form>
+      </div>
+
+      <!-- INFORMACIÓN -->
+      <aside class="info" aria-label="Información de contacto">
+        <section class="info__block" data-reveal>
+          <h2><Icon name="map-pin" size={22} /> Nuestra Ubicación</h2>
+          <p>{c.addressLines[0]}<br />{c.addressLines[1]}</p>
+        </section>
+
+        <section class="info__block" data-reveal>
+          <h2><Icon name="phone" size={22} /> Contacto Directo</h2>
+          <p>
+            <strong>Teléfono:</strong> <a href={c.phoneHref}>{c.phone}</a><br />
+            <strong>Email:</strong> <a href={`mailto:${c.email}`}>{c.email}</a>
+          </p>
+        </section>
+
+        <section class="info__block" data-reveal>
+          <h2><Icon name="clock" size={22} /> Horario de Atención</h2>
+          <dl class="schedule">
+            {
+              c.schedule.map((s) => (
+                <div class="schedule__row">
+                  <dt>{s.day}</dt>
+                  <dd>{s.time}</dd>
+                </div>
+              ))
+            }
+          </dl>
+        </section>
+
+        {
+          activeSocial.length > 0 && (
+            <section class="info__block" data-reveal>
+              <h2>Síguenos en Redes Sociales</h2>
+              <ul role="list" class="info__social">
+                {activeSocial.map((s) => (
+                  <li>
+                    <a href={s.url} target="_blank" rel="noopener" aria-label={`${s.label} (se abre en una pestaña nueva)`}>
+                      <Icon name={s.icon} size={20} />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )
+        }
+      </aside>
+    </div>
+  </section>
+</MainLayout>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-contact-form]');
+  if (form) {
+    // Con JS validamos con mensajes propios accesibles; sin JS actúa la
+    // validación nativa del navegador y el envío normal a Formspree.
+    form.noValidate = true;
+    const ok = form.querySelector<HTMLElement>('[data-form-success]')!;
+    const err = form.querySelector<HTMLElement>('[data-form-error]')!;
+    const errText = form.querySelector<HTMLElement>('[data-form-error-text]')!;
+    const submit = form.querySelector<HTMLButtonElement>('[data-submit]')!;
+    const label = form.querySelector<HTMLElement>('[data-submit-label]')!;
+    const fields = ['nombre', 'telefono', 'email', 'mensaje'];
+
+    const validate = (name: string) => {
+      const input = form.elements.namedItem(name) as HTMLInputElement | HTMLTextAreaElement;
+      const msg = form.querySelector<HTMLElement>(`[data-error-for="${name}"]`)!;
+      const value = input.value.trim();
+      let valid = input.checkValidity() && value.length > 0;
+      if (name === 'telefono') valid = value.replace(/\D/g, '').length >= 9;
+      if (name === 'mensaje') valid = value.length >= 10;
+      input.setAttribute('aria-invalid', String(!valid));
+      msg.hidden = valid;
+      return valid;
+    };
+
+    fields.forEach((name) => {
+      const input = form.elements.namedItem(name) as HTMLInputElement;
+      input.addEventListener('blur', () => input.value && validate(name));
+      input.addEventListener('input', () => input.getAttribute('aria-invalid') === 'true' && validate(name));
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      ok.hidden = true;
+      err.hidden = true;
+
+      const results = fields.map(validate);
+      if (results.includes(false)) {
+        (form.elements.namedItem(fields[results.indexOf(false)]) as HTMLElement).focus();
+        return;
+      }
+
+      submit.disabled = true;
+      submit.classList.add('is-loading');
+      label.textContent = 'Enviando...';
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' },
+        });
+        if (response.ok) {
+          form.reset();
+          fields.forEach((n) => (form.elements.namedItem(n) as HTMLElement).removeAttribute('aria-invalid'));
+          ok.hidden = false;
+          ok.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } else {
+          errText.textContent = 'Hubo un problema al enviar el formulario. Inténtalo de nuevo.';
+          err.hidden = false;
+        }
+      } catch {
+        errText.textContent = 'Hubo un problema de conexión. Inténtalo de nuevo.';
+        err.hidden = false;
+      } finally {
+        submit.disabled = false;
+        submit.classList.remove('is-loading');
+        label.textContent = 'Enviar Mensaje';
+      }
+    });
+  }
+</script>
+
+<style>
+  .contact__grid {
+    display: grid;
+    gap: var(--space-xl);
+    align-items: start;
+  }
+  @media (min-width: 1000px) {
+    .contact__grid {
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: var(--space-2xl);
+    }
+  }
+
+  /* Panel del formulario */
+  .form-panel {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(1.5rem, 1rem + 3vw, 3.5rem);
+    background: var(--d44-white);
+    border: 1px solid var(--d44-line);
+    border-radius: var(--radius-lg);
+  }
+  .form-panel :global(.form-panel__orbit) {
+    width: 420px;
+    height: 420px;
+    right: -180px;
+    top: -200px;
+    color: var(--d44-peach);
+    opacity: 0.5;
+  }
+  .form-panel__header {
+    position: relative;
+    margin-bottom: var(--space-lg);
+  }
+  .form-panel__header h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    font-size: var(--fs-h3);
+    margin-bottom: 0.5rem;
+  }
+  .form-panel__header h2 :global(.icon) {
+    color: var(--d44-peach-ink);
+  }
+
+  .form {
+    position: relative;
+    display: grid;
+    gap: var(--space-md);
+  }
+  .form__row {
+    display: grid;
+    gap: var(--space-md);
+  }
+  @media (min-width: 640px) {
+    .form__row {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .form__trap {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .field {
+    display: grid;
+    gap: 0.5rem;
+  }
+  .field label {
+    font-family: var(--font-heading);
+    font-size: var(--fs-sm);
+    font-weight: 500;
+    color: var(--d44-ink);
+  }
+  .field__req {
+    color: var(--d44-peach-ink);
+  }
+  .field input,
+  .field select,
+  .field textarea {
+    width: 100%;
+    min-height: 3.25rem;
+    padding: 0.85rem 1rem;
+    font-size: 1rem;
+    color: var(--d44-ink);
+    background: var(--d44-paper);
+    border: 1px solid var(--d44-line-strong);
+    border-radius: var(--radius-sm);
+    transition:
+      border-color var(--dur-fast) ease,
+      background-color var(--dur-fast) ease,
+      box-shadow var(--dur-fast) ease;
+  }
+  .field textarea {
+    resize: vertical;
+    min-height: 9rem;
+  }
+  .field input::placeholder,
+  .field textarea::placeholder {
+    color: #5f6b7a;
+  }
+  .field input:focus-visible,
+  .field select:focus-visible,
+  .field textarea:focus-visible {
+    outline: none;
+    border-color: var(--d44-blue-deep);
+    background: var(--d44-white);
+    box-shadow: 0 0 0 3px rgb(74 144 226 / 0.25);
+  }
+  .field [aria-invalid='true'] {
+    border-color: #b42318;
+  }
+  .field__error {
+    font-size: var(--fs-xs);
+    color: #b42318;
+  }
+  .field__select {
+    position: relative;
+  }
+  .field__select select {
+    appearance: none;
+    padding-right: 2.75rem;
+    cursor: pointer;
+  }
+  .field__select :global(.field__chevron) {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    pointer-events: none;
+    color: var(--d44-blue-deep);
+  }
+  .form__note {
+    font-size: var(--fs-xs);
+    color: var(--d44-text);
+  }
+  .form__submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+    min-height: 3.5rem;
+    padding: 1rem 2rem;
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--d44-white);
+    background: var(--d44-blue-ink);
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background-color var(--dur-base) var(--ease-out);
+  }
+  .form__submit:hover {
+    background: var(--d44-blue-deep);
+  }
+  .form__submit[disabled] {
+    cursor: progress;
+    opacity: 0.85;
+  }
+  .form__submit :global(.form__submit-spinner) {
+    display: none;
+  }
+  .form__submit.is-loading :global(.form__submit-icon) {
+    display: none;
+  }
+  .form__submit.is-loading :global(.form__submit-spinner) {
+    display: block;
+    animation: d44-spin 0.9s linear infinite;
+  }
+  @keyframes d44-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .form__status {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+  }
+  .form__status[hidden] {
+    display: none;
+  }
+  .form__status--ok {
+    background: var(--d44-green-mist);
+    color: var(--d44-green-ink);
+    border: 1px solid var(--d44-green-soft);
+  }
+  .form__status--error {
+    background: #fdf0ee;
+    color: #b42318;
+    border: 1px solid #f4c7c0;
+  }
+
+  /* Información */
+  .info {
+    display: grid;
+    gap: 0;
+  }
+  .info__block {
+    padding-block: var(--space-lg);
+    border-bottom: 1px solid var(--d44-line);
+  }
+  .info__block:first-child {
+    padding-top: 0;
+  }
+  @media (max-width: 999px) {
+    .info__block:first-child {
+      padding-top: var(--space-lg);
+      border-top: 1px solid var(--d44-line);
+    }
+  }
+  .info__block h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: var(--fs-h4);
+    margin-bottom: var(--space-sm);
+  }
+  .info__block h2 :global(.icon) {
+    color: var(--d44-peach-ink);
+  }
+  .info__block a {
+    word-break: break-word;
+  }
+  .schedule {
+    display: grid;
+    gap: 0.25rem;
+  }
+  .schedule__row {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 0.6rem;
+    border-bottom: 1px dashed var(--d44-line);
+  }
+  .schedule__row:last-child {
+    border-bottom: 0;
+  }
+  .schedule dt {
+    font-weight: 500;
+    color: var(--d44-ink);
+  }
+  .schedule dd {
+    margin: 0;
+    color: var(--d44-blue-deep);
+    font-variant-numeric: tabular-nums;
+  }
+  .info__social {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .info__social a {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--d44-line-strong);
+    border-radius: 50%;
+  }
+</style>

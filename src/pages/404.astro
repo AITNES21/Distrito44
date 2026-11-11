@@ -1,0 +1,69 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Button from '../components/Button.astro';
+import OrganicLines from '../components/OrganicLines.astro';
+import { mainNav } from '../data/site';
+---
+
+<MainLayout
+  title="Página no encontrada | Distrito 44"
+  description="La página que buscas no existe o ha cambiado de dirección."
+  path="/404.html"
+  noindex
+>
+  <section class="nf" aria-labelledby="nf-title">
+    <OrganicLines variant="terraces" draw lines={12} class="nf__lines" />
+    <div class="container nf__inner">
+      <p class="nf__code" aria-hidden="true">404</p>
+      <h1 id="nf-title">Página no encontrada</h1>
+      <p class="lead">La página que buscas no existe o ha cambiado de dirección.</p>
+      <div class="nf__actions">
+        <Button href="/">Volver al inicio</Button>
+        <Button href="/contacto.html" variant="outline">Contacto</Button>
+      </div>
+      <ul role="list" class="nf__links">
+        {mainNav.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+      </ul>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .nf {
+    position: relative;
+    overflow: hidden;
+    padding-block: var(--space-2xl);
+    min-height: 70vh;
+  }
+  .nf :global(.nf__lines) {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.45;
+  }
+  .nf__inner {
+    position: relative;
+  }
+  .nf__code {
+    font-family: var(--font-heading);
+    font-size: var(--fs-display);
+    font-weight: 300;
+    line-height: 1;
+    color: var(--d44-peach);
+  }
+  .nf h1 {
+    margin-block: var(--space-sm);
+  }
+  .nf__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: var(--space-lg);
+  }
+  .nf__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    margin-top: var(--space-xl);
+  }
+</style>

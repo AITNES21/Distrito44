@@ -1,0 +1,73 @@
+---
+/**
+ * Metadatos SEO por página: title, description, canonical, robots,
+ * Open Graph, Twitter Cards, geo-tags (los que ya tenía la portada)
+ * y datos estructurados JSON-LD.
+ */
+import { site, contact } from '../data/site';
+
+export interface SeoProps {
+  title: string;
+  description: string;
+  /** Ruta canónica tal cual la URL original, p. ej. "/quienes-somos.html". */
+  path: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  twitterTitle?: string;
+  twitterDescription?: string;
+  twitterCard?: 'summary' | 'summary_large_image';
+  noindex?: boolean;
+  geo?: boolean;
+  jsonLd?: Record<string, unknown>[];
+}
+
+const {
+  title,
+  description,
+  path,
+  ogTitle = title,
+  ogDescription = description,
+  ogImage = site.defaultOgImage,
+  twitterTitle = ogTitle,
+  twitterDescription = ogDescription,
+  twitterCard = 'summary_large_image',
+  noindex = false,
+  geo = false,
+  jsonLd = [],
+} = Astro.props as SeoProps;
+
+const canonical = new URL(path, site.url).href;
+const image = new URL(ogImage, site.url).href;
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex ? <meta name="robots" content="noindex, follow" /> : <meta name="robots" content="index, follow, max-image-preview:large" />}
+
+<meta property="og:title" content={ogTitle} />
+<meta property="og:description" content={ogDescription} />
+<meta property="og:image" content={image} />
+<meta property="og:url" content={canonical} />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content={site.locale} />
+<meta property="og:site_name" content={site.name} />
+
+<meta name="twitter:card" content={twitterCard} />
+<meta name="twitter:title" content={twitterTitle} />
+<meta name="twitter:description" content={twitterDescription} />
+<meta name="twitter:image" content={image} />
+
+{
+  geo && (
+    <>
+      <meta name="geo.region" content="ES-M" />
+      <meta name="geo.placename" content={`${contact.address.locality}, ${contact.address.region}`} />
+      <meta name="geo.position" content={`${contact.geo.lat};${contact.geo.lng}`} />
+      <meta name="ICBM" content={`${contact.geo.lat}, ${contact.geo.lng}`} />
+    </>
+  )
+}
+
+{jsonLd.map((data) => <script type="application/ld+json" set:html={JSON.stringify(data)} />)}

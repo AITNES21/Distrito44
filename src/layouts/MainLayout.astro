@@ -1,0 +1,89 @@
+---
+// Tipografías originales (Poppins + Inter) auto-alojadas: sin peticiones a
+// Google Fonts y sin bloqueo de render. Solo los pesos usados, subconjunto latino.
+import '@fontsource/poppins/latin-300.css';
+import '@fontsource/poppins/latin-400.css';
+import '@fontsource/poppins/latin-500.css';
+import '@fontsource/poppins/latin-600.css';
+import '@fontsource-variable/inter/index.css';
+import poppins500 from '@fontsource/poppins/files/poppins-latin-500-normal.woff2?url';
+import interVar from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
+import '../styles/global.css';
+
+import Seo, { type SeoProps } from '../components/Seo.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { breadcrumb } from '../data/schema';
+
+interface Props extends SeoProps {
+  theme?: 'default' | 'legal';
+  /** Migas de pan (además de Inicio). Genera también BreadcrumbList. */
+  crumbs?: { name: string; path: string }[];
+}
+
+const { theme = 'default', crumbs, jsonLd = [], ...seo } = Astro.props;
+const structured = crumbs ? [...jsonLd, breadcrumb([{ name: 'Inicio', path: '/' }, ...crumbs])] : jsonLd;
+---
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline>document.documentElement.classList.replace('no-js', 'js');</script>
+    <link rel="preload" href={poppins500} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={interVar} as="font" type="font/woff2" crossorigin />
+    <meta name="theme-color" content={theme === 'legal' ? '#3f6a46' : '#24496e'} />
+    <meta name="format-detection" content="telephone=no" />
+
+    <Seo jsonLd={structured} {...seo} />
+
+    <!-- Favicons (mismos ficheros y rutas que la web original) -->
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon_io/android-chrome-192x192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/img/favicon_io/android-chrome-512x512.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon_io/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon_io/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon_io/apple-touch-icon.png" />
+    <link rel="manifest" href="/img/favicon_io/site.webmanifest" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+    <slot name="head" />
+  </head>
+  <body class:list={[`theme-${theme}`]}>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <Header tone={theme} />
+    <main id="contenido" tabindex="-1">
+      <slot />
+    </main>
+    <Footer variant={theme} />
+
+    <script>
+      // Aparición suave de bloques al entrar en pantalla (solo si no se pide
+      // reducir movimiento; sin JS todo es visible desde el inicio).
+      const items = document.querySelectorAll<HTMLElement>('[data-reveal]');
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce || !('IntersectionObserver' in window)) {
+        items.forEach((el) => el.classList.add('is-visible'));
+      } else {
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                io.unobserve(entry.target);
+              }
+            }
+          },
+          { rootMargin: '0px 0px -8% 0px', threshold: 0.08 },
+        );
+        items.forEach((el) => io.observe(el));
+      }
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  main:focus {
+    outline: none;
+  }
+</style>

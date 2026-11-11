@@ -1,0 +1,138 @@
+---
+/**
+ * Trazos decorativos de Distrito 44, reconstruidos en SVG.
+ *
+ * - "terraces": líneas de contorno paralelas inspiradas en las terrazas de
+ *   cultivo de la fotografía original (ft3) — el trazo "orgánico" de la marca.
+ * - "origami": reinterpretación limpia del patrón de líneas diagonales que la
+ *   web original dibujaba con decenas de gradientes CSS (más ligero y nítido).
+ * - "bamboo": tallos, nudos y hojas del Departamento Jurídico original,
+ *   antes construidos con ~60 <div> posicionados.
+ * - "orbit": arcos concéntricos que remiten al círculo del logotipo.
+ *
+ * Son decorativos: aria-hidden, sin interacción y sin JavaScript.
+ */
+interface Props {
+  variant?: 'terraces' | 'origami' | 'bamboo' | 'orbit';
+  class?: string;
+  /** Dibuja los trazos una vez al entrar (respeta prefers-reduced-motion). */
+  draw?: boolean;
+  lines?: number;
+  strokeWidth?: number;
+  flip?: boolean;
+}
+
+const { variant = 'terraces', class: className, draw = false, lines = 9, strokeWidth = 1, flip = false } = Astro.props;
+
+// Pseudoaleatorio determinista para que el SVG sea idéntico en cada build
+const rand = (seed: number) => {
+  const x = Math.sin(seed * 999.13) * 43758.5453;
+  return x - Math.floor(x);
+};
+
+let viewBox = '0 0 1200 800';
+let paths: { d: string; o: number; w?: number }[] = [];
+
+if (variant === 'terraces') {
+  const gap = 560 / lines;
+  for (let i = 0; i < lines; i++) {
+    const y = 140 + i * gap;
+    const a = 0.6 + rand(i + 1) * 0.8;
+    const d = `M-40 ${y.toFixed(1)} C 260 ${(y - 120 * a).toFixed(1)}, 560 ${(y + 40 * a).toFixed(1)}, 760 ${(y - 30 * a).toFixed(1)} S 1100 ${(y - 140 * a).toFixed(1)}, 1240 ${(y - 60 * a).toFixed(1)}`;
+    paths.push({ d, o: 0.35 + (i / lines) * 0.65 });
+  }
+}
+
+if (variant === 'origami') {
+  // Familias de líneas a 30°, 60°, 120° y 150° como en el patrón original
+  const angles = [30, 60, 120, 150];
+  let k = 0;
+  for (const deg of angles) {
+    const rad = (deg * Math.PI) / 180;
+    const dx = Math.cos(rad) * 1600;
+    const dy = Math.sin(rad) * 1600;
+    for (let j = 0; j < 3; j++) {
+      k++;
+      const cx = 100 + rand(k) * 1000;
+      const cy = 100 + rand(k + 50) * 600;
+      paths.push({
+        d: `M${(cx - dx / 2).toFixed(0)} ${(cy - dy / 2).toFixed(0)} L${(cx + dx / 2).toFixed(0)} ${(cy + dy / 2).toFixed(0)}`,
+        o: 0.25 + rand(k + 7) * 0.5,
+      });
+    }
+  }
+}
+
+if (variant === 'bamboo') {
+  viewBox = '0 0 160 900';
+  const stems = [
+    { x: 30, top: 60, h: 760, lean: 8 },
+    { x: 78, top: 180, h: 640, lean: -6 },
+    { x: 120, top: 330, h: 520, lean: 5 },
+  ];
+  stems.forEach((s, si) => {
+    const x2 = s.x + s.lean;
+    paths.push({ d: `M${s.x} ${s.top + s.h} C ${s.x} ${s.top + s.h * 0.6}, ${x2} ${s.top + s.h * 0.3}, ${x2} ${s.top}`, o: 1, w: 1.6 });
+    // nudos
+    [0.22, 0.47, 0.72].forEach((t, ni) => {
+      const y = s.top + s.h * t;
+      const x = s.x + s.lean * (1 - t) * 0.9;
+      paths.push({ d: `M${(x - 7).toFixed(1)} ${y.toFixed(1)} L${(x + 7).toFixed(1)} ${y.toFixed(1)}`, o: 0.9 });
+      // hojas
+      if ((ni + si) % 2 === 0) {
+        const dir = si === 1 ? -1 : 1;
+        paths.push({
+          d: `M${x.toFixed(1)} ${(y - 4).toFixed(1)} Q ${(x + 26 * dir).toFixed(1)} ${(y - 30).toFixed(1)} ${(x + 52 * dir).toFixed(1)} ${(y - 46).toFixed(1)}`,
+          o: 0.7,
+        });
+      }
+    });
+  });
+}
+
+if (variant === 'orbit') {
+  viewBox = '0 0 800 800';
+  for (let i = 0; i < lines; i++) {
+    const r = 120 + i * 48;
+    paths.push({ d: `M ${400 - r} 400 A ${r} ${r} 0 0 1 ${400 + r} 400`, o: 1 - i / (lines + 2) });
+  }
+}
+
+const preserve = variant === 'bamboo' ? 'xMidYMid meet' : 'xMidYMid slice';
+---
+
+<svg
+  class:list={['organic-lines', `organic-lines--${variant}`, { 'lines-draw': draw, 'is-flipped': flip }, className]}
+  viewBox={viewBox}
+  preserveAspectRatio={preserve}
+  fill="none"
+  aria-hidden="true"
+  focusable="false"
+>
+  {
+    paths.map((p, i) => (
+      <path
+        d={p.d}
+        stroke="currentColor"
+        stroke-width={p.w ?? strokeWidth}
+        stroke-linecap="round"
+        vector-effect="non-scaling-stroke"
+        opacity={p.o.toFixed(2)}
+        pathLength="1"
+        style={`--i:${i}`}
+      />
+    ))
+  }
+</svg>
+
+<style>
+  .organic-lines {
+    position: absolute;
+    pointer-events: none;
+    color: var(--d44-blue-logo);
+    overflow: visible;
+  }
+  .is-flipped {
+    transform: scaleX(-1);
+  }
+</style>

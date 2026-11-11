@@ -1,0 +1,295 @@
+---
+import { Picture } from 'astro:assets';
+import MainLayout from '../layouts/MainLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import OrganicLines from '../components/OrganicLines.astro';
+import Icon, { type IconName } from '../components/Icon.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+import imgVender from '../assets/img/gl8.webp';
+import imgComprar from '../assets/img/gl12.webp';
+import imgAlquilar from '../assets/img/gl9.webp';
+
+const services = [
+  {
+    id: 'vender',
+    icon: 'hand-coins' as IconName,
+    title: 'Vender',
+    claim: 'Vendemos su propiedad al mejor precio',
+    body: 'Con años de experiencia, hemos vendido exitosamente cientos de propiedades. Utilizamos <strong>técnicas innovadoras</strong> y <strong>marketing avanzado</strong> para garantizar máxima exposición.',
+    listTitle: 'Nuestro servicio incluye:',
+    list: ['Valoración profesional gratuita', 'Publicación en portales líderes', 'Visitas cualificadas', 'Negociación experta'],
+    img: imgVender,
+    alt: 'Salón luminoso de un piso en venta',
+  },
+  {
+    id: 'comprar',
+    icon: 'key' as IconName,
+    title: 'Comprar',
+    claim: 'Encuentra la casa de tus sueños',
+    body: 'Ayudamos a cientos de clientes a encontrar su <strong>hogar ideal</strong>. Hacemos que el proceso de compra sea una <strong>experiencia agradable</strong> desde la búsqueda hasta la firma de escrituras.',
+    listTitle: 'Te acompañamos en:',
+    list: ['Búsqueda personalizada', 'Asesoramiento en financiación', 'Análisis de mercado', 'Acompañamiento en visitas', 'Negociación del precio', 'Gestión legal completa'],
+    img: imgComprar,
+    alt: 'Chalet independiente rodeado de jardín',
+  },
+  {
+    id: 'alquilar',
+    icon: 'house' as IconName,
+    title: 'Alquilar',
+    claim: 'Tu alquiler ideal, sin complicaciones',
+    body: 'Te guiamos en <strong>cada paso</strong> de tu búsqueda. Identificamos tus necesidades, seleccionamos las mejores opciones y te asistimos en la firma del contrato, protegiendo siempre tus intereses.',
+    listTitle: 'Servicios completos:',
+    list: ['Identificación de necesidades', 'Selección de propiedades', 'Organización de visitas', 'Revisión de contratos', 'Asesoramiento legal LAU', 'Gestión de fianzas'],
+    img: imgAlquilar,
+    alt: 'Interior de un apartamento con distribución eficiente',
+  },
+];
+
+const reasons: { icon: IconName; title: string; text: string }[] = [
+  { icon: 'award', title: 'Años de Experiencia', text: 'Más de una década ayudando a nuestros clientes a cumplir sus objetivos inmobiliarios con éxito.' },
+  { icon: 'users', title: 'Equipo Profesional', text: 'Expertos especializados que trabajan con dedicación para asegurar su satisfacción total.' },
+  { icon: 'trending-up', title: 'Resultados Comprobados', text: 'Cientos de operaciones exitosas avalan nuestro compromiso con la excelencia.' },
+  { icon: 'handshake', title: 'Atención Personalizada', text: 'Cada cliente es único y merece un servicio adaptado a sus necesidades específicas.' },
+];
+---
+
+<MainLayout
+  title="Servicios Inmobiliarios Madrid | Asesoría, Tasación y Venta - Distrito 44"
+  description="Servicios inmobiliarios profesionales: tasación, asesoría, home staging, publicación en portales. Vendemos tu piso en Madrid con garantías."
+  path="/nuestros-servicios.html"
+  ogTitle="Servicios Inmobiliarios Madrid | Distrito 44"
+  ogDescription="Servicios profesionales de tasación, asesoría y venta de viviendas en Madrid."
+  ogImage="/img/ft2.webp"
+  crumbs={[{ name: 'Nuestros Servicios', path: '/nuestros-servicios.html' }]}
+>
+  <PageHero
+    crumb="Nuestros Servicios"
+    title="Nuestros Servicios"
+    subtitle="Soluciones integrales para todas tus necesidades inmobiliarias"
+    lines="origami"
+  />
+
+  <nav class="service-index container" aria-label="Servicios en esta página">
+    <ul role="list">
+      {services.map((s, i) => (
+        <li><a href={`#${s.id}`}><span class="index-number">{String(i + 1).padStart(2, '0')}</span> {s.title}</a></li>
+      ))}
+    </ul>
+  </nav>
+
+  <div class="services">
+    {
+      services.map((s, i) => (
+        <section id={s.id} class:list={['service-row', { 'service-row--reverse': i % 2 === 1 }]} aria-labelledby={`${s.id}-title`}>
+          <div class="container service-row__grid">
+            <figure class="service-row__media" data-reveal>
+              <Picture
+                src={s.img}
+                alt={s.alt}
+                widths={[420, 640, 900]}
+                sizes="(min-width: 960px) 40vw, 92vw"
+                formats={['avif']}
+                fallbackFormat="webp"
+                class="service-row__img"
+              />
+            </figure>
+            <div class="service-row__text" data-reveal>
+              <span class="index-number">{String(i + 1).padStart(2, '0')}</span>
+              <h2 id={`${s.id}-title`} class="service-row__title">
+                <Icon name={s.icon} size={30} strokeWidth={1.25} /> {s.title}
+              </h2>
+              <p class="service-row__claim">{s.claim}</p>
+              <p class="service-row__body" set:html={s.body} />
+              <h3 class="service-row__list-title">{s.listTitle}</h3>
+              <ul class="tick-list service-row__list">
+                {s.list.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+          </div>
+        </section>
+      ))
+    }
+  </div>
+
+  <section class="section why surface-white" aria-labelledby="why-title">
+    <OrganicLines variant="terraces" lines={9} class="why__lines" />
+    <div class="container">
+      <SectionHeading id="why-title" title="¿Por Qué Elegirnos?" subtitle="Experiencia y compromiso en cada operación" />
+      <ul role="list" class="why__grid">
+        {
+          reasons.map((r, i) => (
+            <li class="why__item" data-reveal style={`--reveal-delay:${(i % 2) * 90}ms`}>
+              <span class="why__icon"><Icon name={r.icon} size={22} /></span>
+              <div>
+                <h3>{r.title}</h3>
+                <p>{r.text}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <CtaBand
+    title="¿Necesitas Más Información?"
+    text="Contáctanos y te asesoraremos sin compromiso sobre el mejor servicio para ti"
+    cta="Contactar Ahora"
+  />
+</MainLayout>
+
+<style>
+  .service-index {
+    padding-block: var(--space-md);
+  }
+  .service-index ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 2.5rem;
+  }
+  .service-index a {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    padding-block: 0.5rem;
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    color: var(--d44-ink);
+    text-decoration: none;
+  }
+  .service-index a:hover {
+    color: var(--d44-blue-deep);
+  }
+
+  .service-row {
+    padding-block: var(--space-xl);
+    scroll-margin-top: var(--header-h);
+  }
+  .service-row + .service-row {
+    border-top: 1px solid var(--d44-line);
+  }
+  .service-row__grid {
+    display: grid;
+    gap: var(--space-lg);
+    align-items: center;
+  }
+  @media (min-width: 960px) {
+    .service-row__grid {
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: var(--space-2xl);
+    }
+    .service-row--reverse .service-row__media {
+      order: 2;
+    }
+  }
+  .service-row__media {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    background: var(--d44-mist-2);
+  }
+  @media (min-width: 960px) {
+    .service-row__media {
+      aspect-ratio: 4 / 4.4;
+      border-radius: var(--radius-md) 220px var(--radius-md) var(--radius-md);
+    }
+    .service-row--reverse .service-row__media {
+      border-radius: 220px var(--radius-md) var(--radius-md) var(--radius-md);
+    }
+  }
+  .service-row__media :global(.service-row__img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .service-row__title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.75rem;
+    font-size: var(--fs-h2);
+  }
+  .service-row__title :global(.icon) {
+    color: var(--d44-peach-ink);
+  }
+  .service-row__claim {
+    margin-top: var(--space-sm);
+    font-family: var(--font-heading);
+    font-size: var(--fs-lead);
+    font-weight: 400;
+    color: var(--d44-blue-deep);
+  }
+  .service-row__body {
+    margin-top: var(--space-md);
+    padding-left: var(--space-md);
+    border-left: 2px solid var(--d44-peach-soft);
+    max-width: 38rem;
+  }
+  .service-row__list-title {
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-sm);
+    font-size: var(--fs-xs);
+    font-weight: 500;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--d44-blue-deep);
+  }
+  @media (min-width: 560px) {
+    .service-row__list {
+      grid-template-columns: 1fr 1fr;
+      column-gap: var(--space-lg);
+    }
+  }
+
+  .why {
+    overflow: hidden;
+  }
+  .why :global(.why__lines) {
+    inset: auto 0 0 0;
+    width: 100%;
+    height: 60%;
+    opacity: 0.2;
+  }
+  .why .container {
+    position: relative;
+  }
+  .why__grid {
+    display: grid;
+    gap: 0;
+    border-top: 1px solid var(--d44-line);
+  }
+  @media (min-width: 760px) {
+    .why__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .why__item:nth-child(odd) {
+      padding-right: var(--space-lg);
+      border-right: 1px solid var(--d44-line);
+    }
+    .why__item:nth-child(even) {
+      padding-left: var(--space-lg);
+    }
+  }
+  .why__item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-md);
+    padding-block: var(--space-lg);
+    border-bottom: 1px solid var(--d44-line);
+  }
+  .why__icon {
+    display: inline-grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid var(--d44-line-strong);
+    border-radius: 50%;
+    color: var(--d44-blue-deep);
+  }
+  .why__item h3 {
+    font-size: var(--fs-h4);
+    margin-bottom: 0.4rem;
+  }
+</style>

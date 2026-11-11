@@ -1,0 +1,504 @@
+---
+import { Picture } from 'astro:assets';
+import MainLayout from '../layouts/MainLayout.astro';
+import Button from '../components/Button.astro';
+import Icon, { type IconName } from '../components/Icon.astro';
+import OrganicLines from '../components/OrganicLines.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { propertiesUrl } from '../data/site';
+import { realEstateAgent, organization, website } from '../data/schema';
+
+import heroImg from '../assets/img/ft1.webp';
+import terracesImg from '../assets/img/ft3.webp';
+
+const features: { icon: IconName; title: string; text: string }[] = [
+  {
+    icon: 'graduation-cap',
+    title: 'Equipo con experiencia',
+    text: 'Nuestro equipo está formado por expertos especializados en el sector inmobiliario con años de experiencia. Aportamos seguridad, tranquilidad y resultados excepcionales, garantizando una gestión profesional de principio a fin.',
+  },
+  {
+    icon: 'map',
+    title: 'Buscamos al comprador por usted',
+    text: 'Nos ocupamos de todas las gestiones necesarias para encontrar al comprador ideal. Ofrecemos un servicio financiero aplicable que incluye todas las herramientas y asesoramiento hasta lograr la venta de su propiedad con éxito.',
+  },
+  {
+    icon: 'thumbs-up',
+    title: 'Calidad garantizada',
+    text: 'Nuestra experiencia nos avala. Proporcionamos plena dedicación para asegurar la satisfacción del vendedor y comprador, trabajando correctamente desde el primer contacto hasta el cierre de la operación con total profesionalidad.',
+  },
+];
+
+const stats = [
+  { value: 1632, label: 'Clientes Satisfechos' },
+  { value: 1, label: 'Ubicación' },
+  { value: 3, label: 'Personal Profesional' },
+  { value: 12, label: 'Años de Experiencia' },
+];
+---
+
+<MainLayout
+  title="Distrito 44 | Inmobiliaria en Madrid - Venta y Alquiler de Pisos"
+  description="Inmobiliaria en Madrid con 12 años de experiencia. Venta y alquiler de pisos en Arroyomolinos. Valoración gratuita, asesoría profesional. ¡Contáctanos!"
+  path="/"
+  ogDescription="Inmobiliaria en Madrid con 12 años de experiencia. Venta y alquiler de pisos en Arroyomolinos. Valoración gratuita."
+  twitterTitle="Distrito 44 | Inmobiliaria en Madrid"
+  twitterDescription="Inmobiliaria en Madrid con 12 años de experiencia. Venta y alquiler de pisos en Arroyomolinos."
+  ogImage="/img/ft1.webp"
+  geo
+  jsonLd={[realEstateAgent, organization, website]}
+>
+  <!-- ================= HERO ================= -->
+  <section class="hero" aria-labelledby="hero-title">
+    <OrganicLines variant="terraces" draw lines={12} class="hero__lines" />
+
+    <div class="container container--wide hero__grid">
+      <div class="hero__text">
+        <h1 id="hero-title" class="hero__title hero-fade">
+          <span class="hero__distrito">Distrito</span>
+          <span class="hero__num">44</span><span class="sr-only"> - Inmobiliaria en Madrid</span>
+        </h1>
+        <p class="hero__tagline hero-fade" style="--d:140ms">HACEMOS SUEÑOS REALIDAD</p>
+        <div class="hero__actions hero-fade" style="--d:260ms">
+          <Button href={propertiesUrl}>Nuestras propiedades</Button>
+          <Button href="/contacto.html" variant="outline">Contáctanos</Button>
+        </div>
+      </div>
+
+      <figure class="hero__media hero-fade" style="--d:60ms">
+        <Picture
+          src={heroImg}
+          alt="Edificio residencial moderno en Madrid - Distrito 44 Inmobiliaria"
+          widths={[480, 720, 960, 1248]}
+          sizes="(min-width: 1024px) 46vw, 100vw"
+          formats={['avif']}
+          fallbackFormat="webp"
+          loading="eager"
+          priority
+          class="hero__img"
+        />
+      </figure>
+    </div>
+  </section>
+
+  <!-- ================= CARACTERÍSTICAS ================= -->
+  <section class="section features" aria-label="Por qué Distrito 44">
+    <div class="container features__grid">
+      <div class="features__media" data-reveal>
+        <Picture
+          src={terracesImg}
+          alt="Paisaje de terrazas verdes entre montañas"
+          widths={[420, 640, 900]}
+          sizes="(min-width: 960px) 34vw, 100vw"
+          formats={['avif']}
+          fallbackFormat="webp"
+          class="features__img"
+        />
+      </div>
+
+      <ol role="list" class="features__list">
+        {
+          features.map((f, i) => (
+            <li class="feature" data-reveal style={`--reveal-delay:${i * 90}ms`}>
+              <span class="index-number">{String(i + 1).padStart(2, '0')}</span>
+              <div>
+                <span class="feature__icon"><Icon name={f.icon} size={22} /></span>
+                <h2 class="feature__title">{f.title}</h2>
+                <p>{f.text}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- ================= SERVICIOS PROFESIONALES ================= -->
+  <section class="section services surface-white" aria-labelledby="services-title">
+    <OrganicLines variant="origami" class="services__lines" />
+    <div class="container services__grid">
+      <div class="services__intro">
+        <SectionHeading
+          id="services-title"
+          title="Nuestros Servicios Profesionales"
+          subtitle="Experiencia y dedicación en cada operación"
+        />
+        <div data-reveal><Button href="/nuestros-servicios.html" variant="link">Nuestros Servicios</Button></div>
+      </div>
+
+      <div class="services__list">
+        <article class="service" data-reveal>
+          <h3><Icon name="trending-up" size={22} /> Asesoría Profesional</h3>
+          <p>
+            Confíe en nuestros métodos profesionales a la hora de vender su casa. Garantizamos tasar su propiedad
+            adecuadamente, basándonos en nuestros recientes estudios del mercado, en las valoraciones obtenidas a través
+            del Colegio de Registradores de España y las casas vendidas en los últimos meses con las mismas
+            características, situación, estado y métrica. Le ayudaremos a conseguir el máximo beneficio posible de su
+            propiedad.
+          </p>
+        </article>
+
+        <article class="service" data-reveal>
+          <h3><Icon name="megaphone" size={22} /> Exposición y Publicación</h3>
+          <p>
+            Trabajamos arduamente para asegurar la completa exposición de nuestras propiedades listadas, publicitándolas
+            en todos los portales de internet y otros medios adicionales, llegando a miles de compradores potenciales.
+          </p>
+        </article>
+
+        <article class="service" data-reveal>
+          <h3><Icon name="sofa" size={22} /> Preparación y Fotografía</h3>
+          <p>
+            Le mostraremos cómo preparar adecuadamente su casa para mostrarla a los compradores potenciales,
+            asesorándole en todo momento durante el proceso de venta.
+          </p>
+          <p>
+            Ofrecemos el servicio de Home Staging o estrategia de marketing inmobiliario para preparar la propiedad y
+            favorecer, agilizar de este modo, la operación inmobiliaria.
+          </p>
+        </article>
+
+        <article class="service" data-reveal>
+          <h3><Icon name="users" size={22} /> Venta Personalizada</h3>
+          <ul class="tick-list">
+            <li>
+              Organizamos visitas guiadas a la zona donde se encuentra la vivienda, ofreciendo información adicional y
+              mostrando al comprador por qué debe elegir esa casa y no otra.
+            </li>
+            <li>
+              Realizamos un filtrado previo de clientes potenciales para que las visitas sean realmente interesantes,
+              conociendo la solvencia de los compradores y evitando perder el tiempo.
+            </li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TRAYECTORIA ================= -->
+  <section class="stats" aria-labelledby="stats-title">
+    <OrganicLines variant="terraces" lines={10} class="stats__lines" flip />
+    <div class="container">
+      <SectionHeading
+        id="stats-title"
+        tone="light"
+        title="Nuestra Trayectoria en Números"
+        subtitle="Años de experiencia que nos respaldan"
+      />
+      <dl class="stats__grid">
+        {
+          stats.map((s, i) => (
+            <div class="stat" data-reveal style={`--reveal-delay:${i * 80}ms`}>
+              <dt class="stat__label">{s.label}</dt>
+              <dd class="stat__value" data-count={s.value}>{s.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+
+  <CtaBand
+    title="¿Quieres Valorar Tu Propiedad?"
+    text="Obtén una valoración profesional y gratuita de tu inmueble. Nuestros expertos te asesorarán sin compromiso."
+    cta="Solicitar Valoración Gratuita"
+  />
+</MainLayout>
+
+<script>
+  // Contador: el número final ya está en el HTML (SEO y sin JS).
+  // Solo se anima si el usuario no ha pedido reducir el movimiento.
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+    const els = document.querySelectorAll<HTMLElement>('[data-count]');
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          const el = entry.target as HTMLElement;
+          io.unobserve(el);
+          const target = Number(el.dataset.count);
+          const start = performance.now();
+          const dur = 1600;
+          const tick = (now: number) => {
+            const p = Math.min((now - start) / dur, 1);
+            const eased = 1 - Math.pow(1 - p, 3);
+            el.textContent = String(Math.round(target * eased));
+            if (p < 1) requestAnimationFrame(tick);
+          };
+          el.textContent = '0';
+          requestAnimationFrame(tick);
+        }
+      },
+      { threshold: 0.6 },
+    );
+    els.forEach((el) => io.observe(el));
+  }
+</script>
+
+<style>
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(2rem, 1rem + 4vw, 5rem) clamp(3rem, 2rem + 5vw, 7rem);
+  }
+  .hero :global(.hero__lines) {
+    inset: 8% -5% 0 -5%;
+    width: 110%;
+    height: 92%;
+    opacity: 0.5;
+  }
+  .hero__grid {
+    position: relative;
+    display: grid;
+    gap: var(--space-lg);
+    align-items: center;
+  }
+  @media (min-width: 1024px) {
+    .hero__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      min-height: min(78vh, 820px);
+    }
+  }
+  .hero__title {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 0.25em;
+    font-size: var(--fs-display);
+    font-weight: 500;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+  }
+  .hero__distrito {
+    color: var(--d44-blue-logo);
+  }
+  .hero__num {
+    color: var(--d44-peach);
+    font-weight: 300;
+  }
+  .hero__tagline {
+    margin-top: var(--space-md);
+    font-family: var(--font-heading);
+    font-size: clamp(0.95rem, 0.85rem + 0.5vw, 1.2rem);
+    font-weight: 400;
+    letter-spacing: 0.32em;
+    color: var(--d44-ink);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  @media (max-width: 480px) {
+    .hero__tagline {
+      letter-spacing: 0.2em;
+    }
+  }
+  .hero__tagline::before {
+    content: '';
+    width: 3rem;
+    height: 2px;
+    background: var(--d44-peach);
+    flex-shrink: 0;
+  }
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: var(--space-lg);
+  }
+  .hero__media {
+    position: relative;
+    aspect-ratio: 4 / 3.4;
+    border-radius: var(--radius-arch);
+    overflow: hidden;
+    background: var(--d44-mist-2);
+  }
+  @media (min-width: 1024px) {
+    .hero__media {
+      aspect-ratio: 4 / 4.4;
+      max-height: 78vh;
+      justify-self: end;
+      width: 100%;
+    }
+  }
+  .hero__media :global(.hero__img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ---------- Características ---------- */
+  .features__grid {
+    display: grid;
+    gap: var(--space-xl);
+  }
+  @media (min-width: 960px) {
+    .features__grid {
+      grid-template-columns: 0.8fr 1.2fr;
+      align-items: start;
+    }
+    .features__media {
+      position: sticky;
+      top: calc(var(--header-h) + 2rem);
+    }
+  }
+  .features__media {
+    aspect-ratio: 3 / 4;
+    border-radius: var(--radius-md) var(--radius-md) 240px var(--radius-md);
+    overflow: hidden;
+    background: var(--d44-mist-2);
+  }
+  @media (max-width: 959px) {
+    .features__media {
+      aspect-ratio: 16 / 10;
+    }
+  }
+  .features__media :global(.features__img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .features__list {
+    display: grid;
+  }
+  .feature {
+    display: grid;
+    grid-template-columns: 3.5rem 1fr;
+    gap: var(--space-sm);
+    padding-block: var(--space-lg);
+    border-top: 1px solid var(--d44-line);
+  }
+  .feature:last-child {
+    border-bottom: 1px solid var(--d44-line);
+  }
+  .feature .index-number {
+    padding-top: 0.35rem;
+  }
+  .feature__icon {
+    display: inline-grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--d44-line-strong);
+    border-radius: 50%;
+    color: var(--d44-blue-deep);
+  }
+  .feature__title {
+    font-size: var(--fs-h3);
+    margin-bottom: 0.75rem;
+  }
+  .feature p {
+    max-width: 36rem;
+  }
+
+  /* ---------- Servicios ---------- */
+  .services {
+    overflow: hidden;
+  }
+  .services :global(.services__lines) {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--d44-blue);
+    opacity: 0.22;
+  }
+  .services__grid {
+    position: relative;
+    display: grid;
+    gap: var(--space-lg);
+  }
+  @media (min-width: 960px) {
+    .services__grid {
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: var(--space-2xl);
+    }
+    .services__intro {
+      position: sticky;
+      top: calc(var(--header-h) + 3rem);
+      align-self: start;
+    }
+  }
+  .services__list {
+    display: grid;
+    gap: 0;
+  }
+  .service {
+    padding-block: var(--space-lg);
+    border-top: 1px solid var(--d44-line);
+    display: grid;
+    gap: 1rem;
+  }
+  .service h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+  .service h3 :global(.icon) {
+    color: var(--d44-peach-ink);
+    flex-shrink: 0;
+  }
+
+  /* ---------- Trayectoria ---------- */
+  .stats {
+    position: relative;
+    overflow: hidden;
+    background: var(--d44-blue-ink);
+    color: var(--d44-white);
+    padding-block: var(--space-2xl);
+  }
+  .stats :global(.stats__lines) {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--d44-white);
+    opacity: 0.1;
+  }
+  .stats .container {
+    position: relative;
+  }
+  .stats__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-top: 1px solid rgb(255 255 255 / 0.2);
+  }
+  @media (min-width: 900px) {
+    .stats__grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  .stat {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    padding: var(--space-lg) var(--space-sm) var(--space-md) 0;
+    border-bottom: 1px solid rgb(255 255 255 / 0.2);
+  }
+  @media (min-width: 900px) {
+    .stat {
+      border-bottom: 0;
+      padding-left: var(--space-md);
+      border-left: 1px solid rgb(255 255 255 / 0.2);
+    }
+    .stat:first-child {
+      border-left: 0;
+      padding-left: 0;
+    }
+  }
+  .stat__value {
+    font-family: var(--font-heading);
+    font-size: clamp(3rem, 2rem + 4vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1;
+    color: var(--d44-peach);
+    font-variant-numeric: tabular-nums;
+    margin: 0;
+  }
+  .stat__label {
+    font-size: var(--fs-base);
+    color: rgb(255 255 255 / 0.88);
+  }
+</style>

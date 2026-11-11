@@ -1,0 +1,203 @@
+---
+import Icon from './Icon.astro';
+import OrganicLines from './OrganicLines.astro';
+import { site, contact, footerLinks, legalLinks, social } from '../data/site';
+
+interface Props {
+  variant?: 'default' | 'legal';
+}
+const { variant = 'default' } = Astro.props;
+const isLegal = variant === 'legal';
+const claim = isLegal && Astro.url.pathname.includes('departamento-juridico') ? site.footerClaimLegal : site.footerClaim;
+// El pie del Departamento Jurídico original mostraba un teléfono propio.
+const phone = isLegal && Astro.url.pathname.includes('departamento-juridico')
+  ? { label: contact.legalPhone, href: contact.legalPhoneHref }
+  : { label: contact.phone, href: contact.phoneHref };
+const activeSocial = social.filter((s) => s.url);
+const year = new Date().getFullYear();
+---
+
+<footer class:list={['site-footer', `site-footer--${variant}`]}>
+  <OrganicLines variant={isLegal ? 'bamboo' : 'terraces'} lines={8} class="site-footer__lines" />
+
+  <div class="container site-footer__grid">
+    <div class="site-footer__brand">
+      <a href="/" class="site-footer__word">Distrito <span>44</span></a>
+      <p>{claim}</p>
+      {
+        activeSocial.length > 0 && (
+          <ul role="list" class="site-footer__social">
+            {activeSocial.map((s) => (
+              <li>
+                <a href={s.url} rel="noopener" target="_blank" aria-label={`${s.label} (se abre en una pestaña nueva)`}>
+                  <Icon name={s.icon} size={18} />
+                </a>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+
+    <nav aria-labelledby="footer-links-title">
+      <h2 id="footer-links-title" class="site-footer__title">Enlaces</h2>
+      <ul role="list">
+        {footerLinks.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+      </ul>
+    </nav>
+
+    <div>
+      <h2 class="site-footer__title">Contacto</h2>
+      <address>
+        <p class="site-footer__item">
+          <Icon name="map-pin" size={18} />
+          <span>{contact.address.street}<br />{contact.address.postalCode} {contact.address.locality}, {contact.address.region}</span>
+        </p>
+        <p class="site-footer__item">
+          <Icon name="phone" size={18} />
+          <a href={phone.href}>{phone.label}</a>
+        </p>
+        <p class="site-footer__item">
+          <Icon name="mail" size={18} />
+          <a href={`mailto:${contact.email}`}>{contact.email}</a>
+        </p>
+      </address>
+    </div>
+
+    <nav aria-labelledby="footer-legal-title">
+      <h2 id="footer-legal-title" class="site-footer__title">Legal</h2>
+      <ul role="list">
+        {legalLinks.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+      </ul>
+    </nav>
+  </div>
+
+  <div class="container site-footer__bottom">
+    <p>&copy; {year} <a href="/">Distrito 44</a>. Todos los derechos reservados.</p>
+    <p>Hecha con pasión por <a href={site.credit.url} target="_blank" rel="noopener noreferrer">{site.credit.label}</a></p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    --footer-bg: var(--d44-blue-ink);
+    --footer-accent: var(--d44-peach);
+    position: relative;
+    overflow: hidden;
+    color: rgb(255 255 255 / 0.84);
+    background: var(--footer-bg);
+    padding-block: var(--space-2xl) var(--space-lg);
+    font-size: var(--fs-sm);
+  }
+  .site-footer--legal {
+    --footer-bg: var(--d44-green-ink);
+    --footer-accent: var(--d44-green-soft);
+  }
+  .site-footer :global(.site-footer__lines) {
+    color: var(--d44-white);
+    opacity: 0.08;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .site-footer--legal :global(.site-footer__lines) {
+    inset: 0 2% 0 auto;
+    width: 160px;
+    opacity: 0.16;
+  }
+  .site-footer a {
+    color: var(--d44-white);
+    text-decoration-color: rgb(255 255 255 / 0.35);
+  }
+  .site-footer a:hover {
+    color: var(--footer-accent);
+  }
+  .site-footer__grid {
+    position: relative;
+    display: grid;
+    gap: var(--space-lg);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) {
+    .site-footer__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (min-width: 1024px) {
+    .site-footer__grid {
+      grid-template-columns: 1.4fr 1fr 1.3fr 0.8fr;
+    }
+  }
+  .site-footer__word {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+  .site-footer__word span {
+    color: var(--footer-accent);
+  }
+  .site-footer__brand p {
+    margin-top: 0.75rem;
+    max-width: 22rem;
+    font-size: var(--fs-base);
+  }
+  .site-footer__title {
+    font-family: var(--font-heading);
+    font-size: var(--fs-xs);
+    font-weight: 500;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--footer-accent);
+    margin-bottom: 1.1rem;
+  }
+  .site-footer ul {
+    display: grid;
+    gap: 0.55rem;
+  }
+  .site-footer ul a {
+    text-decoration: none;
+  }
+  address {
+    font-style: normal;
+    display: grid;
+    gap: 0.8rem;
+  }
+  .site-footer__item {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    word-break: break-word;
+  }
+  .site-footer__item :global(.icon) {
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+    color: var(--footer-accent);
+  }
+  .site-footer__social {
+    display: flex !important;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+  }
+  .site-footer__social a {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgb(255 255 255 / 0.3);
+    border-radius: 50%;
+  }
+  .site-footer__bottom {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 2rem;
+    margin-top: var(--space-xl);
+    padding-top: var(--space-md);
+    border-top: 1px solid rgb(255 255 255 / 0.16);
+    font-size: var(--fs-xs);
+    color: rgb(255 255 255 / 0.78);
+  }
+</style>

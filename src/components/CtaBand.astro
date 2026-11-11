@@ -1,0 +1,87 @@
+---
+/**
+ * Banda de llamada a la acción. Reinterpreta los bloques melocotón de la web
+ * original: mismo color de marca, sin degradados ni patrones de puntos, con
+ * un arco (del círculo del logotipo) y trazos finos.
+ */
+import Button from './Button.astro';
+import OrganicLines from './OrganicLines.astro';
+
+interface Props {
+  title: string;
+  text: string;
+  cta: string;
+  href?: string;
+  tone?: 'peach' | 'legal';
+}
+const { title, text, cta, href = '/contacto.html', tone = 'peach' } = Astro.props;
+---
+
+<section class:list={['cta-band', `cta-band--${tone}`]} aria-labelledby="cta-title">
+  <div class="container">
+    <div class="cta-band__panel" data-reveal>
+      <OrganicLines variant="orbit" lines={7} class="cta-band__orbit" />
+      <div class="cta-band__content">
+        <h2 id="cta-title">{title}</h2>
+        <p>{text}</p>
+      </div>
+      <div class="cta-band__action">
+        <Button href={href} variant={tone === 'legal' ? 'legal' : 'primary'}>{cta}</Button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-band {
+    padding-block: var(--space-2xl);
+  }
+  .cta-band__panel {
+    --cta-bg: var(--d44-peach-soft);
+    --cta-line: var(--d44-peach-ink);
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    gap: var(--space-lg);
+    align-items: end;
+    padding: clamp(2.5rem, 1.5rem + 5vw, 6rem) clamp(1.5rem, 1rem + 4vw, 5rem);
+    background: var(--cta-bg);
+    border-radius: var(--radius-lg);
+  }
+  .cta-band--legal .cta-band__panel {
+    --cta-bg: var(--d44-green-mist);
+    --cta-line: var(--d44-green);
+  }
+  @media (min-width: 900px) {
+    .cta-band__panel {
+      grid-template-columns: 1fr auto;
+    }
+  }
+  .cta-band__panel :global(.cta-band__orbit) {
+    color: var(--cta-line);
+    opacity: 0.35;
+    width: min(70%, 640px);
+    height: auto;
+    aspect-ratio: 1;
+    right: -12%;
+    top: -18%;
+  }
+  .cta-band__content {
+    position: relative;
+    max-width: 40rem;
+  }
+  .cta-band h2 {
+    font-size: clamp(1.9rem, 1.3rem + 2.4vw, 3.25rem);
+  }
+  .cta-band--legal h2 {
+    color: var(--d44-green-ink);
+  }
+  .cta-band p {
+    margin-top: var(--space-sm);
+    font-size: var(--fs-lead);
+    color: var(--d44-ink);
+  }
+  .cta-band__action {
+    position: relative;
+  }
+</style>
