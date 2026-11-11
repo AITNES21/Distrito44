@@ -271,6 +271,13 @@ ol[role='list'] {
   background: var(--d44-line);
 }
 
+/* Número editorial (01, 02…): en móvil se omite, el título ya ordena */
+@media (max-width: 759px) {
+  .index-number--desktop {
+    display: none !important;
+  }
+}
+
 /* Número editorial grande (01, 02…) */
 .index-number {
   font-family: var(--font-heading);

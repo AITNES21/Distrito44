@@ -96,7 +96,7 @@ const reasons: { icon: IconName; title: string; text: string }[] = [
               />
             </figure>
             <div class="service-row__text" data-reveal>
-              <span class="index-number">{String(i + 1).padStart(2, '0')}</span>
+              <span class="index-number index-number--desktop">{String(i + 1).padStart(2, '0')}</span>
               <h2 id={`${s.id}-title`} class="service-row__title">
                 <Icon name={s.icon} size={30} strokeWidth={1.25} /> {s.title}
               </h2>
@@ -141,6 +141,11 @@ const reasons: { icon: IconName; title: string; text: string }[] = [
 </MainLayout>
 
 <style>
+  @media (max-width: 759px) {
+    .service-index {
+      display: none;
+    }
+  }
   .service-index {
     padding-block: var(--space-md);
   }

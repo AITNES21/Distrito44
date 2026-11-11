@@ -78,6 +78,11 @@ const { title, subtitle, crumb, image, imageAlt = '', tone = 'default', lines = 
     width: 180px;
     opacity: 0.8;
   }
+  @media (max-width: 959px) {
+    .page-hero--image :global(.page-hero__lines) {
+      display: none;
+    }
+  }
   @media (min-width: 960px) {
     .page-hero--legal.page-hero--image :global(.organic-lines--bamboo) {
       right: auto;
@@ -99,6 +104,13 @@ const { title, subtitle, crumb, image, imageAlt = '', tone = 'default', lines = 
   }
   .page-hero__text {
     max-width: 52rem;
+  }
+  /* En móvil las migas repetían el título justo debajo: se ocultan
+     (siguen en los datos estructurados BreadcrumbList) */
+  @media (max-width: 759px) {
+    .page-hero__crumbs {
+      display: none;
+    }
   }
   .page-hero__crumbs ol {
     display: flex;
