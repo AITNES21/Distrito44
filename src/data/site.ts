@@ -19,7 +19,9 @@ export const site = {
   tagline: 'Hacemos Sueños Realidad',
   footerClaim: 'Tu inmobiliaria de confianza en Madrid.',
   footerClaimLegal: 'Tu inmobiliaria y asesoría legal de confianza.',
-  defaultOgImage: '/img/ft1.webp',
+  /** Imagen al compartir (WhatsApp, Facebook, LinkedIn, X): 1200×630 JPG con logo. */
+  defaultOgImage: '/og/distrito-44.jpg',
+  ogImageAlt: 'Logotipo de Distrito 44 — Hacemos sueños realidad',
   logo: '/img/logo2.webp',
   credit: { label: 'NESTEK.es', url: 'https://nestek.es' },
 } as const;

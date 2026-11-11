@@ -55,6 +55,13 @@ solo se carga si el visitante pulsa «Aceptar» (LSSI art. 22.2); la elección s
 «Configurar cookies» en el pie. Eventos enviados: `generate_lead` (formulario de contacto enviado
 con éxito) y `contact_click` (clic en teléfono o email); GA4 mide solo los clics salientes (Idealista).
 
+## Imagen para compartir
+
+`public/og/distrito-44.jpg` (1200×630, JPG) es la vista previa al compartir en WhatsApp, Facebook,
+LinkedIn o X en todas las páginas. Logo y nombre van centrados para que también se vean bien en
+la miniatura cuadrada de WhatsApp. Si se sustituye, mantener tamaño, formato JPG y nombre (o cambiar
+`defaultOgImage` en `src/data/site.ts`).
+
 ## URLs
 
 Se mantienen exactamente las URLs originales (`/quienes-somos.html`, `/contacto.html`…).
