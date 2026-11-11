@@ -1,0 +1,52 @@
+/* ==========================================================
+   DISTRITO 44 — Movimiento
+   Todo el movimiento es opcional: solo se aplica si el usuario
+   no ha pedido reducirlo y si JavaScript ha marcado <html class="js">.
+   Sin JS el contenido se muestra completo desde el primer momento.
+   ========================================================== */
+
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+    transition:
+      opacity var(--dur-slow) var(--ease-out),
+      transform var(--dur-slow) var(--ease-out);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .js [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Trazos que se dibujan una sola vez al cargar (SVG ligero) */
+  .js .lines-draw path {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: d44-draw 2.8s var(--ease-out) forwards;
+    animation-delay: calc(var(--i, 0) * 90ms + 150ms);
+  }
+
+  @keyframes d44-draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .hero-fade {
+    animation: d44-fade-up 1s var(--ease-out) both;
+    animation-delay: var(--d, 0ms);
+  }
+
+  @keyframes d44-fade-up {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 14px, 0);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}

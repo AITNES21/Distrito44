@@ -1,0 +1,399 @@
+---
+import { Picture } from 'astro:assets';
+import MainLayout from '../layouts/MainLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import OrganicLines from '../components/OrganicLines.astro';
+import Icon, { type IconName } from '../components/Icon.astro';
+import CtaBand from '../components/CtaBand.astro';
+import ownerImg from '../assets/img/fotodavid.webp';
+
+const values: { icon: IconName; title: string; text: string }[] = [
+  { icon: 'heart', title: 'Cercanía', text: 'Tratamos a cada cliente como parte de nuestra familia, con calidez y empatía.' },
+  { icon: 'award', title: 'Excelencia', text: 'Buscamos la perfección en cada detalle, desde la primera visita hasta el cierre.' },
+  { icon: 'eye', title: 'Transparencia', text: 'Información clara y honesta en todo momento, sin sorpresas ni letra pequeña.' },
+  { icon: 'users', title: 'Compromiso', text: 'Tu éxito es nuestro éxito. Nos comprometemos al 100% con tus objetivos.' },
+  { icon: 'lightbulb', title: 'Innovación', text: 'Utilizamos las últimas tecnologías para ofrecerte el mejor servicio.' },
+  { icon: 'handshake', title: 'Confianza', text: 'Construimos relaciones duraderas basadas en la confianza mutua.' },
+];
+
+const timeline = [
+  { year: '2014', title: 'Nuestros Inicios', text: 'Fundación de Distrito 44 con un equipo de 3 personas y una oficina en Arroyomolinos (Madrid).' },
+  { year: '2015', title: 'Ampliación de fronteras', text: 'Ampliamos nuestro radio de acción y pasamos a vender en todo el territorio nacional.' },
+  { year: '2016', title: 'Departamento Jurídico', text: 'Creación de nuestro departamento legal para ofrecer asesoramiento completo.' },
+  { year: '2025', title: 'Destacamos en Sector', text: 'Más de 200 propiedades vendidas y reconocimiento como inmobiliaria de referencia.' },
+];
+---
+
+<MainLayout
+  title="Quiénes Somos | Distrito 44 - Inmobiliaria con 12 Años de Experiencia en Madrid"
+  description="Conoce Distrito 44: inmobiliaria en Madrid con más de 1.600 clientes satisfechos. Equipo profesional especializado en venta de viviendas desde 2014."
+  path="/quienes-somos.html"
+  ogTitle="Quiénes Somos | Distrito 44 - Inmobiliaria en Madrid"
+  ogDescription="Conoce nuestro equipo profesional con más de 1.600 clientes satisfechos en Madrid."
+  twitterTitle="Quiénes Somos | Distrito 44"
+  twitterDescription="Inmobiliaria en Madrid con más de 1.600 clientes satisfechos desde 2014."
+  ogImage="/img/fotodavid.webp"
+  crumbs={[{ name: 'Quiénes Somos', path: '/quienes-somos.html' }]}
+>
+  <PageHero
+    crumb="Quiénes Somos"
+    title="Conoce a Distrito 44"
+    subtitle="Tu socio inmobiliario de confianza en Madrid"
+    lines="terraces"
+  />
+
+  <!-- HISTORIA -->
+  <section class="section history" aria-labelledby="history-title">
+    <div class="container history__grid">
+      <div class="history__text">
+        <SectionHeading id="history-title" title="Nuestra Historia" />
+        <div class="prose" data-reveal>
+          <p class="lead">
+            Distrito 44 nació hace más de 12 años con una visión clara: transformar la experiencia inmobiliaria en algo
+            más humano, cercano y profesional. Comenzamos como una pequeña agencia en Arroyomolinos (Madrid), y hoy somos
+            referentes en el sector.
+          </p>
+          <p>
+            A lo largo de estos años, hemos ayudado a cientos de familias a encontrar su hogar perfecto y a propietarios a
+            vender sus inmuebles al mejor precio. Cada operación es única para nosotros, y tratamos cada propiedad como si
+            fuera la nuestra.
+          </p>
+          <p>
+            Nuestro crecimiento se basa en la confianza que nuestros clientes depositan en nosotros, y en nuestro
+            compromiso con la excelencia y la transparencia.
+          </p>
+        </div>
+      </div>
+
+      <figure class="history__portrait" data-reveal>
+        <OrganicLines variant="orbit" lines={6} class="history__orbit" />
+        <div class="history__frame">
+          <Picture
+            src={ownerImg}
+            alt="Equipo Distrito 44 - Profesionales inmobiliarios en Madrid"
+            widths={[360, 540, 760]}
+            sizes="(min-width: 960px) 34vw, 86vw"
+            formats={['avif']}
+            fallbackFormat="webp"
+            class="history__img"
+          />
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ESENCIA -->
+  <section class="section essence surface-white" aria-labelledby="essence-title">
+    <OrganicLines variant="origami" class="essence__lines" />
+    <div class="container">
+      <SectionHeading id="essence-title" title="Nuestra Esencia" />
+      <div class="essence__grid">
+        <article class="essence__item" data-reveal>
+          <h3 class="essence__label essence__label--blue">Misión</h3>
+          <p>
+            Facilitar el acceso al hogar ideal de nuestros clientes, ofreciendo un servicio inmobiliario profesional,
+            transparente y personalizado que supere sus expectativas en cada etapa del proceso.
+          </p>
+        </article>
+        <article class="essence__item" data-reveal style="--reveal-delay:120ms">
+          <h3 class="essence__label essence__label--peach">Visión</h3>
+          <p>
+            Ser la inmobiliaria de referencia en Madrid, reconocida por nuestra cercanía, profesionalidad e innovación en
+            el servicio, contribuyendo a crear hogares felices y negocios exitosos.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALORES -->
+  <section class="section values" aria-labelledby="values-title">
+    <div class="container">
+      <SectionHeading
+        id="values-title"
+        title="Nuestros Valores"
+        subtitle="Los principios que guían cada una de nuestras acciones"
+      />
+      <ul role="list" class="values__grid">
+        {
+          values.map((v, i) => (
+            <li class="value" data-reveal style={`--reveal-delay:${(i % 3) * 80}ms`}>
+              <span class="value__icon"><Icon name={v.icon} size={22} /></span>
+              <h3>{v.title}</h3>
+              <p>{v.text}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- RECORRIDO -->
+  <section class="section timeline-section surface-paper" aria-labelledby="timeline-title">
+    <OrganicLines variant="terraces" lines={8} class="timeline-section__lines" />
+    <div class="container timeline-section__grid">
+      <SectionHeading
+        id="timeline-title"
+        title="Nuestro Recorrido"
+        subtitle="Los hitos que nos han traído hasta aquí"
+        class="timeline-section__heading"
+      />
+      <ol role="list" class="timeline">
+        {
+          timeline.map((t) => (
+            <li class="timeline__item" data-reveal>
+              <span class="timeline__year">{t.year}</span>
+              <div>
+                <h3>{t.title}</h3>
+                <p>{t.text}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <CtaBand
+    title="¿Listo para Trabajar con Nosotros?"
+    text="Contáctanos hoy y descubre por qué somos la inmobiliaria de confianza de cientos de familias."
+    cta="Contáctanos Ahora"
+  />
+</MainLayout>
+
+<style>
+  /* Historia */
+  .history__grid {
+    display: grid;
+    gap: var(--space-xl);
+    align-items: center;
+  }
+  @media (min-width: 960px) {
+    .history__grid {
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: var(--space-2xl);
+    }
+  }
+  .history__text :global(.section-heading) {
+    margin-bottom: var(--space-lg);
+  }
+  .history__portrait {
+    position: relative;
+    max-width: 30rem;
+    width: 100%;
+    justify-self: center;
+  }
+  .history__portrait :global(.history__orbit) {
+    width: 140%;
+    height: auto;
+    aspect-ratio: 1;
+    left: -20%;
+    top: -24%;
+    color: var(--d44-peach-ink);
+    opacity: 0.3;
+  }
+  .history__frame {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius-arch);
+    overflow: hidden;
+    background: var(--d44-mist-2);
+  }
+  .history__frame :global(.history__img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 20%;
+  }
+
+  /* Esencia */
+  .essence {
+    overflow: hidden;
+  }
+  .essence :global(.essence__lines) {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--d44-blue);
+    opacity: 0.18;
+  }
+  .essence .container {
+    position: relative;
+  }
+  .essence__grid {
+    display: grid;
+    gap: var(--space-lg);
+  }
+  @media (min-width: 860px) {
+    .essence__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    .essence__item + .essence__item {
+      border-left: 1px solid var(--d44-line);
+      padding-left: var(--space-xl);
+    }
+    .essence__item:first-child {
+      padding-right: var(--space-xl);
+    }
+  }
+  .essence__label {
+    font-size: var(--fs-xs);
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: var(--space-md);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .essence__label::before {
+    content: '';
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+  }
+  .essence__label--blue {
+    color: var(--d44-blue-deep);
+  }
+  .essence__label--blue::before {
+    background: var(--d44-blue);
+  }
+  .essence__label--peach {
+    color: var(--d44-peach-ink);
+  }
+  .essence__label--peach::before {
+    background: var(--d44-peach);
+  }
+  .essence__item p {
+    font-family: var(--font-heading);
+    font-size: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+    font-weight: 300;
+    line-height: 1.45;
+    color: var(--d44-ink);
+  }
+
+  /* Valores */
+  .values__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    border-top: 1px solid var(--d44-line);
+  }
+  @media (min-width: 640px) {
+    .values__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1024px) {
+    .values__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .value {
+    padding: var(--space-lg) var(--space-md) var(--space-lg) 0;
+    border-bottom: 1px solid var(--d44-line);
+  }
+  @media (min-width: 640px) {
+    .value {
+      padding-left: var(--space-md);
+      border-left: 1px solid var(--d44-line);
+    }
+    .value:nth-child(2n + 1) {
+      border-left: 0;
+      padding-left: 0;
+    }
+  }
+  @media (min-width: 1024px) {
+    .value:nth-child(2n + 1) {
+      border-left: 1px solid var(--d44-line);
+      padding-left: var(--space-md);
+    }
+    .value:nth-child(3n + 1) {
+      border-left: 0;
+      padding-left: 0;
+    }
+  }
+  .value__icon {
+    display: inline-grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    margin-bottom: var(--space-md);
+    border: 1px solid var(--d44-peach);
+    border-radius: 50%;
+    color: var(--d44-peach-ink);
+  }
+  .value h3 {
+    font-size: var(--fs-h4);
+    margin-bottom: 0.5rem;
+  }
+
+  /* Recorrido */
+  .timeline-section {
+    overflow: hidden;
+  }
+  .timeline-section :global(.timeline-section__lines) {
+    inset: auto 0 0 0;
+    height: 70%;
+    width: 100%;
+    opacity: 0.25;
+  }
+  .timeline-section__grid {
+    position: relative;
+    display: grid;
+    gap: var(--space-lg);
+  }
+  @media (min-width: 960px) {
+    .timeline-section__grid {
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: var(--space-2xl);
+    }
+    .timeline-section__grid :global(.timeline-section__heading) {
+      position: sticky;
+      top: calc(var(--header-h) + 3rem);
+      align-self: start;
+    }
+  }
+  .timeline {
+    position: relative;
+    display: grid;
+    gap: 0;
+    padding-left: 1.5rem;
+    border-left: 1px solid var(--d44-line-strong);
+  }
+  .timeline__item {
+    position: relative;
+    display: grid;
+    gap: 0.5rem;
+    padding-block: var(--space-md) var(--space-lg);
+  }
+  @media (min-width: 640px) {
+    .timeline__item {
+      grid-template-columns: 7rem 1fr;
+      gap: var(--space-md);
+    }
+  }
+  .timeline__item::before {
+    content: '';
+    position: absolute;
+    left: calc(-1.5rem - 6px);
+    top: calc(var(--space-md) + 0.85rem);
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--d44-peach);
+    box-shadow: 0 0 0 4px var(--d44-paper-2);
+  }
+  .timeline__year {
+    font-family: var(--font-heading);
+    font-size: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem);
+    font-weight: 300;
+    line-height: 1;
+    color: var(--d44-blue-deep);
+  }
+  .timeline__item h3 {
+    font-size: var(--fs-h4);
+    margin-bottom: 0.4rem;
+  }
+</style>

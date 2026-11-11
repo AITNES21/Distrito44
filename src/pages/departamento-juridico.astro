@@ -1,0 +1,367 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import OrganicLines from '../components/OrganicLines.astro';
+import Icon, { type IconName } from '../components/Icon.astro';
+import CtaBand from '../components/CtaBand.astro';
+import bambooImg from '../assets/img/ft2.webp';
+
+const services: { icon: IconName; title: string; text: string; list: string[] }[] = [
+  {
+    icon: 'house',
+    title: 'Asesoramiento en Compraventa Inmobiliaria',
+    text: 'Te guiamos en todo el proceso de compra o venta de tu inmueble, garantizando la seguridad jurídica de la operación.',
+    list: ['Revisión y negociación de contratos de compraventa', 'Verificación de cargas y gravámenes', 'Gestión de escrituras públicas', 'Asesoramiento fiscal en la operación'],
+  },
+  {
+    icon: 'users',
+    title: 'Herencias y Sucesiones',
+    text: 'Asesoramiento completo en procesos hereditarios y planificación sucesoria.',
+    list: ['Tramitación de herencias', 'Partición de bienes', 'Testamentos y legados', 'Aceptación y repudiación de herencias'],
+  },
+  {
+    icon: 'handshake',
+    title: 'Divorcios y Separaciones',
+    text: 'Asesoramiento jurídico en procesos de separación y divorcio, incluyendo la división de bienes inmuebles.',
+    list: ['Divorcios de mutuo acuerdo', 'Divorcios contenciosos', 'Liquidación del régimen económico matrimonial', 'División y adjudicación de inmuebles'],
+  },
+  {
+    icon: 'file-text',
+    title: 'Contratos de Alquiler',
+    text: 'Redacción, revisión y gestión de contratos de arrendamiento para propietarios e inquilinos.',
+    list: ['Redacción de contratos de arrendamiento', 'Asesoramiento sobre LAU', 'Resolución de conflictos arrendaticios', 'Procedimientos de desahucio'],
+  },
+  {
+    icon: 'gavel',
+    title: 'Reclamaciones y Litigios',
+    text: 'Defensa de tus derechos en conflictos inmobiliarios y procedimientos judiciales.',
+    list: ['Reclamaciones por vicios ocultos', 'Problemas de comunidad de propietarios', 'Conflictos con constructoras o promotoras', 'Representación en procedimientos judiciales'],
+  },
+  {
+    icon: 'building',
+    title: 'Ejecuciones Hipotecarias',
+    text: 'Asesoramiento y defensa en procedimientos de ejecución hipotecaria.',
+    list: ['Defensa en procedimientos de ejecución hipotecaria', 'Negociación de quitas y aplazamientos', 'Dación en pago', 'Reclamación de cláusulas abusivas'],
+  },
+];
+
+const process = [
+  { title: 'Consulta Inicial', text: 'Primera reunión gratuita para analizar tu caso y determinar la mejor estrategia legal a seguir.' },
+  { title: 'Análisis Detallado', text: 'Estudio completo de la documentación y situación legal, identificando riesgos y oportunidades.' },
+  { title: 'Propuesta de Actuación', text: 'Te presentamos un plan de acción claro con plazos, costes y posibles resultados.' },
+  { title: 'Gestión y Seguimiento', text: 'Nos ocupamos de todos los trámites legales y te mantenemos informado en cada paso.' },
+];
+
+const benefits: { icon: IconName; title: string; text: string }[] = [
+  { icon: 'badge-check', title: 'Experiencia Acreditada', text: 'Más de 15 años de experiencia en derecho inmobiliario y familiar.' },
+  { icon: 'shield-check', title: 'Atención Personalizada', text: 'Trato cercano y dedicación exclusiva a tu caso.' },
+  { icon: 'handshake', title: 'Transparencia Total', text: 'Honorarios claros desde el primer momento, sin sorpresas.' },
+];
+---
+
+<MainLayout
+  title="Departamento Jurídico | Asesoría Legal Inmobiliaria - Distrito 44"
+  description="Departamento Jurídico Distrito 44 - Asesoramiento legal inmobiliario especializado en Madrid. Protección total en compraventa de viviendas."
+  path="/departamento-juridico.html"
+  ogTitle="Departamento Jurídico | Distrito 44"
+  ogDescription="Asesoramiento legal inmobiliario especializado en Madrid."
+  ogImage="/img/ft2.webp"
+  twitterCard="summary"
+  theme="legal"
+  crumbs={[{ name: 'Departamento Jurídico', path: '/departamento-juridico.html' }]}
+>
+  <PageHero
+    crumb="Departamento Jurídico"
+    title="Departamento Jurídico"
+    subtitle="Asesoramiento legal especializado en derecho inmobiliario y familiar"
+    tone="legal"
+    lines="bamboo"
+    image={bambooImg}
+    imageAlt="Bosque de bambú con un sendero central"
+  >
+    <span class="legal-seal hero-fade" style="--d:220ms"><Icon name="scale" size={30} strokeWidth={1.25} /></span>
+  </PageHero>
+
+  <!-- INTRO -->
+  <section class="section legal-intro" aria-labelledby="intro-title">
+    <div class="container legal-intro__inner" data-reveal>
+      <h2 id="intro-title">Tu Seguridad Legal es Nuestra Prioridad</h2>
+      <p class="lead">
+        Nuestro departamento jurídico está formado por abogados especializados en derecho inmobiliario y derecho de
+        familia. Te ofrecemos un servicio integral que protege tus intereses en cada operación.
+      </p>
+    </div>
+  </section>
+
+  <!-- SERVICIOS LEGALES -->
+  <section class="section legal-services" aria-labelledby="legal-services-title">
+    <OrganicLines variant="bamboo" class="legal-services__bamboo" />
+    <OrganicLines variant="bamboo" class="legal-services__bamboo legal-services__bamboo--right" flip />
+    <div class="container">
+      <SectionHeading
+        id="legal-services-title"
+        tone="legal"
+        title="Nuestros Servicios Legales"
+        subtitle="Asesoramiento jurídico completo para todas tus necesidades"
+      />
+      <div class="legal-services__grid">
+        {
+          services.map((s, i) => (
+            <article class="legal-service" data-reveal style={`--reveal-delay:${(i % 2) * 90}ms`}>
+              <h3>
+                <span class="legal-service__icon"><Icon name={s.icon} size={22} /></span>
+                {s.title}
+              </h3>
+              <p>{s.text}</p>
+              <ul class="tick-list">
+                {s.list.map((item) => <li>{item}</li>)}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESO -->
+  <section class="section legal-process" aria-labelledby="process-title">
+    <div class="container legal-process__grid">
+      <SectionHeading
+        id="process-title"
+        tone="legal"
+        title="Cómo Trabajamos"
+        subtitle="Nuestro proceso de asesoramiento legal"
+        class="legal-process__heading"
+      />
+      <ol role="list" class="legal-steps">
+        {
+          process.map((p, i) => (
+            <li class="legal-step" data-reveal>
+              <span class="legal-step__num">{i + 1}</span>
+              <div>
+                <h3>{p.title}</h3>
+                <p>{p.text}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- BENEFICIOS -->
+  <section class="section legal-benefits" aria-labelledby="benefits-title">
+    <div class="container">
+      <SectionHeading id="benefits-title" tone="legal" title="¿Por Qué Elegirnos?" />
+      <ul role="list" class="legal-benefits__grid">
+        {
+          benefits.map((b, i) => (
+            <li class="benefit" data-reveal style={`--reveal-delay:${i * 90}ms`}>
+              <span class="benefit__icon"><Icon name={b.icon} size={24} /></span>
+              <h3>{b.title}</h3>
+              <p>{b.text}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <CtaBand
+    tone="legal"
+    title="¿Necesitas Asesoramiento Legal?"
+    text="Contacta con nuestro departamento jurídico y resolveremos todas tus dudas sin compromiso"
+    cta="Consulta Gratuita"
+  />
+</MainLayout>
+
+<style>
+  .legal-seal {
+    display: inline-grid;
+    place-items: center;
+    width: 4rem;
+    height: 4rem;
+    margin-top: var(--space-lg);
+    border: 1px solid var(--d44-green);
+    border-radius: 50%;
+    color: var(--d44-green-ink);
+  }
+
+  .legal-intro__inner {
+    display: grid;
+    gap: var(--space-md);
+  }
+  @media (min-width: 960px) {
+    .legal-intro__inner {
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: var(--space-2xl);
+      align-items: start;
+    }
+  }
+  .legal-intro h2 {
+    color: var(--d44-green-ink);
+  }
+
+  .legal-services {
+    position: relative;
+    overflow: hidden;
+    background: var(--d44-green-mist);
+  }
+  .legal-services :global(.legal-services__bamboo) {
+    top: 0;
+    left: 1%;
+    width: 140px;
+    height: 100%;
+    color: var(--d44-green);
+    opacity: 0.45;
+  }
+  .legal-services :global(.legal-services__bamboo--right) {
+    left: auto;
+    right: 1%;
+  }
+  @media (max-width: 1279px) {
+    .legal-services :global(.legal-services__bamboo) {
+      opacity: 0.18;
+    }
+  }
+  .legal-services .container {
+    position: relative;
+  }
+  .legal-services__grid {
+    display: grid;
+    gap: var(--space-md);
+  }
+  @media (min-width: 860px) {
+    .legal-services__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .legal-service {
+    display: grid;
+    align-content: start;
+    gap: 1rem;
+    padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+    background: rgb(255 255 255 / 0.82);
+    border: 1px solid rgb(90 140 97 / 0.2);
+    border-radius: var(--radius-md);
+  }
+  .legal-service h3 {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: var(--fs-h4);
+    color: var(--d44-green-ink);
+  }
+  .legal-service__icon {
+    display: inline-grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 2.9rem;
+    height: 2.9rem;
+    border-radius: 50%;
+    background: var(--d44-green-mist);
+    color: var(--d44-green-ink);
+  }
+  .legal-service :global(.tick-list li::before) {
+    background: var(--d44-green);
+  }
+
+  .legal-process__grid {
+    display: grid;
+    gap: var(--space-lg);
+  }
+  @media (min-width: 960px) {
+    .legal-process__grid {
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: var(--space-2xl);
+    }
+    .legal-process__grid :global(.legal-process__heading) {
+      position: sticky;
+      top: calc(var(--header-h) + 3rem);
+      align-self: start;
+    }
+  }
+  .legal-steps {
+    display: grid;
+  }
+  .legal-step {
+    position: relative;
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: var(--space-md);
+    padding-bottom: var(--space-lg);
+  }
+  .legal-step::before {
+    content: '';
+    position: absolute;
+    left: calc(1.5rem - 0.5px);
+    top: 3.25rem;
+    bottom: 0.25rem;
+    width: 1px;
+    background: var(--d44-green-soft);
+  }
+  .legal-step:last-child::before {
+    display: none;
+  }
+  .legal-step__num {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border: 1px solid var(--d44-green);
+    border-radius: 50%;
+    font-family: var(--font-heading);
+    color: var(--d44-green-ink);
+  }
+  .legal-step h3 {
+    font-size: var(--fs-h4);
+    color: var(--d44-green-ink);
+    margin-bottom: 0.4rem;
+    padding-top: 0.5rem;
+  }
+
+  .legal-benefits {
+    background: var(--d44-white);
+  }
+  .legal-benefits__grid {
+    display: grid;
+    border-top: 1px solid rgb(90 140 97 / 0.25);
+  }
+  @media (min-width: 860px) {
+    .legal-benefits__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .benefit + .benefit {
+      border-left: 1px solid rgb(90 140 97 / 0.25);
+      padding-left: var(--space-lg);
+    }
+    .benefit {
+      padding-right: var(--space-lg);
+    }
+  }
+  .benefit {
+    padding-block: var(--space-lg);
+    border-bottom: 1px solid rgb(90 140 97 / 0.25);
+  }
+  @media (min-width: 860px) {
+    .benefit {
+      border-bottom: 0;
+    }
+  }
+  .benefit__icon {
+    display: inline-grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: var(--space-md);
+    border-radius: 50%;
+    background: var(--d44-green-mist);
+    color: var(--d44-green-ink);
+  }
+  .benefit h3 {
+    font-size: var(--fs-h4);
+    color: var(--d44-green-ink);
+    margin-bottom: 0.4rem;
+  }
+</style>

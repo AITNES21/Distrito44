@@ -1,0 +1,378 @@
+---
+import { Picture, getImage } from 'astro:assets';
+import MainLayout from '../layouts/MainLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { gallery } from '../data/gallery';
+
+// Ritmo editorial de columnas (sobre 12) que se repite: 7·5 / 4·4·4 / 5·7
+const rhythm = [7, 5, 4, 4, 4, 5, 7];
+
+// Versión grande para el visor (WebP, sin ampliar imágenes pequeñas)
+const items = await Promise.all(
+  gallery.map(async (item, i) => {
+    const large = await getImage({ src: item.src, width: Math.min(1800, item.src.width), format: 'webp' });
+    return { ...item, span: rhythm[i % rhythm.length], large: large.src };
+  }),
+);
+---
+
+<MainLayout
+  title="Galería de Propiedades | Pisos en Venta y Alquiler Madrid - Distrito 44"
+  description="Explora nuestro portfolio de propiedades en venta y alquiler en Madrid. Pisos, casas y locales con la mejor atención inmobiliaria."
+  path="/galeria.html"
+  ogTitle="Galería de Propiedades | Distrito 44 Madrid"
+  ogDescription="Descubre nuestras viviendas en venta y alquiler en Madrid."
+  twitterTitle="Galería | Distrito 44"
+  ogImage="/img/gl1.webp"
+  crumbs={[{ name: 'Galería', path: '/galeria.html' }]}
+>
+  <PageHero crumb="Galería" title="Galería de Propiedades" subtitle="Tipos de propiedades que gestionamos" lines="orbit" />
+
+  <section class="section gallery-section" aria-label="Tipos de propiedades">
+    <div class="container container--wide">
+      <ul role="list" class="gallery" data-gallery>
+        {
+          items.map((item, i) => (
+            <li class="gallery__item" style={`--span:${item.span}`} data-reveal>
+              <button
+                type="button"
+                class="gallery__button"
+                data-index={i}
+                data-large={item.large}
+                data-title={item.title}
+                data-info={item.info}
+                aria-label={`Ampliar imagen: ${item.title}`}
+              >
+                <span class="gallery__frame">
+                  <Picture
+                    src={item.src}
+                    alt={item.title}
+                    widths={[360, 560, 820, 1100].filter((w) => w <= item.src.width)}
+                    sizes={`(min-width: 1100px) ${Math.round((item.span / 12) * 100)}vw, (min-width: 640px) 50vw, 100vw`}
+                    formats={['avif']}
+                    fallbackFormat="webp"
+                    class="gallery__img"
+                  />
+                  <span class="gallery__zoom" aria-hidden="true"><Icon name="expand" size={18} /></span>
+                </span>
+              </button>
+              <div class="gallery__caption">
+                <span class="index-number">{String(i + 1).padStart(2, '0')}</span>
+                <div>
+                  <h2 class="gallery__title">{item.title}</h2>
+                  <p class="gallery__info">{item.info}</p>
+                </div>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <CtaBand
+    title="¿No Encuentras lo que Buscas?"
+    text="Contáctanos y te ayudaremos a encontrar la propiedad perfecta para ti"
+    cta="Contactar Ahora"
+  />
+
+  <!-- Visor de imágenes: <dialog> nativo (foco, Escape y capa modal accesibles) -->
+  <dialog class="lightbox" data-lightbox aria-labelledby="lightbox-title">
+    <div class="lightbox__inner">
+      <figure class="lightbox__figure">
+        <img alt="" class="lightbox__img" data-lightbox-img />
+        <figcaption class="lightbox__caption">
+          <span id="lightbox-title" class="lightbox__title" data-lightbox-title></span>
+          <span class="lightbox__info" data-lightbox-info></span>
+          <span class="lightbox__count" data-lightbox-count aria-live="polite"></span>
+        </figcaption>
+      </figure>
+      <button type="button" class="lightbox__btn lightbox__close" data-lightbox-close aria-label="Cerrar">
+        <Icon name="x" size={26} />
+      </button>
+      <button type="button" class="lightbox__btn lightbox__prev" data-lightbox-prev aria-label="Imagen anterior">
+        <Icon name="chevron-left" size={28} />
+      </button>
+      <button type="button" class="lightbox__btn lightbox__next" data-lightbox-next aria-label="Imagen siguiente">
+        <Icon name="chevron-right" size={28} />
+      </button>
+    </div>
+  </dialog>
+</MainLayout>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>('[data-lightbox]');
+  const buttons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-gallery] [data-index]'));
+  const img = document.querySelector<HTMLImageElement>('[data-lightbox-img]');
+  const title = document.querySelector<HTMLElement>('[data-lightbox-title]');
+  const info = document.querySelector<HTMLElement>('[data-lightbox-info]');
+  const count = document.querySelector<HTMLElement>('[data-lightbox-count]');
+
+  if (dialog && img && title && info && count && typeof dialog.showModal === 'function') {
+    let current = 0;
+    let opener: HTMLButtonElement | null = null;
+
+    const show = (i: number) => {
+      current = (i + buttons.length) % buttons.length;
+      const b = buttons[current];
+      img.src = b.dataset.large ?? '';
+      img.alt = b.dataset.title ?? '';
+      title.textContent = b.dataset.title ?? '';
+      info.textContent = b.dataset.info ?? '';
+      count.textContent = `${current + 1} / ${buttons.length}`;
+      // Precarga de la siguiente para una navegación fluida
+      const next = buttons[(current + 1) % buttons.length];
+      if (next.dataset.large) new Image().src = next.dataset.large;
+    };
+
+    buttons.forEach((b, i) =>
+      b.addEventListener('click', () => {
+        opener = b;
+        show(i);
+        dialog.showModal();
+        document.documentElement.classList.add('menu-open');
+      }),
+    );
+
+    dialog.addEventListener('close', () => {
+      document.documentElement.classList.remove('menu-open');
+      opener?.focus();
+    });
+    dialog.querySelector('[data-lightbox-close]')?.addEventListener('click', () => dialog.close());
+    dialog.querySelector('[data-lightbox-prev]')?.addEventListener('click', () => show(current - 1));
+    dialog.querySelector('[data-lightbox-next]')?.addEventListener('click', () => show(current + 1));
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog || (e.target as HTMLElement).classList.contains('lightbox__inner')) dialog.close();
+    });
+    dialog.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') show(current - 1);
+      if (e.key === 'ArrowRight') show(current + 1);
+    });
+
+    // Deslizar en móvil
+    let x0: number | null = null;
+    dialog.addEventListener('touchstart', (e) => (x0 = e.touches[0].clientX), { passive: true });
+    dialog.addEventListener(
+      'touchend',
+      (e) => {
+        if (x0 === null) return;
+        const dx = e.changedTouches[0].clientX - x0;
+        if (Math.abs(dx) > 50) show(current + (dx < 0 ? 1 : -1));
+        x0 = null;
+      },
+      { passive: true },
+    );
+  }
+</script>
+
+<style>
+  .gallery {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl) var(--space-md);
+  }
+  @media (min-width: 640px) {
+    .gallery {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1100px) {
+    .gallery {
+      grid-template-columns: repeat(12, 1fr);
+      gap: var(--space-xl) var(--space-lg);
+    }
+    .gallery__item {
+      grid-column: span var(--span);
+    }
+    /* Ritmo vertical: los elementos estrechos se desplazan hacia abajo */
+    .gallery__item:nth-child(7n + 2),
+    .gallery__item:nth-child(7n + 4),
+    .gallery__item:nth-child(7n + 6) {
+      margin-top: var(--space-xl);
+    }
+  }
+  .gallery__button {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: zoom-in;
+    border-radius: var(--radius-md);
+  }
+  .gallery__frame {
+    position: relative;
+    display: block;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    background: var(--d44-mist-2);
+  }
+  @media (min-width: 1100px) {
+    .gallery__item[style*='--span:7'] .gallery__frame {
+      aspect-ratio: 16 / 10;
+    }
+    .gallery__item[style*='--span:4'] .gallery__frame {
+      aspect-ratio: 4 / 4.4;
+    }
+  }
+  .gallery__frame :global(.gallery__img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.2s var(--ease-out);
+  }
+  .gallery__button:hover :global(.gallery__img),
+  .gallery__button:focus-visible :global(.gallery__img) {
+    transform: scale(1.04);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .gallery__frame :global(.gallery__img) {
+      transition: none;
+      transform: none !important;
+    }
+  }
+  .gallery__zoom {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    background: rgb(252 249 246 / 0.9);
+    color: var(--d44-blue-ink);
+    opacity: 0;
+    transition: opacity var(--dur-base) ease;
+  }
+  .gallery__button:hover .gallery__zoom,
+  .gallery__button:focus-visible .gallery__zoom {
+    opacity: 1;
+  }
+  @media (hover: none) {
+    .gallery__zoom {
+      opacity: 1;
+    }
+  }
+  .gallery__caption {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--d44-line);
+  }
+  .gallery__caption .index-number {
+    padding-top: 0.2rem;
+  }
+  .gallery__title {
+    font-size: var(--fs-h4);
+    margin-bottom: 0.2rem;
+  }
+  .gallery__info {
+    font-size: var(--fs-sm);
+  }
+
+  /* Visor */
+  .lightbox {
+    width: 100vw;
+    height: 100dvh;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: rgb(26 46 68 / 0.96);
+    color: var(--d44-white);
+  }
+  .lightbox::backdrop {
+    background: rgb(26 46 68 / 0.6);
+  }
+  .lightbox__inner {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 4.5rem 1rem 1.5rem;
+  }
+  .lightbox__figure {
+    display: grid;
+    gap: 1rem;
+    justify-items: center;
+    max-width: min(1400px, 100%);
+  }
+  .lightbox__img {
+    max-width: 100%;
+    max-height: calc(100dvh - 10rem);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: var(--radius-sm);
+  }
+  .lightbox__caption {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.25rem 1rem;
+    text-align: center;
+    font-size: var(--fs-sm);
+    color: rgb(255 255 255 / 0.85);
+  }
+  .lightbox__title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    color: var(--d44-white);
+  }
+  .lightbox__count {
+    color: var(--d44-peach);
+  }
+  .lightbox__btn {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    width: 3.25rem;
+    height: 3.25rem;
+    border: 1px solid rgb(255 255 255 / 0.3);
+    border-radius: 50%;
+    background: rgb(26 46 68 / 0.5);
+    color: var(--d44-white);
+    cursor: pointer;
+    transition: background-color var(--dur-fast) ease;
+  }
+  .lightbox__btn:hover {
+    background: rgb(255 255 255 / 0.15);
+  }
+  .lightbox__btn:focus-visible {
+    outline-color: var(--d44-peach);
+  }
+  .lightbox__close {
+    top: 1rem;
+    right: 1rem;
+  }
+  .lightbox__prev,
+  .lightbox__next {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .lightbox__prev {
+    left: 1rem;
+  }
+  .lightbox__next {
+    right: 1rem;
+  }
+  @media (max-width: 640px) {
+    .lightbox__prev,
+    .lightbox__next {
+      top: auto;
+      bottom: 1rem;
+      transform: none;
+    }
+    .lightbox__inner {
+      padding-bottom: 5.5rem;
+    }
+  }
+</style>

@@ -1,0 +1,174 @@
+---
+/**
+ * Cabecera de las páginas interiores. Sustituye a los bloques de degradado
+ * azul a ancho completo por una composición editorial asimétrica:
+ * migas de pan + H1 grande a la izquierda, trazos o fotografía a la derecha.
+ */
+import { Picture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import OrganicLines from './OrganicLines.astro';
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  crumb: string;
+  image?: ImageMetadata;
+  imageAlt?: string;
+  tone?: 'default' | 'legal';
+  lines?: 'terraces' | 'origami' | 'bamboo' | 'orbit';
+}
+
+const { title, subtitle, crumb, image, imageAlt = '', tone = 'default', lines = 'terraces' } = Astro.props;
+---
+
+<section class:list={['page-hero', `page-hero--${tone}`, { 'page-hero--image': image }]} aria-labelledby="page-title">
+  <OrganicLines variant={lines} draw lines={11} class="page-hero__lines" />
+
+  <div class="container page-hero__grid">
+    <div class="page-hero__text">
+      <nav aria-label="Migas de pan" class="page-hero__crumbs hero-fade">
+        <ol role="list">
+          <li><a href="/">Inicio</a></li>
+          <li aria-current="page">{crumb}</li>
+        </ol>
+      </nav>
+      <h1 id="page-title" class="hero-fade" style="--d:80ms">{title}</h1>
+      {subtitle && <p class="page-hero__subtitle hero-fade" style="--d:160ms">{subtitle}</p>}
+      <slot />
+    </div>
+
+    {
+      image && (
+        <div class="page-hero__media hero-fade" style="--d:120ms">
+          <Picture
+            src={image}
+            alt={imageAlt}
+            widths={[480, 760, 1100]}
+            sizes="(min-width: 960px) 42vw, 92vw"
+            formats={['avif']}
+            fallbackFormat="webp"
+            loading="eager"
+            priority
+            class="page-hero__img"
+          />
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .page-hero {
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(3rem, 2rem + 5vw, 7rem) clamp(3rem, 2rem + 4vw, 6rem);
+    border-bottom: 1px solid var(--d44-line);
+  }
+  .page-hero :global(.page-hero__lines) {
+    inset: 0 -10% 0 35%;
+    width: 75%;
+    height: 100%;
+    opacity: 0.55;
+  }
+  .page-hero--legal :global(.page-hero__lines) {
+    color: var(--d44-green);
+  }
+  .page-hero--legal :global(.organic-lines--bamboo) {
+    inset: 0 4% 0 auto;
+    width: 180px;
+    opacity: 0.8;
+  }
+  @media (min-width: 960px) {
+    .page-hero--legal.page-hero--image :global(.organic-lines--bamboo) {
+      right: auto;
+      left: 47%;
+      width: 140px;
+    }
+  }
+  .page-hero__grid {
+    position: relative;
+    display: grid;
+    gap: var(--space-lg);
+    align-items: end;
+  }
+  @media (min-width: 960px) {
+    .page-hero--image .page-hero__grid {
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+    }
+  }
+  .page-hero__text {
+    max-width: 52rem;
+  }
+  .page-hero__crumbs ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: var(--space-md);
+    font-family: var(--font-heading);
+    font-size: var(--fs-xs);
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--d44-text);
+  }
+  .page-hero__crumbs li + li::before {
+    content: '';
+    display: inline-block;
+    width: 1.5rem;
+    height: 1px;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+    background: currentColor;
+    opacity: 0.5;
+  }
+  .page-hero__crumbs a {
+    color: var(--d44-blue-deep);
+    text-decoration: none;
+  }
+  .page-hero__crumbs [aria-current] {
+    color: var(--d44-ink);
+  }
+  .page-hero--legal .page-hero__crumbs a {
+    color: var(--d44-green-ink);
+  }
+  .page-hero h1 {
+    max-width: 16ch;
+  }
+  .page-hero--legal h1 {
+    color: var(--d44-green-ink);
+  }
+  .page-hero__subtitle {
+    margin-top: var(--space-md);
+    font-size: var(--fs-lead);
+    color: var(--d44-ink);
+    max-width: 36rem;
+  }
+  .page-hero__subtitle::before {
+    content: '';
+    display: block;
+    width: 3rem;
+    height: 2px;
+    margin-bottom: var(--space-md);
+    background: var(--d44-peach);
+  }
+  .page-hero--legal .page-hero__subtitle::before {
+    background: var(--d44-green);
+  }
+  .page-hero__media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-arch);
+    overflow: hidden;
+    background: var(--d44-mist-2);
+  }
+  @media (min-width: 960px) {
+    .page-hero__media {
+      aspect-ratio: 4 / 4.6;
+    }
+  }
+  .page-hero__media :global(.page-hero__img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>

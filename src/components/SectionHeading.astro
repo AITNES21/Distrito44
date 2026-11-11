@@ -1,0 +1,58 @@
+---
+/**
+ * Encabezado editorial de sección: antetítulo opcional, título y subtítulo.
+ * El nivel del encabezado es configurable para mantener una jerarquía correcta.
+ */
+interface Props {
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  level?: 2 | 3;
+  align?: 'start' | 'center';
+  tone?: 'default' | 'light' | 'legal';
+  id?: string;
+  class?: string;
+}
+
+const { eyebrow, title, subtitle, level = 2, align = 'start', tone = 'default', id, class: className } = Astro.props;
+const H = `h${level}` as 'h2' | 'h3';
+---
+
+<header class:list={['section-heading', `section-heading--${align}`, `section-heading--${tone}`, className]} data-reveal>
+  {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+  <H id={id} class="section-heading__title">{title}</H>
+  {subtitle && <p class="section-heading__subtitle">{subtitle}</p>}
+  <slot />
+</header>
+
+<style>
+  .section-heading {
+    display: grid;
+    gap: 1rem;
+    max-width: 44rem;
+    margin-bottom: var(--space-xl);
+  }
+  .section-heading--center {
+    margin-inline: auto;
+    text-align: center;
+    justify-items: center;
+  }
+  .section-heading__subtitle {
+    font-size: var(--fs-lead);
+    color: var(--d44-text);
+    max-width: 38rem;
+  }
+  .section-heading--light .section-heading__title,
+  .section-heading--light .eyebrow {
+    color: var(--d44-white);
+  }
+  .section-heading--light .section-heading__subtitle {
+    color: rgb(255 255 255 / 0.86);
+  }
+  .section-heading--legal .section-heading__title {
+    color: var(--d44-green-ink);
+  }
+  .section-heading--legal .eyebrow {
+    color: var(--d44-green-ink);
+  }
+</style>

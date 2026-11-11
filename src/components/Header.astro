@@ -1,0 +1,306 @@
+---
+import { Picture } from 'astro:assets';
+import logo from '../assets/img/logo2.webp';
+import Icon from './Icon.astro';
+import Navigation from './Navigation.astro';
+import OrganicLines from './OrganicLines.astro';
+import { mainNav, contact } from '../data/site';
+
+interface Props {
+  tone?: 'default' | 'legal';
+}
+const { tone = 'default' } = Astro.props;
+---
+
+<header class:list={['site-header', `site-header--${tone}`]} data-header>
+  <div class="site-header__inner container container--wide">
+    <a href="/" class="brand" aria-label="Distrito 44 — Inicio">
+      <Picture
+        src={logo}
+        alt=""
+        width={52}
+        height={52}
+        widths={[52, 104]}
+        sizes="52px"
+        formats={['avif']}
+        fallbackFormat="webp"
+        class="brand__logo"
+        loading="eager"
+      />
+      <span class="brand__word"><span class="brand__distrito">Distrito</span> <span class="brand__num">44</span></span>
+    </a>
+
+    <Navigation items={mainNav.filter((i) => i.label !== 'Aviso Legal' && i.label !== 'Contacto')} class="site-header__nav" />
+
+    <div class="site-header__actions">
+      <a href="/contacto.html" class="header-cta" aria-current={Astro.url.pathname.startsWith('/contacto') ? 'page' : undefined}>
+        Contacto
+      </a>
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        data-menu-toggle
+      >
+        <span class="menu-toggle__open"><Icon name="menu" size={26} /></span>
+        <span class="menu-toggle__close"><Icon name="x" size={26} /></span>
+        <span class="sr-only" data-menu-label>Abrir menú</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="mobile-menu" data-mobile-menu hidden>
+    <OrganicLines variant="terraces" lines={7} class="mobile-menu__lines" />
+    <nav aria-label="Menú móvil" class="mobile-menu__nav container">
+      <ul role="list">
+        {
+          mainNav.map((item, i) => {
+            const path = Astro.url.pathname.replace(/\/index\.html$/, '/');
+            const active = item.href === '/' ? path === '/' : path === item.href || path === item.href.replace('.html', '');
+            return (
+              <li style={`--i:${i}`}>
+                <a href={item.href} class:list={['mobile-menu__link', { 'is-legal': item.legal }]} aria-current={active ? 'page' : undefined}>
+                  {item.label}
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+      <div class="mobile-menu__contact">
+        <a href={contact.phoneHref}><Icon name="phone" size={18} /> {contact.phone}</a>
+        <a href={`mailto:${contact.email}`}><Icon name="mail" size={18} /> {contact.email}</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-header]');
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const menu = document.querySelector<HTMLElement>('[data-mobile-menu]');
+  const label = document.querySelector<HTMLElement>('[data-menu-label]');
+
+  if (header && toggle && menu && label) {
+    const setOpen = (open: boolean) => {
+      toggle.setAttribute('aria-expanded', String(open));
+      label.textContent = open ? 'Cerrar menú' : 'Abrir menú';
+      header.classList.toggle('is-open', open);
+      menu.hidden = !open;
+      document.documentElement.classList.toggle('menu-open', open);
+      if (open) menu.querySelector<HTMLAnchorElement>('a')?.focus();
+    };
+
+    toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && header.classList.contains('is-open')) {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+    window.matchMedia('(min-width: 1180px)').addEventListener('change', (e) => e.matches && setOpen(false));
+
+    // Sombra suave al hacer scroll (sin listener continuo: IntersectionObserver)
+    const sentinel = document.createElement('div');
+    sentinel.style.cssText = 'position:absolute;top:0;height:8px;width:1px;pointer-events:none';
+    document.body.prepend(sentinel);
+    new IntersectionObserver(([entry]) => header.classList.toggle('is-scrolled', !entry.isIntersecting)).observe(sentinel);
+  }
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgb(252 249 246 / 0.86);
+    backdrop-filter: saturate(1.2) blur(12px);
+    -webkit-backdrop-filter: saturate(1.2) blur(12px);
+    border-bottom: 1px solid transparent;
+    transition:
+      border-color var(--dur-base) ease,
+      background-color var(--dur-base) ease;
+  }
+  .site-header.is-scrolled {
+    border-bottom-color: var(--d44-line);
+  }
+  .site-header__inner {
+    height: var(--header-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .brand :global(.brand__logo) {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+  }
+  .brand__word {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .brand__distrito {
+    color: var(--d44-blue-logo);
+  }
+  .brand__num {
+    color: var(--d44-peach);
+  }
+
+  .site-header__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .header-cta {
+    display: none;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: 0.55rem 1.3rem;
+    font-family: var(--font-heading);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    color: var(--d44-blue-ink);
+    border: 1px solid var(--d44-line-strong);
+    border-radius: 999px;
+    transition:
+      background-color var(--dur-base) var(--ease-out),
+      color var(--dur-base) var(--ease-out);
+  }
+  .header-cta:hover,
+  .header-cta[aria-current='page'] {
+    background: var(--d44-blue-ink);
+    border-color: var(--d44-blue-ink);
+    color: var(--d44-white);
+  }
+
+  .menu-toggle {
+    display: inline-grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    background: none;
+    border: 0;
+    color: var(--d44-blue-ink);
+    cursor: pointer;
+    border-radius: 50%;
+  }
+  .menu-toggle__close,
+  .is-open .menu-toggle__open {
+    display: none;
+  }
+  .is-open .menu-toggle__close {
+    display: block;
+  }
+
+  :global(.site-header__nav) {
+    display: none;
+  }
+
+  @media (min-width: 1180px) {
+    :global(.site-header__nav) {
+      display: block;
+    }
+    .menu-toggle {
+      display: none;
+    }
+    .header-cta {
+      display: inline-flex;
+    }
+  }
+
+  /* --- Menú móvil a pantalla completa --- */
+  .mobile-menu {
+    position: fixed;
+    inset: var(--header-h) 0 0 0;
+    background: var(--d44-paper);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    border-top: 1px solid var(--d44-line);
+  }
+  .mobile-menu[hidden] {
+    display: none;
+  }
+  .mobile-menu :global(.mobile-menu__lines) {
+    inset: auto 0 0 0;
+    height: 55%;
+    width: 100%;
+    opacity: 0.35;
+  }
+  .mobile-menu__nav {
+    position: relative;
+    padding-block: var(--space-lg) var(--space-xl);
+  }
+  .mobile-menu ul {
+    display: grid;
+  }
+  .mobile-menu li {
+    border-bottom: 1px solid var(--d44-line);
+  }
+  .mobile-menu__link {
+    display: block;
+    padding: 0.95rem 0;
+    font-family: var(--font-heading);
+    font-size: clamp(1.4rem, 1rem + 2vw, 2rem);
+    font-weight: 400;
+    color: var(--d44-ink);
+    text-decoration: none;
+  }
+  .mobile-menu__link[aria-current='page'] {
+    color: var(--d44-blue-deep);
+  }
+  .mobile-menu__link[aria-current='page']::after {
+    content: '';
+    display: inline-block;
+    width: 0.45em;
+    height: 0.45em;
+    margin-left: 0.5em;
+    border-radius: 50%;
+    background: var(--d44-peach);
+    vertical-align: middle;
+  }
+  .mobile-menu__link.is-legal {
+    color: var(--d44-green-ink);
+    font-size: clamp(1.1rem, 0.9rem + 1vw, 1.4rem);
+  }
+  .mobile-menu__contact {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: var(--space-lg);
+  }
+  .mobile-menu__contact a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--d44-blue-ink);
+    text-decoration: none;
+    font-size: var(--fs-sm);
+    word-break: break-all;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .is-open .mobile-menu li {
+      animation: d44-fade-up 0.6s var(--ease-out) both;
+      animation-delay: calc(var(--i) * 40ms);
+    }
+  }
+
+  :global(html.menu-open) {
+    overflow: hidden;
+  }
+</style>

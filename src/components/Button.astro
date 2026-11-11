@@ -1,0 +1,121 @@
+---
+/**
+ * Botón/enlace de llamada a la acción.
+ * - primary: azul profundo (contraste AA con texto blanco; el melocotón con
+ *   texto blanco de la web original no llegaba a 2:1).
+ * - outline: trazo fino, para acciones secundarias.
+ * - link: texto subrayado con flecha, uso editorial.
+ */
+import Icon from './Icon.astro';
+
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'outline' | 'light' | 'link' | 'legal';
+  type?: 'button' | 'submit';
+  external?: boolean;
+  arrow?: boolean;
+  class?: string;
+  [key: string]: unknown;
+}
+
+const { href, variant = 'primary', type = 'button', external = false, arrow = true, class: className, ...rest } = Astro.props;
+const Tag = href ? 'a' : 'button';
+const attrs = href
+  ? { href, ...(external ? { rel: 'noopener', target: '_blank' } : {}) }
+  : { type };
+---
+
+<Tag class:list={['btn', `btn--${variant}`, className]} {...attrs} {...rest}>
+  <span class="btn__label"><slot /></span>
+  {arrow && <Icon name={external ? 'arrow-up-right' : 'arrow-right'} size={18} class="btn__icon" />}
+  {external && <span class="sr-only">(se abre en una pestaña nueva)</span>}
+</Tag>
+
+<style>
+  .btn {
+    --btn-bg: var(--d44-blue-ink);
+    --btn-fg: var(--d44-white);
+    --btn-border: var(--d44-blue-ink);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    min-height: 3.25rem;
+    padding: 0.85rem 1.6rem;
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+    text-decoration: none;
+    color: var(--btn-fg);
+    background: var(--btn-bg);
+    border: 1px solid var(--btn-border);
+    border-radius: 999px;
+    cursor: pointer;
+    transition:
+      background-color var(--dur-base) var(--ease-out),
+      color var(--dur-base) var(--ease-out),
+      border-color var(--dur-base) var(--ease-out);
+  }
+  .btn:hover {
+    --btn-bg: var(--d44-blue-deep);
+    --btn-border: var(--d44-blue-deep);
+    color: var(--btn-fg);
+  }
+  .btn__icon {
+    transition: transform var(--dur-base) var(--ease-out);
+  }
+  .btn:hover .btn__icon {
+    transform: translateX(3px);
+  }
+  .btn--outline {
+    --btn-bg: transparent;
+    --btn-fg: var(--d44-blue-ink);
+    --btn-border: var(--d44-line-strong);
+  }
+  .btn--outline:hover {
+    --btn-bg: var(--d44-blue-ink);
+    --btn-fg: var(--d44-white);
+    --btn-border: var(--d44-blue-ink);
+  }
+  .btn--light {
+    --btn-bg: var(--d44-white);
+    --btn-fg: var(--d44-blue-ink);
+    --btn-border: var(--d44-white);
+  }
+  .btn--light:hover {
+    --btn-bg: var(--d44-peach-soft);
+    --btn-fg: var(--d44-ink);
+    --btn-border: var(--d44-peach-soft);
+  }
+  .btn--link {
+    --btn-bg: transparent;
+    --btn-fg: var(--d44-blue-ink);
+    --btn-border: transparent;
+    padding-inline: 0;
+    min-height: auto;
+    border-radius: 0;
+    text-decoration: underline;
+    text-decoration-color: var(--d44-peach);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.45em;
+  }
+  .btn--link:hover {
+    --btn-bg: transparent;
+    --btn-border: transparent;
+    --btn-fg: var(--d44-blue-deep);
+  }
+  .btn--legal {
+    --btn-bg: var(--d44-green-ink);
+    --btn-border: var(--d44-green-ink);
+  }
+  .btn--legal:hover {
+    --btn-bg: #33573a;
+    --btn-border: #33573a;
+  }
+  .btn[disabled] {
+    opacity: 0.7;
+    cursor: progress;
+  }
+</style>

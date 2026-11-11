@@ -1,0 +1,75 @@
+---
+import type { NavItem } from '../data/site';
+
+interface Props {
+  items: NavItem[];
+  class?: string;
+}
+const { items, class: className } = Astro.props;
+// /index.html y / son la misma página
+const path = Astro.url.pathname.replace(/\/index\.html$/, '/');
+const isActive = (href: string) =>
+  href === '/' ? path === '/' : path === href || path === href.replace(/\.html$/, '');
+---
+
+<nav aria-label="Navegación principal" class:list={['main-nav', className]}>
+  <ul role="list">
+    {
+      items.map((item) => (
+        <li>
+          <a href={item.href} class:list={{ 'is-legal': item.legal }} aria-current={isActive(item.href) ? 'page' : undefined}>
+            {item.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<style>
+  ul {
+    display: flex;
+    align-items: center;
+    gap: clamp(1.1rem, 0.2rem + 1.4vw, 2.1rem);
+  }
+  a {
+    position: relative;
+    display: inline-block;
+    padding-block: 0.5rem;
+    font-family: var(--font-heading);
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    color: var(--d44-ink);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0.15rem;
+    height: 1px;
+    background: var(--d44-peach-ink);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--dur-base) var(--ease-out);
+  }
+  a:hover {
+    color: var(--d44-blue-deep);
+  }
+  a:hover::after,
+  a[aria-current='page']::after {
+    transform: scaleX(1);
+  }
+  a[aria-current='page'] {
+    color: var(--d44-blue-deep);
+  }
+  a.is-legal {
+    color: var(--d44-green-ink);
+  }
+  a.is-legal::after {
+    background: var(--d44-green);
+  }
+</style>
