@@ -27,7 +27,7 @@ export const site = {
 } as const;
 
 /** Enlace externo al catálogo de inmuebles (Idealista), usado en la portada. */
-export const propertiesUrl = 'https://www.idealista.com/pro/distrito-44/venta-viviendas';
+export const propertiesUrl = 'https://www.idealista.com/pro/distrito-44/';
 
 /** Endpoint real de Formspree que ya usaba el formulario de contacto. */
 export const formEndpoint = 'https://formspree.io/f/xqebkblj';
