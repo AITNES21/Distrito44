@@ -8,6 +8,8 @@ import Icon, { type IconName } from '../components/Icon.astro';
 import CtaBand from '../components/CtaBand.astro';
 import ownerImg from '../assets/img/fotodavid.webp';
 
+const leafTone = (i: number) => ['', 'leaf--peach', 'leaf--green'][i % 3] + (i % 2 ? ' leaf--flip' : '');
+
 const values: { icon: IconName; title: string; text: string }[] = [
   { icon: 'heart', title: 'Cercanía', text: 'Tratamos a cada cliente como parte de nuestra familia, con calidez y empatía.' },
   { icon: 'award', title: 'Excelencia', text: 'Buscamos la perfección en cada detalle, desde la primera visita hasta el cierre.' },
@@ -118,8 +120,8 @@ const timeline = [
       <ul role="list" class="values__grid">
         {
           values.map((v, i) => (
-            <li class="value" data-reveal style={`--reveal-delay:${(i % 3) * 80}ms`}>
-              <span class="value__icon"><Icon name={v.icon} size={22} /></span>
+            <li class={`value leaf ${leafTone(i)}`} data-reveal style={`--reveal-delay:${(i % 3) * 80}ms`}>
+              <span class="arch-badge value__badge"><Icon name={v.icon} size={22} /></span>
               <h3>{v.title}</h3>
               <p>{v.text}</p>
             </li>
@@ -278,7 +280,7 @@ const timeline = [
   .values__grid {
     display: grid;
     grid-template-columns: 1fr;
-    border-top: 1px solid var(--d44-line);
+    gap: 1rem;
   }
   @media (min-width: 640px) {
     .values__grid {
@@ -288,41 +290,18 @@ const timeline = [
   @media (min-width: 1024px) {
     .values__grid {
       grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    /* Columna central desplazada: ritmo en zigzag */
+    .value:nth-child(3n + 2) {
+      transform: translateY(2.5rem);
+    }
+    .values__grid {
+      padding-bottom: 2.5rem;
     }
   }
-  .value {
-    padding: var(--space-lg) var(--space-md) var(--space-lg) 0;
-    border-bottom: 1px solid var(--d44-line);
-  }
-  @media (min-width: 640px) {
-    .value {
-      padding-left: var(--space-md);
-      border-left: 1px solid var(--d44-line);
-    }
-    .value:nth-child(2n + 1) {
-      border-left: 0;
-      padding-left: 0;
-    }
-  }
-  @media (min-width: 1024px) {
-    .value:nth-child(2n + 1) {
-      border-left: 1px solid var(--d44-line);
-      padding-left: var(--space-md);
-    }
-    .value:nth-child(3n + 1) {
-      border-left: 0;
-      padding-left: 0;
-    }
-  }
-  .value__icon {
-    display: inline-grid;
-    place-items: center;
-    width: 2.75rem;
-    height: 2.75rem;
+  .value__badge {
     margin-bottom: var(--space-md);
-    border: 1px solid var(--d44-peach);
-    border-radius: 50%;
-    color: var(--d44-peach-ink);
   }
   .value h3 {
     font-size: var(--fs-h4);

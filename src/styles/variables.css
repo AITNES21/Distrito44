@@ -27,6 +27,9 @@
   --d44-blue-ink: #24496e;      /* azul oscuro un 20% más profundo: texto/fondos */
   --d44-green-ink: #3f6a46;     /* verde oscuro accesible (AA sobre blanco) */
   --d44-peach-ink: #a3521f;     /* melocotón oscurecido para texto pequeño (5,3:1 sobre papel) */
+  --d44-tint-blue: #edf3fa;     /* azul principal al 9% sobre blanco */
+  --d44-tint-peach: #fff1e6;    /* melocotón al 20% sobre blanco */
+  --d44-tint-green: #edf5ee;    /* verde naturaleza al 14% sobre blanco */
   --d44-line: rgb(46 92 138 / 0.14);
   --d44-line-strong: rgb(46 92 138 / 0.28);
 

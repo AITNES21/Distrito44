@@ -1,0 +1,83 @@
+---
+/**
+ * Formas de marca de Distrito 44 (SVG, decorativas, sin JS).
+ *
+ * Todas salen de la propia identidad, no de un catálogo genérico:
+ * - arch:  el arco que enmarca las fotografías (y la casa del logotipo).
+ * - ring:  el círculo del logotipo, en trazo fino.
+ * - circle: disco relleno, para manchas de color suaves.
+ * - leaf:  hoja de bambú (Dpto. Jurídico) con esquinas asimétricas.
+ * - pebble: forma orgánica tipo canto rodado, para fondos.
+ * - halfring: medio anillo, como un sol / puerta.
+ *
+ * Uso: <Shape kind="pebble" tone="peach" class="mi-clase" />
+ * Se posicionan con CSS desde el componente que las usa.
+ */
+interface Props {
+  kind: 'arch' | 'ring' | 'circle' | 'leaf' | 'pebble' | 'halfring';
+  tone?: 'blue' | 'peach' | 'green' | 'logo' | 'white';
+  /** outline = solo trazo; fill = relleno suave */
+  mode?: 'fill' | 'outline';
+  class?: string;
+  strokeWidth?: number;
+}
+
+const { kind, tone = 'peach', mode, class: className, strokeWidth = 1.25 } = Astro.props;
+
+const colors = {
+  blue: 'var(--d44-blue)',
+  peach: 'var(--d44-peach)',
+  green: 'var(--d44-green)',
+  logo: 'var(--d44-blue-logo)',
+  white: 'var(--d44-white)',
+} as const;
+
+const defaults: Record<Props['kind'], 'fill' | 'outline'> = {
+  arch: 'outline',
+  ring: 'outline',
+  circle: 'fill',
+  leaf: 'fill',
+  pebble: 'fill',
+  halfring: 'outline',
+};
+const m = mode ?? defaults[kind];
+const color = colors[tone];
+
+const shapes: Record<Props['kind'], { viewBox: string; d: string }> = {
+  arch: { viewBox: '0 0 200 260', d: 'M10 255 V100 A90 90 0 0 1 190 100 V255' },
+  ring: { viewBox: '0 0 200 200', d: 'M100 6 A94 94 0 1 1 99.99 6 Z' },
+  circle: { viewBox: '0 0 200 200', d: 'M100 4 A96 96 0 1 1 99.99 4 Z' },
+  leaf: { viewBox: '0 0 200 200', d: 'M8 192 C 8 80, 80 8, 192 8 C 192 120, 120 192, 8 192 Z' },
+  pebble: {
+    viewBox: '0 0 400 340',
+    d: 'M214 12 C 300 6, 386 58, 392 150 C 398 246, 330 330, 218 334 C 112 338, 14 290, 8 188 C 2 92, 118 18, 214 12 Z',
+  },
+  halfring: { viewBox: '0 0 200 106', d: 'M6 100 A94 94 0 0 1 194 100' },
+};
+const s = shapes[kind];
+---
+
+<svg
+  class:list={['shape', `shape--${kind}`, className]}
+  viewBox={s.viewBox}
+  aria-hidden="true"
+  focusable="false"
+  preserveAspectRatio="xMidYMid meet"
+>
+  <path
+    d={s.d}
+    fill={m === 'fill' ? color : 'none'}
+    stroke={m === 'outline' ? color : 'none'}
+    stroke-width={strokeWidth}
+    vector-effect="non-scaling-stroke"
+    stroke-linecap="round"
+  />
+</svg>
+
+<style>
+  .shape {
+    position: absolute;
+    pointer-events: none;
+    overflow: visible;
+  }
+</style>

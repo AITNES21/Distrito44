@@ -6,6 +6,7 @@
  */
 import Button from './Button.astro';
 import OrganicLines from './OrganicLines.astro';
+import Shape from './Shape.astro';
 
 interface Props {
   title: string;
@@ -21,6 +22,7 @@ const { title, text, cta, href = '/contacto.html', tone = 'peach' } = Astro.prop
   <div class="container">
     <div class="cta-band__panel" data-reveal>
       <OrganicLines variant="orbit" lines={7} class="cta-band__orbit" />
+      <Shape kind="leaf" tone={tone === 'legal' ? 'green' : 'peach'} class="cta-band__leaf" />
       <div class="cta-band__content">
         <h2 id="cta-title">{title}</h2>
         <p>{text}</p>
@@ -65,6 +67,15 @@ const { title, text, cta, href = '/contacto.html', tone = 'peach' } = Astro.prop
     aspect-ratio: 1;
     right: -12%;
     top: -18%;
+  }
+  .cta-band__panel :global(.cta-band__leaf) {
+    width: clamp(7rem, 5rem + 8vw, 12rem);
+    left: -2.5rem;
+    bottom: -2.5rem;
+    opacity: 0.45;
+  }
+  .cta-band--legal .cta-band__panel :global(.cta-band__leaf) {
+    opacity: 0.3;
   }
   .cta-band__content {
     position: relative;

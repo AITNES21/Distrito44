@@ -287,3 +287,55 @@ ol[role='list'] {
   color: var(--d44-peach-ink);
   font-variant-numeric: tabular-nums;
 }
+
+/* ---------- Hojas: bloques de texto con forma de marca ----------
+   Esquinas asimétricas (hoja de bambú / arco) y tintes muy suaves de
+   la paleta. Sustituyen a las listas planas sin caer en la tarjeta
+   genérica con sombra. */
+.leaf {
+  --leaf-bg: var(--d44-tint-blue);
+  --leaf-accent: var(--d44-blue-deep);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(1.5rem, 1.1rem + 1.6vw, 2.5rem);
+  background: var(--leaf-bg);
+  border-radius: 2.5rem 0.5rem 2.5rem 0.5rem;
+}
+.leaf--peach {
+  --leaf-bg: var(--d44-tint-peach);
+  --leaf-accent: var(--d44-peach-ink);
+}
+.leaf--green {
+  --leaf-bg: var(--d44-tint-green);
+  --leaf-accent: var(--d44-green-ink);
+}
+.leaf--flip {
+  border-radius: 0.5rem 2.5rem 0.5rem 2.5rem;
+}
+/* Insignia en arco para el icono */
+.arch-badge {
+  display: inline-grid;
+  place-items: center;
+  width: 3rem;
+  height: 3.5rem;
+  border-radius: 999px 999px 0.4rem 0.4rem;
+  background: var(--d44-white);
+  color: var(--leaf-accent, var(--d44-blue-deep));
+}
+/* Numeral decorativo grande en trazo fino */
+.leaf__numeral {
+  position: absolute;
+  right: 1.25rem;
+  top: 0.25rem;
+  z-index: -1;
+  font-family: var(--font-heading);
+  font-size: clamp(4rem, 3rem + 4vw, 6.5rem);
+  font-weight: 300;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--leaf-accent);
+  opacity: 0.22;
+  pointer-events: none;
+  user-select: none;
+}
