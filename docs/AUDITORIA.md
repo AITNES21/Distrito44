@@ -153,7 +153,7 @@ Decisiones:
 | Comprobación | Resultado |
 |---|---|
 | URLs | **Idénticas** (8/8). No se necesitan redirecciones 301. `/index.html` sigue sirviendo la portada (canonical `/`). |
-| Title / description / canonical | **Idénticos** al original en las 8 páginas (verificado por `npm run validate`). |
+| Title / description / canonical | **Idénticos** al original en las 8 páginas (verificado por `npm run validate`), salvo la meta description de Quiénes Somos, corregida a «desde 2014» con aprobación del cliente. |
 | H1 | Uno por página, mismo texto que el original. |
 | Open Graph / Twitter | En todas las páginas, con dominio corregido (T7). |
 | Imágenes | Las rutas `/img/*.webp` originales siguen existiendo (Google Imágenes, `og:image`); las páginas usan versiones optimizadas. |
@@ -175,13 +175,13 @@ Aviso Legal, que está en `src/pages/aviso-legal.astro`.
 
 | # | Dónde | Problema |
 |---|---|---|
-| I1 | Contacto (cuerpo) | Dirección **«Calle Ejemplo 123, Local 2, 28001 Madrid»** — parece un texto de ejemplo. La portada, el JSON-LD y la meta description de Contacto dicen **Avda. del Cantábrico, 131, 28939 Arroyomolinos**. |
-| I2 | Aviso Legal | Datos de **ejemplo**: NIF `B-12345678`, Registro Mercantil «Tomo 12345, Folio 678, Hoja M-123456», teléfono `+34 912 345 678`, dominio `www.distrito44.es`. **La LSSI (art. 10) exige datos reales.** Prioridad alta. |
-| I3 | Teléfonos | `+34 646 055 532` (mayoría), `+34 696 569 931` (pie del Jurídico), `+34 912 345 678` (Aviso Legal). |
-| I4 | Emails | `dadiga4444@gmail.com` (portada, meta de Contacto) frente a `info@`, `legal@`, `protecciondatos@distrito44.es` (dominio **distinto** de la web). ¿Existen esos buzones? |
-| I5 | Fechas | JSON-LD y meta de Quiénes Somos: fundada en **2013**; la línea de tiempo dice fundación en **2014**. |
-| I6 | Horario | JSON-LD: L–V 9:00–19:00. Página de Contacto: L–V 9:00–20:00 y sábados 10:00–14:00. |
-| I7 | Ubicación | Historia/línea de tiempo: «oficina en el centro / corazón de Madrid»; la dirección es de Arroyomolinos. |
+| I1 | ~~Contacto (cuerpo)~~ | ✅ **Resuelto**: dirección real Avda. del Cantábrico, 131, 28939 Arroyomolinos (también en el bloque de contacto del Aviso Legal). |
+| I2 | Aviso Legal | **Pendiente**: NIF `B-12345678`, domicilio social «Calle Ejemplo 123», Registro Mercantil «Tomo 12345, Folio 678, Hoja M-123456», teléfono `+34 912 345 678` y dominio `www.distrito44.es` parecen datos de **ejemplo**. **La LSSI (art. 10) exige datos reales.** Prioridad alta. |
+| I3 | Teléfonos | **Pendiente**: `+34 646 055 532` (general), `+34 696 569 931` (pie del Jurídico), `+34 912 345 678` (Aviso Legal). |
+| I4 | ~~Emails~~ | ✅ **Resuelto**: email único `dadiga4444@gmail.com` en toda la web (sustituye a `info@`, `legal@` y `protecciondatos@distrito44.es`). |
+| I5 | ~~Fechas~~ | ✅ **Resuelto**: fundación en **2014** (JSON-LD y meta description de Quiénes Somos actualizados; coincide con la línea de tiempo). |
+| I6 | ~~Horario~~ | ✅ **Resuelto**: L–V 9:00–19:00, sábado y domingo cerrado, igual en la página de Contacto y en los datos estructurados. |
+| I7 | Ubicación | **Pendiente**: Historia/línea de tiempo dicen «oficina en el centro / corazón de Madrid»; la dirección es de Arroyomolinos. |
 | I8 | Nuestro Método | Repite el H1 y el subtítulo de Nuestros Servicios («Nuestros Servicios» / «Soluciones integrales…») y el botón «Conoce Nuestro Método» enlaza a la propia página. Recomendado: H1 «Nuestro Método». |
 | I9 | Dpto. Jurídico | «Más de 15 años de experiencia» frente a los 12 años de la empresa (puede referirse a los abogados; conviene aclararlo). |
 | I10 | Redes sociales | Los 4 iconos apuntaban a `#`. Ahora no se muestran; basta con rellenar las URLs en `site.ts` y aparecen solos. |
@@ -194,6 +194,8 @@ Aviso Legal, que está en `src/pages/aviso-legal.astro`.
   nota de privacidad bajo el formulario con enlace al Aviso Legal, «Saltar al contenido», etiquetas
   accesibles de botones e índice de servicios en Nuestros Servicios (con los mismos títulos).
 - Año del copyright dinámico (antes «© 2025» fijo).
+- Datos confirmados por el cliente: dirección y email en Contacto, email en Aviso Legal, fundación 2014
+  (meta description de Quiénes Somos) y horario L–V 9:00–19:00 en Contacto.
 - Pie de página unificado con los datos de la portada (dirección de Arroyomolinos, `+34 646 055 532`,
   `dadiga4444@gmail.com`); en el Dpto. Jurídico se mantiene su teléfono propio.
 

@@ -53,18 +53,17 @@ export const contact = {
 } as const;
 
 /**
- * Datos que aparecían en el CUERPO de la página de contacto original.
- * REVISAR: la dirección parece un texto de ejemplo y el email usa el
- * dominio distrito44.es (distinto del dominio de la web).
+ * Datos del cuerpo de la página de contacto (confirmados por el cliente).
+ * El horario coincide con el de los datos estructurados (schema.ts).
  */
 export const contactPageData = {
-  addressLines: ['Calle Ejemplo 123, Local 2', '28001 Madrid, España'],
+  addressLines: ['Avda. del Cantábrico, 131', '28939 Arroyomolinos, Madrid'],
   phone: '+34 646 055 532',
   phoneHref: 'tel:+34646055532',
-  email: 'info@distrito44.es',
+  email: 'dadiga4444@gmail.com',
   schedule: [
-    { day: 'Lunes - Viernes', time: '9:00 - 20:00' },
-    { day: 'Sábado', time: '10:00 - 14:00' },
+    { day: 'Lunes - Viernes', time: '9:00 - 19:00' },
+    { day: 'Sábado', time: 'Cerrado' },
     { day: 'Domingo', time: 'Cerrado' },
   ],
 } as const;

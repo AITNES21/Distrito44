@@ -67,7 +67,7 @@ export const organization = {
   alternateName: site.alternateName,
   url: site.url,
   logo: `${site.url}/img/logo2.webp`,
-  foundingDate: '2013',
+  foundingDate: '2014',
   slogan: site.tagline,
   contactPoint: {
     '@type': 'ContactPoint',

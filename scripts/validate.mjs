@@ -20,6 +20,11 @@ const dist = join(root, 'dist');
 const legacy = join(root, 'legacy');
 const SITE = 'https://distrito-44.com';
 
+// Cambios de metadatos aprobados expresamente por el cliente (página → campos).
+const approvedChanges = {
+  'quienes-somos.html': ['description'], // fundación corregida: 2013 → 2014
+};
+
 const pages = [
   'index.html',
   'quienes-somos.html',
@@ -90,6 +95,7 @@ for (const page of pages) {
     if (old) {
       const before = meta[key](old);
       if (before === now) pass(`${key} idéntico al original`);
+      else if (approvedChanges[page]?.includes(key)) pass(`${key} cambiado (aprobado): ${now}`);
       else fail(`${key} distinto al original:\n      antes: ${before}\n      ahora: ${now}`);
     }
   }
