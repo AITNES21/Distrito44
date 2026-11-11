@@ -10,9 +10,10 @@ interface Props {
   tone?: 'default' | 'legal';
 }
 const { tone = 'default' } = Astro.props;
+const isHome = Astro.url.pathname === '/' || Astro.url.pathname.endsWith('/index.html');
 ---
 
-<header class:list={['site-header', `site-header--${tone}`]} data-header>
+<header class:list={['site-header', `site-header--${tone}`, { 'site-header--home': isHome }]} data-header>
   <div class="site-header__inner container container--wide">
     <a href="/" class="brand" aria-label="Distrito 44 — Inicio">
       <Picture
@@ -49,8 +50,14 @@ const { tone = 'default' } = Astro.props;
       </button>
     </div>
   </div>
+</header>
 
-  <div class="mobile-menu" id="mobile-menu" data-mobile-menu hidden>
+<!--
+  El menú móvil va FUERA de <header>: el desenfoque (backdrop-filter) de la
+  cabecera hace que Safari/iOS encierre ahí los elementos "fixed" y el menú
+  quedaba con altura cero (no se veía en iPhone).
+-->
+<div class="mobile-menu" id="mobile-menu" data-mobile-menu hidden>
     <OrganicLines variant="terraces" lines={7} class="mobile-menu__lines" />
     <nav aria-label="Menú móvil" class="mobile-menu__nav container">
       <ul role="list">
@@ -73,8 +80,7 @@ const { tone = 'default' } = Astro.props;
         <a href={`mailto:${contact.email}`}><Icon name="mail" size={18} /> {contact.email}</a>
       </div>
     </nav>
-  </div>
-</header>
+</div>
 
 <script>
   const header = document.querySelector<HTMLElement>('[data-header]');
@@ -121,6 +127,16 @@ const { tone = 'default' } = Astro.props;
     transition:
       border-color var(--dur-base) ease,
       background-color var(--dur-base) ease;
+  }
+  .site-header.is-open {
+    background: var(--d44-paper);
+    border-bottom-color: var(--d44-line);
+  }
+  /* Portada en móvil: la marca ya aparece en grande en el hero */
+  @media (max-width: 1179px) {
+    .site-header--home .brand__word {
+      display: none;
+    }
   }
   .site-header.is-scrolled {
     border-bottom-color: var(--d44-line);
@@ -228,6 +244,7 @@ const { tone = 'default' } = Astro.props;
   .mobile-menu {
     position: fixed;
     inset: var(--header-h) 0 0 0;
+    z-index: 99;
     background: var(--d44-paper);
     overflow-y: auto;
     overscroll-behavior: contain;
@@ -302,5 +319,9 @@ const { tone = 'default' } = Astro.props;
 
   :global(html.menu-open) {
     overflow: hidden;
+  }
+  /* Con el menú abierto no debe taparlo el aviso de cookies */
+  :global(html.menu-open .cookie-banner) {
+    display: none !important;
   }
 </style>

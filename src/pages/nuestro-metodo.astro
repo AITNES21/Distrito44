@@ -4,14 +4,13 @@ import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import OrganicLines from '../components/OrganicLines.astro';
 import Icon, { type IconName } from '../components/Icon.astro';
-import Button from '../components/Button.astro';
 import CtaBand from '../components/CtaBand.astro';
 
 /*
- * REVISAR (ver docs/AUDITORIA.md): en la web original esta página repite el
- * H1 y el subtítulo de "Nuestros Servicios", y el botón "Conoce Nuestro
- * Método" enlaza a esta misma página. Se mantienen tal cual por indicación
- * expresa de conservar los textos; se recomienda revisarlos.
+ * En la web original esta página repetía el H1 y el subtítulo de "Nuestros
+ * Servicios" y el botón "Conoce Nuestro Método" enlazaba a sí misma. Corregido
+ * a petición del cliente (títulos repetidos): H1 propio, subtítulo tomado de
+ * la descripción original de la página y sin el botón autorreferente.
  */
 const steps: { icon: IconName; title: string; text: string; list: string[] }[] = [
   {
@@ -66,8 +65,8 @@ const extras: { icon: IconName; title: string; text: string }[] = [
 >
   <PageHero
     crumb="Nuestro Método"
-    title="Nuestros Servicios"
-    subtitle="Soluciones integrales para todas tus necesidades inmobiliarias"
+    title="Nuestro Método"
+    subtitle="Método profesional garantizado para vender tu vivienda en Madrid con el máximo beneficio."
     lines="terraces"
   />
 
@@ -133,7 +132,6 @@ const extras: { icon: IconName; title: string; text: string }[] = [
         Combinamos todos nuestros servicios de forma coordinada para ofrecerte una experiencia integral. Desde la primera
         valoración hasta la entrega de llaves, nuestro equipo trabaja contigo en cada paso del camino.
       </p>
-      <Button href="/nuestro-metodo.html">Conoce Nuestro Método</Button>
     </div>
   </section>
 
