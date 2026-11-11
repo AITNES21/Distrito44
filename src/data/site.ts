@@ -26,7 +26,10 @@ export const site = {
   credit: { label: 'NESTEK.es', url: 'https://nestek.es' },
 } as const;
 
-/** Enlace externo al catálogo de inmuebles (Idealista), usado en la portada. */
+/**
+ * Catálogo de inmuebles en Idealista. La portada enlaza a /propiedades.html,
+ * que redirige aquí (evita que la app de Idealista en iPhone lo abra en blanco).
+ */
 export const propertiesUrl = 'https://www.idealista.com/pro/distrito-44/';
 
 /** Endpoint real de Formspree que ya usaba el formulario de contacto. */
