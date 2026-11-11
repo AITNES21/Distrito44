@@ -177,11 +177,11 @@ Aviso Legal, que está en `src/pages/aviso-legal.astro`.
 |---|---|---|
 | I1 | ~~Contacto (cuerpo)~~ | ✅ **Resuelto**: dirección real Avda. del Cantábrico, 131, 28939 Arroyomolinos (también en el bloque de contacto del Aviso Legal). |
 | I2 | Aviso Legal | **Pendiente**: NIF `B-12345678`, domicilio social «Calle Ejemplo 123», Registro Mercantil «Tomo 12345, Folio 678, Hoja M-123456», teléfono `+34 912 345 678` y dominio `www.distrito44.es` parecen datos de **ejemplo**. **La LSSI (art. 10) exige datos reales.** Prioridad alta. |
-| I3 | Teléfonos | **Pendiente**: `+34 646 055 532` (general), `+34 696 569 931` (pie del Jurídico), `+34 912 345 678` (Aviso Legal). |
+| I3 | Teléfonos | ✅ `+34 646 055 532` (general) y `+34 696 569 931` (Dpto. Jurídico) se mantienen. **Pendiente**: `+34 912 345 678` del Aviso Legal (ver I2). |
 | I4 | ~~Emails~~ | ✅ **Resuelto**: email único `dadiga4444@gmail.com` en toda la web (sustituye a `info@`, `legal@` y `protecciondatos@distrito44.es`). |
 | I5 | ~~Fechas~~ | ✅ **Resuelto**: fundación en **2014** (JSON-LD y meta description de Quiénes Somos actualizados; coincide con la línea de tiempo). |
 | I6 | ~~Horario~~ | ✅ **Resuelto**: L–V 9:00–19:00, sábado y domingo cerrado, igual en la página de Contacto y en los datos estructurados. |
-| I7 | Ubicación | **Pendiente**: Historia/línea de tiempo dicen «oficina en el centro / corazón de Madrid»; la dirección es de Arroyomolinos. |
+| I7 | ~~Ubicación~~ | ✅ **Resuelto**: Historia y línea de tiempo dicen ahora «Arroyomolinos (Madrid)» en lugar de «corazón / centro de Madrid». |
 | I8 | Nuestro Método | Repite el H1 y el subtítulo de Nuestros Servicios («Nuestros Servicios» / «Soluciones integrales…») y el botón «Conoce Nuestro Método» enlaza a la propia página. Recomendado: H1 «Nuestro Método». |
 | I9 | Dpto. Jurídico | «Más de 15 años de experiencia» frente a los 12 años de la empresa (puede referirse a los abogados; conviene aclararlo). |
 | I10 | ~~Redes sociales~~ | ✅ **Resuelto**: la empresa no tiene redes de momento; se han eliminado los iconos y enlaces (antes apuntaban a `#`). |
