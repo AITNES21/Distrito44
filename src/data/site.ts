@@ -36,7 +36,7 @@ export const formEndpoint = 'https://formspree.io/f/xqebkblj';
  * Solo se carga si el visitante acepta las cookies (LSSI art. 22.2).
  */
 export const analytics = {
-  measurementId: '',
+  measurementId: 'G-HWN3Q07EKW',
 };
 
 /**
