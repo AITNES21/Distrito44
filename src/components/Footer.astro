@@ -1,7 +1,7 @@
 ---
 import Icon from './Icon.astro';
 import OrganicLines from './OrganicLines.astro';
-import { site, contact, footerLinks, legalLinks } from '../data/site';
+import { site, contact, footerLinks, legalLinks, analytics } from '../data/site';
 
 interface Props {
   variant?: 'default' | 'legal';
@@ -54,6 +54,15 @@ const year = new Date().getFullYear();
       <h2 id="footer-legal-title" class="site-footer__title">Legal</h2>
       <ul role="list">
         {legalLinks.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+        {
+          analytics.measurementId && (
+            <li>
+              <button type="button" class="site-footer__cookies" data-cookie-settings>
+                Configurar cookies
+              </button>
+            </li>
+          )
+        }
       </ul>
     </nav>
   </div>
@@ -144,6 +153,18 @@ const year = new Date().getFullYear();
   }
   .site-footer ul a {
     text-decoration: none;
+  }
+  .site-footer__cookies {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--d44-white);
+    font-size: inherit;
+    text-align: left;
+    cursor: pointer;
+  }
+  .site-footer__cookies:hover {
+    color: var(--footer-accent);
   }
   address {
     font-style: normal;

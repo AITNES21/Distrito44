@@ -199,6 +199,11 @@ import { contactPageData as c, formEndpoint } from '../data/site';
           form.reset();
           fields.forEach((n) => (form.elements.namedItem(n) as HTMLElement).removeAttribute('aria-invalid'));
           ok.hidden = false;
+          // Conversión en Google Analytics (solo si el visitante aceptó cookies)
+          (window as unknown as { gtag?: (...a: unknown[]) => void }).gtag?.('event', 'generate_lead', {
+            form_name: 'contacto',
+            asunto: (form.elements.namedItem('asunto') as HTMLSelectElement).value || 'sin_asunto',
+          });
           ok.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         } else {
           errText.textContent = 'Hubo un problema al enviar el formulario. Inténtalo de nuevo.';

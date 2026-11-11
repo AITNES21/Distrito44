@@ -37,6 +37,7 @@ npm run validate   # tras el build: URLs, metadatos SEO, enlaces, imágenes, sit
 | Quiero cambiar… | Fichero |
 |---|---|
 | Teléfono, email, dirección, menú | `src/data/site.ts` |
+| ID de Google Analytics (`G-…`) | `src/data/site.ts` → `analytics.measurementId` |
 | Datos estructurados (Schema.org) | `src/data/schema.ts` |
 | Fotos y textos de la galería | `src/data/gallery.ts` + `src/assets/img/` |
 | Textos de una página | `src/pages/<pagina>.astro` |
@@ -45,6 +46,14 @@ npm run validate   # tras el build: URLs, metadatos SEO, enlaces, imágenes, sit
 
 Las imágenes nuevas se añaden en `src/assets/img/` en su mayor resolución: Astro genera automáticamente
 las versiones AVIF/WebP y los tamaños responsive.
+
+## Google Analytics
+
+Se activa poniendo el ID de medición GA4 en `analytics.measurementId` (`src/data/site.ts`).
+Con el ID vacío no se incluye nada. Con ID, se muestra un aviso de cookies y Google Analytics
+solo se carga si el visitante pulsa «Aceptar» (LSSI art. 22.2); la elección se puede cambiar desde
+«Configurar cookies» en el pie. Eventos enviados: `generate_lead` (formulario de contacto enviado
+con éxito) y `contact_click` (clic en teléfono o email); GA4 mide solo los clics salientes (Idealista).
 
 ## URLs
 

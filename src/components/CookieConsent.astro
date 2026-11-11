@@ -1,0 +1,195 @@
+---
+/**
+ * Aviso de cookies + Google Analytics 4.
+ *
+ * - Solo se renderiza si hay un ID en `analytics.measurementId` (site.ts).
+ * - Google Analytics NO se carga hasta que el visitante pulsa "Aceptar":
+ *   ninguna petición ni cookie de Google antes del consentimiento.
+ * - "Rechazar" tiene el mismo peso visual que "Aceptar" (criterio AEPD).
+ * - La elección se recuerda en localStorage y se puede cambiar desde
+ *   "Configurar cookies" en el pie.
+ * - Eventos: envío del formulario (generate_lead, en contacto.astro) y
+ *   clics en teléfono/email (contact_click). Los clics a Idealista los mide
+ *   GA4 automáticamente como "clics salientes".
+ */
+import { analytics } from '../data/site';
+const id = analytics.measurementId;
+---
+
+{
+  id && (
+    <div class="cookie-banner" role="region" aria-labelledby="cookie-title" data-cookie-banner data-ga-id={id} hidden>
+      <div class="cookie-banner__inner">
+        <div class="cookie-banner__text">
+          <p id="cookie-title" class="cookie-banner__title">Cookies</p>
+          <p>
+            Usamos cookies analíticas de Google Analytics para saber cómo se utiliza la web y mejorarla. Solo se
+            activan si las aceptas. Más información en nuestra{' '}
+            <a href="/aviso-legal.html#cookies">política de cookies</a>.
+          </p>
+        </div>
+        <div class="cookie-banner__actions">
+          <button type="button" class="cookie-btn" data-cookie-reject>Rechazar</button>
+          <button type="button" class="cookie-btn" data-cookie-accept>Aceptar</button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+<script>
+  type Gtag = (...args: unknown[]) => void;
+  const KEY = 'd44-cookie-consent';
+  const banner = document.querySelector<HTMLElement>('[data-cookie-banner]');
+
+  if (banner) {
+    const id = banner.dataset.gaId!;
+    const w = window as unknown as { dataLayer: unknown[]; gtag?: Gtag };
+
+    const read = () => {
+      try {
+        return localStorage.getItem(KEY);
+      } catch {
+        return null;
+      }
+    };
+    const save = (v: string) => {
+      try {
+        localStorage.setItem(KEY, v);
+      } catch {
+        /* navegación privada: se vuelve a preguntar en la próxima visita */
+      }
+    };
+
+    let loaded = false;
+    const loadAnalytics = () => {
+      if (loaded) return;
+      loaded = true;
+      w.dataLayer = w.dataLayer || [];
+      w.gtag = function () {
+        // eslint-disable-next-line prefer-rest-params
+        w.dataLayer.push(arguments);
+      };
+      w.gtag('consent', 'default', {
+        analytics_storage: 'granted',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+      });
+      w.gtag('js', new Date());
+      w.gtag('config', id);
+      const s = document.createElement('script');
+      s.async = true;
+      s.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(id)}`;
+      document.head.appendChild(s);
+    };
+
+    const removeGaCookies = () => {
+      const host = location.hostname.replace(/^www\./, '');
+      document.cookie.split(';').forEach((c) => {
+        const name = c.split('=')[0].trim();
+        if (name === '_ga' || name.startsWith('_ga_') || name === '_gid') {
+          for (const domain of ['', `; domain=${host}`, `; domain=.${host}`]) {
+            document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/${domain}`;
+          }
+        }
+      });
+    };
+
+    const show = () => {
+      banner.hidden = false;
+    };
+    const hide = () => {
+      banner.hidden = true;
+    };
+
+    banner.querySelector('[data-cookie-accept]')?.addEventListener('click', () => {
+      save('granted');
+      hide();
+      loadAnalytics();
+    });
+    banner.querySelector('[data-cookie-reject]')?.addEventListener('click', () => {
+      save('denied');
+      hide();
+      if (loaded) {
+        w.gtag?.('consent', 'update', { analytics_storage: 'denied' });
+      }
+      removeGaCookies();
+    });
+    document.querySelectorAll('[data-cookie-settings]').forEach((b) => b.addEventListener('click', show));
+
+    const choice = read();
+    if (choice === 'granted') loadAnalytics();
+    else if (choice !== 'denied') show();
+
+    // Clics en teléfono y email
+    document.addEventListener('click', (e) => {
+      const a = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[href^="tel:"], a[href^="mailto:"]');
+      if (a && w.gtag) {
+        w.gtag('event', 'contact_click', { method: a.href.startsWith('tel:') ? 'telefono' : 'email' });
+      }
+    });
+  }
+</script>
+
+<style>
+  .cookie-banner {
+    position: fixed;
+    inset: auto 0 0 0;
+    z-index: 150;
+    padding: 0.75rem var(--gutter) calc(0.75rem + env(safe-area-inset-bottom));
+    pointer-events: none;
+  }
+  .cookie-banner[hidden] {
+    display: none;
+  }
+  .cookie-banner__inner {
+    pointer-events: auto;
+    display: grid;
+    gap: 1rem;
+    max-width: 60rem;
+    margin-inline: auto;
+    padding: 1.25rem 1.5rem;
+    background: var(--d44-white);
+    border: 1px solid var(--d44-line-strong);
+    border-radius: var(--radius-md);
+    box-shadow: 0 10px 30px rgb(36 73 110 / 0.12);
+    font-size: var(--fs-sm);
+  }
+  @media (min-width: 760px) {
+    .cookie-banner__inner {
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 2rem;
+    }
+  }
+  .cookie-banner__title {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    color: var(--d44-ink);
+    margin-bottom: 0.25rem;
+  }
+  .cookie-banner__actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+  /* Mismo peso visual para aceptar y rechazar */
+  .cookie-btn {
+    flex: 1;
+    min-height: 2.75rem;
+    padding: 0.6rem 1.4rem;
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--d44-blue-ink);
+    background: var(--d44-white);
+    border: 1px solid var(--d44-blue-ink);
+    border-radius: 999px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .cookie-btn:hover {
+    color: var(--d44-white);
+    background: var(--d44-blue-ink);
+  }
+</style>

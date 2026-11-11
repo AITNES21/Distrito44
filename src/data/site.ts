@@ -31,6 +31,15 @@ export const propertiesUrl = 'https://www.idealista.com/pro/distrito-44/venta-vi
 export const formEndpoint = 'https://formspree.io/f/xqebkblj';
 
 /**
+ * Google Analytics 4. Pega aquí el "ID de medición" (empieza por G-).
+ * Vacío = Analytics desactivado y sin aviso de cookies.
+ * Solo se carga si el visitante acepta las cookies (LSSI art. 22.2).
+ */
+export const analytics = {
+  measurementId: '',
+};
+
+/**
  * Datos de contacto "oficiales" usados en cabecera, pie y datos estructurados.
  * Se toman de la portada original (dirección y email del pie + JSON-LD)
  * y del teléfono que aparece en la mayoría de páginas.
