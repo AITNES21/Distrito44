@@ -7,6 +7,7 @@ import OrganicLines from '../components/OrganicLines.astro';
 import Shape from '../components/Shape.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import CtaBand from '../components/CtaBand.astro';
+import { propertiesUrl } from '../data/site';
 import { realEstateAgent, organization, website } from '../data/schema';
 
 import heroImg from '../assets/img/ft1.webp';
@@ -63,7 +64,7 @@ const stats = [
         </h1>
         <p class="hero__tagline hero-fade" style="--d:140ms">HACEMOS SUEÑOS REALIDAD</p>
         <div class="hero__actions hero-fade" style="--d:260ms">
-          <Button href="/propiedades.html">Nuestras propiedades</Button>
+          <Button href={propertiesUrl}>Nuestras propiedades</Button>
           <Button href="/contacto.html" variant="outline">Contáctanos</Button>
         </div>
       </div>
