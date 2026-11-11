@@ -45,6 +45,8 @@ const steps: { icon: IconName; title: string; text: string; list: string[] }[] =
   },
 ];
 
+const leafTone = (i: number) => ['', 'leaf--peach', 'leaf--green'][i % 3] + (i % 2 ? ' leaf--flip' : '');
+
 const extras: { icon: IconName; title: string; text: string }[] = [
   { icon: 'trending-up', title: 'Análisis de Mercado', text: 'Estudios detallados de tendencias y precios del mercado inmobiliario para tomar las mejores decisiones.' },
   { icon: 'handshake', title: 'Negociación Experta', text: 'Negociamos en tu nombre para conseguir el mejor precio y condiciones en la operación.' },
@@ -108,8 +110,9 @@ const extras: { icon: IconName; title: string; text: string }[] = [
       <ul role="list" class="extras__grid">
         {
           extras.map((e, i) => (
-            <li class="extra" data-reveal style={`--reveal-delay:${(i % 2) * 90}ms`}>
-              <h3><Icon name={e.icon} size={22} /> {e.title}</h3>
+            <li class={`extra leaf ${leafTone(i)}`} data-reveal style={`--reveal-delay:${(i % 2) * 90}ms`}>
+              <span class="arch-badge extra__badge"><Icon name={e.icon} size={22} /></span>
+              <h3>{e.title}</h3>
               <p>{e.text}</p>
             </li>
           ))
@@ -237,23 +240,19 @@ const extras: { icon: IconName; title: string; text: string }[] = [
   }
   .extras__grid {
     display: grid;
-    border-top: 1px solid var(--d44-line);
+    gap: 1rem;
   }
   @media (min-width: 760px) {
     .extras__grid {
       grid-template-columns: 1fr 1fr;
-    }
-    .extra:nth-child(odd) {
-      padding-right: var(--space-lg);
-      border-right: 1px solid var(--d44-line);
+      gap: 1.25rem;
     }
     .extra:nth-child(even) {
-      padding-left: var(--space-lg);
+      margin-top: 2.5rem;
     }
   }
-  .extra {
-    padding-block: var(--space-lg);
-    border-bottom: 1px solid var(--d44-line);
+  .extra__badge {
+    margin-bottom: var(--space-sm);
   }
   .extra h3 {
     display: flex;
@@ -261,9 +260,6 @@ const extras: { icon: IconName; title: string; text: string }[] = [
     gap: 0.75rem;
     font-size: var(--fs-h4);
     margin-bottom: 0.5rem;
-  }
-  .extra h3 :global(.icon) {
-    color: var(--d44-peach-ink);
   }
 
   .how {

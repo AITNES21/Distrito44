@@ -143,6 +143,9 @@ Decisiones:
   terrazas), *origami* (las diagonales a 30/60/120/150° del patrón original), *bamboo* (los tallos del jurídico)
   y *orbit* (arcos del círculo del logotipo). Se dibujan una sola vez al cargar si el usuario no pide reducir movimiento.
 - **Formas**: arcos (del círculo del logo) para enmarcar fotografías; líneas finas de 1 px en lugar de sombras.
+- **Formas de marca** (`Shape.astro`): arco y anillo del logotipo, hoja de bambú, canto rodado y medio anillo,
+  en los tonos de la paleta y a baja opacidad. Los bloques de texto usan «hojas» (`.leaf`): esquinas
+  asimétricas y tintes suaves azul / melocotón / verde, con el icono en una insignia con forma de arco.
 - **Ritmo**: cada página alterna fondo papel / blanco / color de marca y combina columnas asimétricas,
   listas numeradas y filetes, evitando la rejilla de tarjetas repetidas.
 

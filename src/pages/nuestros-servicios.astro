@@ -47,6 +47,8 @@ const services = [
   },
 ];
 
+const leafTone = (i: number) => ['', 'leaf--peach', 'leaf--green'][i % 3] + (i % 2 ? ' leaf--flip' : '');
+
 const reasons: { icon: IconName; title: string; text: string }[] = [
   { icon: 'award', title: 'Años de Experiencia', text: 'Más de una década ayudando a nuestros clientes a cumplir sus objetivos inmobiliarios con éxito.' },
   { icon: 'users', title: 'Equipo Profesional', text: 'Expertos especializados que trabajan con dedicación para asegurar su satisfacción total.' },
@@ -120,8 +122,8 @@ const reasons: { icon: IconName; title: string; text: string }[] = [
       <ul role="list" class="why__grid">
         {
           reasons.map((r, i) => (
-            <li class="why__item" data-reveal style={`--reveal-delay:${(i % 2) * 90}ms`}>
-              <span class="why__icon"><Icon name={r.icon} size={22} /></span>
+            <li class={`why__item leaf ${leafTone(i)}`} data-reveal style={`--reveal-delay:${(i % 2) * 90}ms`}>
+              <span class="arch-badge"><Icon name={r.icon} size={22} /></span>
               <div>
                 <h3>{r.title}</h3>
                 <p>{r.text}</p>
@@ -262,36 +264,22 @@ const reasons: { icon: IconName; title: string; text: string }[] = [
   }
   .why__grid {
     display: grid;
-    gap: 0;
-    border-top: 1px solid var(--d44-line);
+    gap: 1rem;
   }
   @media (min-width: 760px) {
     .why__grid {
       grid-template-columns: 1fr 1fr;
-    }
-    .why__item:nth-child(odd) {
-      padding-right: var(--space-lg);
-      border-right: 1px solid var(--d44-line);
+      gap: 1.25rem;
     }
     .why__item:nth-child(even) {
-      padding-left: var(--space-lg);
+      margin-top: 2.5rem;
     }
   }
   .why__item {
     display: grid;
     grid-template-columns: auto 1fr;
     gap: var(--space-md);
-    padding-block: var(--space-lg);
-    border-bottom: 1px solid var(--d44-line);
-  }
-  .why__icon {
-    display: inline-grid;
-    place-items: center;
-    width: 2.75rem;
-    height: 2.75rem;
-    border: 1px solid var(--d44-line-strong);
-    border-radius: 50%;
-    color: var(--d44-blue-deep);
+    align-items: start;
   }
   .why__item h3 {
     font-size: var(--fs-h4);

@@ -244,7 +244,11 @@ const benefits: { icon: IconName; title: string; text: string }[] = [
     padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
     background: rgb(255 255 255 / 0.82);
     border: 1px solid rgb(90 140 97 / 0.2);
-    border-radius: var(--radius-md);
+    border-radius: 2.5rem 0.5rem 2.5rem 0.5rem;
+  }
+  .legal-service:nth-child(4n + 2),
+  .legal-service:nth-child(4n + 3) {
+    border-radius: 0.5rem 2.5rem 0.5rem 2.5rem;
   }
   .legal-service h3 {
     display: flex;
@@ -258,8 +262,8 @@ const benefits: { icon: IconName; title: string; text: string }[] = [
     place-items: center;
     flex-shrink: 0;
     width: 2.9rem;
-    height: 2.9rem;
-    border-radius: 50%;
+    height: 3.4rem;
+    border-radius: 999px 999px 0.4rem 0.4rem;
     background: var(--d44-green-mist);
     color: var(--d44-green-ink);
   }
