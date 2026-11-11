@@ -176,7 +176,7 @@ Aviso Legal, que está en `src/pages/aviso-legal.astro`.
 | # | Dónde | Problema |
 |---|---|---|
 | I1 | ~~Contacto (cuerpo)~~ | ✅ **Resuelto**: dirección real Avda. del Cantábrico, 131, 28939 Arroyomolinos (también en el bloque de contacto del Aviso Legal). |
-| I2 | Aviso Legal | **Pendiente**: NIF `B-12345678`, domicilio social «Calle Ejemplo 123», Registro Mercantil «Tomo 12345, Folio 678, Hoja M-123456», teléfono `+34 912 345 678` y dominio `www.distrito44.es` parecen datos de **ejemplo**. **La LSSI (art. 10) exige datos reales.** Prioridad alta. |
+| I2 | Aviso Legal | ✅ Domicilio social: Avda. del Cantábrico, 131, Arroyomolinos. ✅ Dominio: `distrito-44.com`. ✅ NIF de ejemplo retirado (el cliente lo publicará más adelante; la LSSI art. 10 lo exige). **Pendiente**: teléfono `+34 912 345 678` y Registro Mercantil «Tomo 12345, Folio 678, Hoja M-123456», que parecen de ejemplo. |
 | I3 | Teléfonos | ✅ `+34 646 055 532` (general) y `+34 696 569 931` (Dpto. Jurídico) se mantienen. **Pendiente**: `+34 912 345 678` del Aviso Legal (ver I2). |
 | I4 | ~~Emails~~ | ✅ **Resuelto**: email único `dadiga4444@gmail.com` en toda la web (sustituye a `info@`, `legal@` y `protecciondatos@distrito44.es`). |
 | I5 | ~~Fechas~~ | ✅ **Resuelto**: fundación en **2014** (JSON-LD y meta description de Quiénes Somos actualizados; coincide con la línea de tiempo). |
